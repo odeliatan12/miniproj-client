@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { firstValueFrom } from "rxjs";
-import { Login } from "../models/model";
+import { Login, Restaurant, RestaurantDetails } from "../models/model";
 import { UserAuthService } from "./user-auth.service";
 
 @Injectable()
@@ -39,6 +39,12 @@ export class UserService{
         } else {
             return isMatch;
         }
-      }
+    }
 
+    // Get all Restaurants
+    public getAllRestaurants(): Promise<RestaurantDetails[]>{
+        return firstValueFrom(
+            this.http.get<RestaurantDetails[]>("/allRestaurants")
+        )
+    }
 }

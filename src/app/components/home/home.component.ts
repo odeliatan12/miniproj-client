@@ -12,5 +12,6 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HomeComponent{
 
+  constructor(public userService: UserService){ }
 
 }

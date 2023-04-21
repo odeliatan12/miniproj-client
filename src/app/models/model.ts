@@ -17,6 +17,7 @@ export interface Restaurant{
 }
 
 export interface RestaurantDetails{
+    id: number
     name: string
     about: string
     contact: string
