@@ -23,7 +23,8 @@ export class AdminService{
     }
 
     public getRestaurants(id: string): Promise<Restaurant[]>{
-        const params = new HttpParams().set('userId', id);
+        const params = new HttpParams()
+            .set('userId', id);
         return firstValueFrom(
             this.http.get<Restaurant[]>("/admin", { params: params })
         )
@@ -32,6 +33,15 @@ export class AdminService{
     public getRestaurantDetails(id: number): Promise<RestaurantDetails>{
         return firstValueFrom(
             this.http.get<RestaurantDetails>("/admin/updateRestaurant/" + id)
+        )
+    }
+
+    public updateRestaurant(formData: FormData, restaurantId: number): Promise<string>{
+        const params = new HttpParams()
+            .set("restaurantId", restaurantId)
+            .set("userId", `${this.userAuth.getUserId()}`);
+        return firstValueFrom(
+            this.http.post<string>("/admin/updateRestaurant", formData, { params: params})
         )
     }
 }

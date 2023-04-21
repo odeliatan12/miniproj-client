@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantDetails } from 'src/app/models/model';
 import { AdminService } from 'src/app/services/admin.service';
 
@@ -12,10 +12,14 @@ import { AdminService } from 'src/app/services/admin.service';
 export class UpdateRestaurantComponent implements OnInit {
 
   form!: FormGroup
+  selectedImage!: File;
+
+  @ViewChild('file')
+  image: ElementRef | undefined;
 
   restDetails!: RestaurantDetails
 
-  constructor(private fb: FormBuilder, private adminSvc: AdminService, private activatedRoute: ActivatedRoute){ }
+  constructor(private fb: FormBuilder, private adminSvc: AdminService, private activatedRoute: ActivatedRoute, private route: Router){ }
 
   ngOnInit(): void {
     this.getRestaurantDetails()
@@ -54,8 +58,50 @@ export class UpdateRestaurantComponent implements OnInit {
     return this.adminSvc.getRestaurantDetails(restaurantId)
   }
 
-  updateRestaurant(){
+  onImageSelected(event: any) {
+    this.selectedImage = <File>event.target.files[0];
+  }
+
+  deleteRestaurant(idx: number){
     
+  }
+
+  updateRestaurant(){
+    const restaurantId = this.activatedRoute.snapshot.params["restaurantId"]
+    const value = this.form.value
+    console.log(value.name)
+    const formData = new FormData();
+    formData.set('name', value.name)
+    formData.set('about', value.about)
+    formData.set('contact', value.contact)
+    formData.set('restaurantLink', value.restaurantLink)
+    formData.set('menu', value.menu)
+    if (this.selectedImage) {
+      formData.set('image', this.selectedImage);
+    } else {
+      formData.set('image', "null")
+    }
+    formData.set('mondayOpening', value.mondayOpening)
+    formData.set('mondayClosing', value.mondayClosing)
+    formData.set('tuesdayOpening', value.tuesdayOpening)
+    formData.set('tuesdayClosing', value.tuesdayClosing)
+    formData.set('wednesdayOpening', value.wednesdayOpening)
+    formData.set('wednesdayClosing', value.wednesdayClosing)
+    formData.set('thursdayOpening', value.thursdayOpening)
+    formData.set('thursdayClosing', value.thursdayClosing)
+    formData.set('fridayOpening', value.fridayOpening)
+    formData.set('fridayClosing', value.fridayClosing)
+    formData.set('saturdayOpening', value.saturdayOpening)
+    formData.set('saturdayClosing', value.saturdayClosing)
+    formData.set('sundayOpening', value.sundayOpening)
+    formData.set('sundayClosing', value.sundayClosing)
+    this.adminSvc.updateRestaurant(formData, restaurantId)
+      .then(result => {
+        console.log(result)
+      }).catch(error => {
+        console.log(error)
+        this.route.navigate(["/admin/restaurantList"])
+      })
   }
 
   createForm(): FormGroup{
