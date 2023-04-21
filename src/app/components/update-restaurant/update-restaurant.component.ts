@@ -62,10 +62,6 @@ export class UpdateRestaurantComponent implements OnInit {
     this.selectedImage = <File>event.target.files[0];
   }
 
-  deleteRestaurant(idx: number){
-    
-  }
-
   updateRestaurant(){
     const restaurantId = this.activatedRoute.snapshot.params["restaurantId"]
     const value = this.form.value

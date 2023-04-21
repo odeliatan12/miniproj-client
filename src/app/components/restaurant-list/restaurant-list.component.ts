@@ -26,7 +26,13 @@ export class RestaurantListComponent implements OnInit {
   }
 
   deleteRestaurant(idx: number){
-
+    this.adminSvc.deleteRestaurant(idx)
+      .then(result => {
+        console.log(result)
+      }).catch(error => {
+        console.log(error)
+        this.route.navigate(["/admin/restaurantList"])
+      })
   }
   
   updateRestaurant(idx: number){

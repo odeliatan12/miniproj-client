@@ -1,6 +1,7 @@
 export interface Login{
     username: string
     password: string
+    roleId: number
 }
 
 export interface token{

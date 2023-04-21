@@ -24,15 +24,17 @@ export class RegisterComponent implements OnInit{
   createForm(): FormGroup{
     return this.fb.group({
       username: this.fb.control<string>('', [ Validators.required, Validators.min(5) ]),
-      password: this.fb.control<string>('', [ Validators.required ])
+      password: this.fb.control<string>('', [ Validators.required ]),
+      roleId: this.fb.control('')
     })
   }
 
   registerUser(){
     const value = this.form.value as Login
     console.log(value.username)
+    console.log(value.roleId)
     this.userService.register(value)
-    this.route.navigate(["/home"])
+    this.route.navigate(["/register"])
   }
 
 }

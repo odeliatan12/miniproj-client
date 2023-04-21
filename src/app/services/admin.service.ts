@@ -44,4 +44,13 @@ export class AdminService{
             this.http.post<string>("/admin/updateRestaurant", formData, { params: params})
         )
     }
+
+    public deleteRestaurant(restaurantId: number): Promise<string>{
+        const headers = new HttpHeaders()
+        .set('authorization', `Bearer ${this.userAuth.getToken()}`)
+        .set( 'No-Auth', 'True' );
+        return firstValueFrom(
+            this.http.post<string>("admin/delete/" + restaurantId, { headers: headers})
+        )
+    }
 }
