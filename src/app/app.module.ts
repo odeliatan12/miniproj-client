@@ -20,6 +20,13 @@ import { RestaurantDetailsComponent } from './components/restaurant-details/rest
 import { AdminService } from './services/admin.service';
 import { UpdateRestaurantComponent } from './components/update-restaurant/update-restaurant.component';
 import { RestaurantListComponent } from './components/restaurant-list/restaurant-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserReviewsComponent } from './components/user-reviews/user-reviews.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -31,7 +38,8 @@ import { RestaurantListComponent } from './components/restaurant-list/restaurant
     UserComponent,
     RestaurantDetailsComponent,
     UpdateRestaurantComponent,
-    RestaurantListComponent
+    RestaurantListComponent,
+    UserReviewsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +49,7 @@ import { RestaurantListComponent } from './components/restaurant-list/restaurant
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    }), HttpClientModule, ReactiveFormsModule, RouterModule
+    }), HttpClientModule, ReactiveFormsModule, RouterModule, BrowserAnimationsModule, MatInputModule, MatButtonModule, MatSelectModule, MatRadioModule, MatCardModule
   ],
   providers: [ UserAuthService, UserService, AdminService,
     AuthInterceptor, AuthGuard,

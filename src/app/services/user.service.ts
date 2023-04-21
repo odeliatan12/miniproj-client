@@ -30,18 +30,14 @@ export class UserService{
     }
 
     // Matching of role 
-    public roleMatch(allowedRoles: string | any[]): any{
+    public roleMatch(allowedRoles: string): boolean{
         let isMatch = false;
         const userRoles: any = this.userAuthService.getRoles();
-    
-        if (userRoles != null && userRoles) {
-            if (userRoles.role === allowedRoles) {
-                isMatch = true;
-                return isMatch;
-            } else {
-                return isMatch;
-            }
-          
+        if (userRoles === allowedRoles) {
+            isMatch = true;
+            return isMatch;
+        } else {
+            return isMatch;
         }
       }
 

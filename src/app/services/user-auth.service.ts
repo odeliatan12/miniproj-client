@@ -9,7 +9,7 @@ export class UserAuthService{
         localStorage.setItem('roles', JSON.stringify(roles));
     }
 
-    public getRoles(): [] | null {
+    public getRoles(): string | null {
         const roles = localStorage.getItem('roles');
         return roles ? JSON.parse(roles) : null;
     }

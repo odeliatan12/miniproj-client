@@ -1,9 +1,9 @@
 <div>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" routerLink="home">Home</a>
-      <a *ngIf="userService.roleMatch(['ADMIN'])" class="navbar-brand" routerLink="admin">Admin Dashboard</a>
-      <a *ngIf="userService.roleMatch(['USER'])" class="navbar-brand" routerLink="user">User Dashboard</a>
+      <a *ngIf="!isLoggedIn()" class="navbar-brand" routerLink="home">Home</a>
+      <a *ngIf="userService.roleMatch('ADMIN')" class="navbar-brand" routerLink="admin">Admin Dashboard</a>
+      <a *ngIf="userService.roleMatch('USER')" class="navbar-brand" routerLink="user">User Dashboard</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -19,10 +19,13 @@
             <a *ngIf="!isLoggedIn()" class="nav-link active" aria-current="page" routerLink="register">Register</a>
           </li>
           <li class="nav-item">
-            <a *ngIf="isLoggedIn()" class="nav-link active" aria-current="page" routerLink="admin/restaurantdetails">New Restaurant</a>
+            <a *ngIf="isLoggedIn() && userService.roleMatch('ADMIN')" class="nav-link active" aria-current="page" routerLink="admin/restaurantdetails">New Restaurant</a>
           </li>
           <li class="nav-item">
-            <a *ngIf="isLoggedIn()" class="nav-link active" aria-current="page" routerLink="admin/restaurantList">Restaurant List</a>
+            <a *ngIf="isLoggedIn() && userService.roleMatch('USER')" class="nav-link active" aria-current="page" routerLink="user/userReview">New Review</a>
+          </li>
+          <li class="nav-item">
+            <a *ngIf="isLoggedIn() && userService.roleMatch('ADMIN')" class="nav-link active" aria-current="page" routerLink="admin/restaurantList">Restaurant List</a>
           </li>
         </ul>
         <form class="d-flex" role="search">

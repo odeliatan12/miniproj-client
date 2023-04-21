@@ -8,6 +8,7 @@ import { RestaurantDetailsComponent } from './components/restaurant-details/rest
 import { RestaurantListComponent } from './components/restaurant-list/restaurant-list.component';
 import { UpdateRestaurantComponent } from './components/update-restaurant/update-restaurant.component';
 import { UserComponent } from './components/user/user.component';
+import { UserReviewsComponent } from './components/user-reviews/user-reviews.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -20,7 +21,11 @@ const routes: Routes = [
         { path: 'restaurant/:restaurantId', component: UpdateRestaurantComponent},
         { path: '', redirectTo: 'admin', pathMatch: 'full' }
       ]},
-  { path: 'user', component: UserComponent },
+  { path: 'user', component: UserComponent,
+      children: [
+        { path: 'userReview', component: UserReviewsComponent },
+        { path: '', redirectTo: 'user', pathMatch: 'full' }
+      ]},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
