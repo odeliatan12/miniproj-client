@@ -39,3 +39,17 @@ export interface RestaurantDetails{
     sundayOpening: string
     sundayClosing: string
 }
+
+export interface reviews{
+    id: number
+    description: string
+    images: string
+    ratings: number
+    userId: number
+    restaurantId: number
+}
+
+export interface ResReviews{
+    restaurant: RestaurantDetails
+    reviews: reviews[]
+}

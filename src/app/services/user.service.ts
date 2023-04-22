@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { firstValueFrom } from "rxjs";
-import { Login, Restaurant, RestaurantDetails } from "../models/model";
+import { Login, ResReviews, Restaurant, RestaurantDetails } from "../models/model";
 import { UserAuthService } from "./user-auth.service";
 
 @Injectable()
@@ -45,6 +45,12 @@ export class UserService{
     public getAllRestaurants(): Promise<RestaurantDetails[]>{
         return firstValueFrom(
             this.http.get<RestaurantDetails[]>("/allRestaurants")
+        )
+    }
+
+    public getRestaurantbyId(restaurantId: number): Promise<ResReviews>{
+        return firstValueFrom(
+            this.http.get<ResReviews>("restaurant/" + restaurantId)
         )
     }
 }

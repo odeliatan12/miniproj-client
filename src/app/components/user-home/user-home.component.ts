@@ -25,7 +25,7 @@ export class UserHomeComponent implements OnInit {
   }
 
   restaurantPage(idx: number){
-    this.route.navigate(['/userReview', idx])
+    this.route.navigate(['/user/userReview', idx])
   }
 
 }
