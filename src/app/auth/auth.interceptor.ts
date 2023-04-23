@@ -28,18 +28,11 @@ export class AuthInterceptor implements HttpInterceptor{
                 (err:HttpErrorResponse) => {
                     console.log(err.status);
                     if(err.status === 401) {
-                        if(this.userAuthService.getRoles() == "ADMIN" && this.userAuthService.getToken() != null){
-                            this.route.navigate(['/admin/restaurantList']);
-                        } else if (this.userAuthService.getRoles() == "USER" && this.userAuthService.getToken() != null) {
-                            this.route.navigate(["user/home"])
-                        } else {
-                            this.route.navigate(["user/home"])
-                        }
+                        this.route.navigate(['/home']);
                     } else if(err.status === 403) {
-                        this.route.navigate(["user/home"]);
+                        this.route.navigate(['/home']);
                     }
                     throw new Error("Some thing is wrong");
-                    this
                 }
             )
         );

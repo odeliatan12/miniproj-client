@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import { UserAuthService } from 'src/app/services/user-auth.service';
 
 @Component({
   selector: 'app-restaurant-details',
@@ -13,7 +15,7 @@ export class RestaurantDetailsComponent implements OnInit {
   image: ElementRef | undefined;
   form!: FormGroup;
 
-  constructor(private fb: FormBuilder, private adminSvc: AdminService){}
+  constructor(private fb: FormBuilder, private adminSvc: AdminService, private userAuthService: UserAuthService, private route: Router){}
 
   ngOnInit(): void {
     this.form = this.createForm()

@@ -12,6 +12,7 @@ import { UserReviewsComponent } from './components/user-reviews/user-reviews.com
 import { UserHomeComponent } from './components/user-home/user-home.component';
 import { UserInsertreviewComponent } from './components/user-insertreview/user-insertreview.component';
 import { UserAuthService } from './services/user-auth.service';
+import { DealDetailsComponent } from './components/deal-details/deal-details.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
         { path: 'restaurantList', component: RestaurantListComponent},
         { path: 'restaurantdetails', component: RestaurantDetailsComponent},
         { path: 'restaurant/:restaurantId', component: UpdateRestaurantComponent},
+        { path: 'insertDeals', component: DealDetailsComponent },
         { path: '', redirectTo: 'admin/restaurantList', pathMatch: 'full' }
       ]},
   { path: 'user', component: UserComponent,

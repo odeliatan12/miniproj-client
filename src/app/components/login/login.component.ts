@@ -47,13 +47,14 @@ export class LoginComponent implements OnInit {
         this.userAuthService.setToken(response.token);
 
         const role = response.role;
-        if(role === "ADMIN"){
+        if(role === "ADMIN" && this.userAuthService.getToken() != null){
           this.route.navigate(["/admin/restaurantList"])
         } else {
           this.route.navigate(["/user/home"])
         }
       }).catch((error: any) => {
         console.log(error);
+        this.route.navigate(["/home"])
       })
 
   }
