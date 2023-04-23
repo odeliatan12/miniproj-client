@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { firstValueFrom } from "rxjs";
 import { Login, ResReviews, Restaurant, RestaurantDetails } from "../models/model";
@@ -51,6 +51,15 @@ export class UserService{
     public getRestaurantbyId(restaurantId: number): Promise<ResReviews>{
         return firstValueFrom(
             this.http.get<ResReviews>("restaurant/" + restaurantId)
+        )
+    }
+
+    public postReview(reviews: FormData,restaurantId: number): Promise<string>{
+        const params = new HttpParams()
+            .set("restaurantId", restaurantId)
+            .set("userId", `${this.userAuthService.getUserId()}`)
+        return firstValueFrom(
+            this.http.post<string>("/admin/insertReview", reviews, { params: params })
         )
     }
 }

@@ -1,0 +1,83 @@
+<div class="col-md-7 col-lg-8 margin main">
+  <h4 class="mb-3">Restaurant details</h4>
+  <form [formGroup]="form" (ngSubmit)="submitReview()" class="needs-validation" novalidate="">
+    <div class="row g-3">
+      <!-- Ratings -->
+      <div class="col-sm-12">
+        <label for="restaurantName" class="form-label">Ratings</label>
+        <input
+          formControlName="ratings"
+          type="number"
+          class="form-control"
+          id="firstName"
+          placeholder=""
+          value=""
+          required=""
+        />
+        <div
+          *ngIf="form.get('ratings')?.hasError('min')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter a minimum of 1 rating
+        </div>
+        <div
+          *ngIf="form.get('ratings')?.hasError('max')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter maximum of 5 characters
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="col-sm-12">
+        <label for="restaurantName" class="form-label">Description</label>
+        <input
+          formControlName="description"
+          type="text"
+          class="form-control"
+          id="firstName"
+          placeholder=""
+          value=""
+          required=""
+        />
+        <div
+          *ngIf="form.get('description')?.hasError('minLength')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter at least 10 words
+        </div>
+        <div
+          *ngIf="form.get('ratings')?.hasError('maxLength')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Enter an amount less than 300 words
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-sm-12">
+      <label for="sundayC" class="form-label">Restaurant Image</label>
+      <input
+        type="file"
+        class="form-control"
+        id="address2"
+        accept="image/*"
+        #file
+      />
+    </div>
+
+    <hr class="my-4" />
+
+    <button
+      [disabled]="form.invalid"
+      class="w-100 btn btn-primary btn-lg"
+      type="submit"
+    >
+      Save
+    </button>
+  </form>
+</div>

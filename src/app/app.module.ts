@@ -28,6 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { UserHomeComponent } from './components/user-home/user-home.component';
+import { UserInsertreviewComponent } from './components/user-insertreview/user-insertreview.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { UserHomeComponent } from './components/user-home/user-home.component';
     UpdateRestaurantComponent,
     RestaurantListComponent,
     UserReviewsComponent,
-    UserHomeComponent
+    UserHomeComponent,
+    UserInsertreviewComponent
   ],
   imports: [
     BrowserModule,

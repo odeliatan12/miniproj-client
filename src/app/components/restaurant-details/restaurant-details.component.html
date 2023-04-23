@@ -1,168 +1,429 @@
 <div class="col-md-7 col-lg-8 margin">
-    <h4 class="mb-3">Restaurant details</h4>
-    <form [formGroup]="form" class="needs-validation" novalidate="" (ngSubmit)="saveRestaurant()">
-      <div class="row g-3">
-
-        <!-- name -->
-        <div class="col-sm-12">
-          <label for="restaurantName" class="form-label">Name of Restaurant</label>
-          <input formControlName="name" type="text" class="form-control" id="firstName" placeholder="" value="" required="">
-          <div *ngIf="form.get('name')?.hasError('required')" class="alert alert-danger size" role="alert">
-            Please enter name of restaurant
-          </div>
-          <div *ngIf="form.get('name')?.hasError('min')" class="alert alert-danger size" role="alert">
-            Please enter minimum of 5 characters
-          </div>
+  <h4 class="mb-3">Restaurant details</h4>
+  <form
+    [formGroup]="form"
+    class="needs-validation"
+    novalidate=""
+    (ngSubmit)="saveRestaurant()"
+  >
+    <div class="row g-3">
+      <!-- name -->
+      <div class="col-sm-12">
+        <label for="restaurantName" class="form-label"
+          >Name of Restaurant</label
+        >
+        <input
+          formControlName="name"
+          type="text"
+          class="form-control"
+          id="firstName"
+          placeholder=""
+          value=""
+          required=""
+        />
+        <div
+          *ngIf="form.get('name')?.hasError('required')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter name of restaurant
         </div>
-
-        <div class="col-sm-12">
-          <label for="about" class="form-label">About</label>
-          <input formControlName="about" type="textarea" class="form-control" id="lastName" placeholder="" value="" required="">
-          <div *ngIf="form.get('about')?.hasError('required')" class="alert alert-danger size" role="alert">
-            Please enter description of restaurant
-          </div>
-          <div *ngIf="form.get('about')?.hasError('min')" class="alert alert-danger size" role="alert">
-            Please enter minimum of 10 characters
-          </div>
-        </div>
-
-        <div class="col-12">
-          <label for="username" class="form-label">Contact</label>
-          <div class="input-group has-validation">
-            <input formControlName="contact" type="text" class="form-control" id="username" placeholder="Username" required="" pattern="^[0-9]{8}$">
-          </div>
-        </div>
-
-        <div class="col-12">
-          <label for="restaurantLink" class="form-label">Restaurant url</label>
-          <input formControlName="restaurantLink" type="text" class="form-control" id="email" placeholder="www.restaurantLink.com">
-        </div>
-
-        <div class="col-12">
-          <label for="menuLink" class="form-label">Menu url</label>
-          <input formControlName="menu" type="text" class="form-control" id="address" placeholder="menu" required="">
-        </div>
-
-        <div class="col-lg-6 col-sm-12">
-          <label for="mondayO" class="form-label">Monday opening hours<span class="text-body-secondary">(Optional)</span></label>
-          <input formControlName="mondayOpening" type="text" class="form-control" id="address2" placeholder="HH:MM">
-          <div *ngIf="form.get('mondayOpening')?.hasError('pattern')" class="alert alert-danger size" role="alert">
-            Please enter the correct time type HH:MM
-          </div>
-        </div>
-
-        <div class="col-lg-6 col-sm-12">
-            <label for="mondayC" class="form-label">Monday closing hours<span class="text-body-secondary">(Optional)</span></label>
-            <input formControlName="mondayClosing" type="text" class="form-control" id="address2" placeholder="HH:MM">
-            <div *ngIf="form.get('mondayClosing')?.hasError('pattern')" class="alert alert-danger size" role="alert">
-                Please enter the correct time type HH:MM
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-sm-12">
-            <label for="tuesdayO" class="form-label">Tuesday opening hours<span class="text-body-secondary">(Optional)</span></label>
-            <input formControlName="tuesdayOpening" type="text" class="form-control" id="address2" placeholder="HH:MM">
-            <div *ngIf="form.get('tuesdayOpening')?.hasError('pattern')" class="alert alert-danger size" role="alert">
-                Please enter the correct time type HH:MM
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-sm-12">
-            <label for="tuesdayC" class="form-label">Tuesday closing hours<span class="text-body-secondary">(Optional)</span></label>
-            <input formControlName="tuesdayClosing" type="text" class="form-control" id="address2" placeholder="HH:MM">
-            <div *ngIf="form.get('tuesdayClosing')?.hasError('pattern')" class="alert alert-danger size" role="alert">
-                Please enter the correct time type HH:MM
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-sm-12">
-            <label for="wednesdayO" class="form-label">Wednesday opening hours<span class="text-body-secondary">(Optional)</span></label>
-            <input formControlName="wednesdayOpening" type="text" class="form-control" id="address2" placeholder="HH:MM">
-            <div *ngIf="form.get('wednesdayOpening')?.hasError('pattern')" class="alert alert-danger size" role="alert">
-                Please enter the correct time type HH:MM
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-sm-12">
-            <label for="wednesdayC" class="form-label">Wednesday closing hours<span class="text-body-secondary">(Optional)</span></label>
-            <input formControlName="wednesdayClosing" type="text" class="form-control" id="address2" placeholder="HH:MM">
-            <div *ngIf="form.get('wednesdayClosing')?.hasError('pattern')" class="alert alert-danger size" role="alert">
-                Please enter the correct time type HH:MM
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-sm-12">
-            <label for="thursdayO" class="form-label">Thursday opening hours<span class="text-body-secondary">(Optional)</span></label>
-            <input formControlName="thursdayOpening" type="text" class="form-control" id="address2" placeholder="HH:MM">
-            <div *ngIf="form.get('thursdayOpening')?.hasError('pattern')" class="alert alert-danger size" role="alert">
-                Please enter the correct time type HH:MM
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-sm-12">
-            <label for="thursdayC" class="form-label">Thursday closing hours<span class="text-body-secondary">(Optional)</span></label>
-            <input formControlName="thursdayClosing" type="text" class="form-control" id="address2" placeholder="HH:MM">
-            <div *ngIf="form.get('thursdayClosing')?.hasError('pattern')" class="alert alert-danger size" role="alert">
-                Please enter the correct time type HH:MM
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-sm-12">
-            <label for="fridayO" class="form-label">Friday opening hours<span class="text-body-secondary">(Optional)</span></label>
-            <input formControlName="fridayOpening" type="text" class="form-control" id="address2" placeholder="HH:MM">
-            <div *ngIf="form.get('fridayOpening')?.hasError('pattern')" class="alert alert-danger size" role="alert">
-                Please enter the correct time type HH:MM
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-sm-12">
-            <label for="fridayC" class="form-label">Friday closing hours<span class="text-body-secondary">(Optional)</span></label>
-            <input formControlName="fridayClosing" type="text" class="form-control" id="address2" placeholder="HH:MM">
-            <div *ngIf="form.get('fridayClosing')?.hasError('pattern')" class="alert alert-danger size" role="alert">
-                Please enter the correct time type HH:MM
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-sm-12">
-            <label for="saturdayO" class="form-label">Saturday opening hours<span class="text-body-secondary">(Optional)</span></label>
-            <input formControlName="saturdayOpening" type="text" class="form-control" id="address2" placeholder="HH:MM">
-            <div *ngIf="form.get('saturdayOpening')?.hasError('pattern')" class="alert alert-danger size" role="alert">
-                Please enter the correct time type HH:MM
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-sm-12">
-            <label for="saturdayC" class="form-label">Saturday closing hours<span class="text-body-secondary">(Optional)</span></label>
-            <input formControlName="saturdayClosing" type="text" class="form-control" id="address2" placeholder="HH:MM">
-            <div *ngIf="form.get('saturdayClosing')?.hasError('pattern')" class="alert alert-danger size" role="alert">
-                Please enter the correct time type HH:MM
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-sm-12">
-            <label for="sundayO" class="form-label">Sunday opening hours<span class="text-body-secondary">(Optional)</span></label>
-            <input formControlName="sundayOpening" type="text" class="form-control" id="address2" placeholder="HH:MM">
-            <div *ngIf="form.get('sundayOpening')?.hasError('pattern')" class="alert alert-danger size" role="alert">
-                Please enter the correct time type HH:MM
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-sm-12">
-            <label for="sundayC" class="form-label">Sunday closing hours<span class="text-body-secondary">(Optional)</span></label>
-            <input formControlName="sundayClosing" type="text" class="form-control" id="address2" placeholder="HH:MM">
-            <div *ngIf="form.get('sundayClosing')?.hasError('pattern')" class="alert alert-danger size" role="alert">
-                Please enter the correct time type HH:MM
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-sm-12">
-            <label for="sundayC" class="form-label">Restaurant Image</label>
-            <input type="file" class="form-control" id="address2" accept="image/*" #file>
+        <div
+          *ngIf="form.get('name')?.hasError('min')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter minimum of 5 characters
         </div>
       </div>
 
-      <hr class="my-4">
+      <div class="col-sm-12">
+        <label for="about" class="form-label">About</label>
+        <input
+          formControlName="about"
+          type="textarea"
+          class="form-control"
+          id="lastName"
+          placeholder=""
+          value=""
+          required=""
+        />
+        <div
+          *ngIf="form.get('about')?.hasError('required')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter description of restaurant
+        </div>
+        <div
+          *ngIf="form.get('about')?.hasError('min')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter minimum of 10 characters
+        </div>
+      </div>
 
-      <button class="w-100 btn btn-primary btn-lg" type="submit">Save</button>
-    </form>
-  </div>
+      <div class="col-12">
+        <label for="username" class="form-label">Contact</label>
+        <div class="input-group has-validation">
+          <input
+            formControlName="contact"
+            type="text"
+            class="form-control"
+            id="username"
+            placeholder="Username"
+            required=""
+            pattern="^[0-9]{8}$"
+          />
+        </div>
+      </div>
+
+      <div class="col-12">
+        <label for="restaurantLink" class="form-label">Restaurant url</label>
+        <input
+          formControlName="restaurantLink"
+          type="text"
+          class="form-control"
+          id="email"
+          placeholder="www.restaurantLink.com"
+        />
+      </div>
+
+      <div class="col-12">
+        <label for="menuLink" class="form-label">Menu url</label>
+        <input
+          formControlName="menu"
+          type="text"
+          class="form-control"
+          id="address"
+          placeholder="menu"
+          required=""
+        />
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="mondayO" class="form-label"
+          >Monday opening hours<span class="text-body-secondary"
+            >(Optional)</span
+          ></label
+        >
+        <input
+          formControlName="mondayOpening"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('mondayOpening')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="mondayC" class="form-label"
+          >Monday closing hours<span class="text-body-secondary"
+            >(Optional)</span
+          ></label
+        >
+        <input
+          formControlName="mondayClosing"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('mondayClosing')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="tuesdayO" class="form-label"
+          >Tuesday opening hours<span class="text-body-secondary"
+            >(Optional)</span
+          ></label
+        >
+        <input
+          formControlName="tuesdayOpening"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('tuesdayOpening')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="tuesdayC" class="form-label"
+          >Tuesday closing hours<span class="text-body-secondary"
+            >(Optional)</span
+          ></label
+        >
+        <input
+          formControlName="tuesdayClosing"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('tuesdayClosing')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="wednesdayO" class="form-label"
+          >Wednesday opening hours<span class="text-body-secondary"
+            >(Optional)</span
+          ></label
+        >
+        <input
+          formControlName="wednesdayOpening"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('wednesdayOpening')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="wednesdayC" class="form-label"
+          >Wednesday closing hours<span class="text-body-secondary"
+            >(Optional)</span
+          ></label
+        >
+        <input
+          formControlName="wednesdayClosing"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('wednesdayClosing')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="thursdayO" class="form-label"
+          >Thursday opening hours<span class="text-body-secondary"
+            >(Optional)</span
+          ></label
+        >
+        <input
+          formControlName="thursdayOpening"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('thursdayOpening')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="thursdayC" class="form-label"
+          >Thursday closing hours<span class="text-body-secondary"
+            >(Optional)</span
+          ></label
+        >
+        <input
+          formControlName="thursdayClosing"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('thursdayClosing')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="fridayO" class="form-label"
+          >Friday opening hours<span class="text-body-secondary"
+            >(Optional)</span
+          ></label
+        >
+        <input
+          formControlName="fridayOpening"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('fridayOpening')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="fridayC" class="form-label"
+          >Friday closing hours<span class="text-body-secondary"
+            >(Optional)</span
+          ></label
+        >
+        <input
+          formControlName="fridayClosing"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('fridayClosing')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="saturdayO" class="form-label"
+          >Saturday opening hours<span class="text-body-secondary"
+            >(Optional)</span
+          ></label
+        >
+        <input
+          formControlName="saturdayOpening"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('saturdayOpening')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="saturdayC" class="form-label"
+          >Saturday closing hours<span class="text-body-secondary"
+            >(Optional)</span
+          ></label
+        >
+        <input
+          formControlName="saturdayClosing"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('saturdayClosing')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="sundayO" class="form-label"
+          >Sunday opening hours<span class="text-body-secondary"
+            >(Optional)</span
+          ></label
+        >
+        <input
+          formControlName="sundayOpening"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('sundayOpening')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="sundayC" class="form-label"
+          >Sunday closing hours<span class="text-body-secondary"
+            >(Optional)</span
+          ></label
+        >
+        <input
+          formControlName="sundayClosing"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('sundayClosing')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="sundayC" class="form-label">Restaurant Image</label>
+        <input
+          type="file"
+          class="form-control"
+          id="address2"
+          accept="image/*"
+          #file
+        />
+      </div>
+    </div>
+
+    <hr class="my-4" />
+
+    <button class="w-100 btn btn-primary btn-lg" type="submit">Save</button>
+  </form>
+</div>

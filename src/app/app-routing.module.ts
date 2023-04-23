@@ -10,6 +10,7 @@ import { UpdateRestaurantComponent } from './components/update-restaurant/update
 import { UserComponent } from './components/user/user.component';
 import { UserReviewsComponent } from './components/user-reviews/user-reviews.component';
 import { UserHomeComponent } from './components/user-home/user-home.component';
+import { UserInsertreviewComponent } from './components/user-insertreview/user-insertreview.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
       children: [
         { path: 'home', component: UserHomeComponent },
         { path: 'userReview/:restaurantId', component: UserReviewsComponent },
+        { path: 'insertReview/:restaurantId', component: UserInsertreviewComponent },
         { path: '', redirectTo: 'user', pathMatch: 'full' }
       ]},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
