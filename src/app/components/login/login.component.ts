@@ -48,9 +48,9 @@ export class LoginComponent implements OnInit {
 
         const role = response.role;
         if(role === "ADMIN"){
-          this.route.navigate(["/admin"])
+          this.route.navigate(["/admin/restaurantList"])
         } else {
-          this.route.navigate(["/user"])
+          this.route.navigate(["/user/home"])
         }
       }).catch((error: any) => {
         console.log(error);

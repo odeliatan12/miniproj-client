@@ -1,6 +1,6 @@
 <div class="col-md-7 col-lg-8 margin main">
   <h4 class="mb-3">Restaurant details</h4>
-  <form [formGroup]="form" (ngSubmit)="submitReview()" class="needs-validation" novalidate="">
+  <form [formGroup]="form" enctype="multipart/form-data" (ngSubmit)="submitReview()" class="needs-validation" novalidate="">
     <div class="row g-3">
       <!-- Ratings -->
       <div class="col-sm-12">
@@ -29,8 +29,9 @@
           Please enter maximum of 5 characters
         </div>
       </div>
-
-      <!-- Description -->
+    </div>
+    <div class="row g-3">
+        <!-- Description -->
       <div class="col-sm-12">
         <label for="restaurantName" class="form-label">Description</label>
         <input
@@ -57,17 +58,6 @@
           Enter an amount less than 300 words
         </div>
       </div>
-    </div>
-
-    <div class="col-lg-6 col-sm-12">
-      <label for="sundayC" class="form-label">Restaurant Image</label>
-      <input
-        type="file"
-        class="form-control"
-        id="address2"
-        accept="image/*"
-        #file
-      />
     </div>
 
     <hr class="my-4" />

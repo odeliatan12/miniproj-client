@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { firstValueFrom } from "rxjs";
-import { Login, ResReviews, Restaurant, RestaurantDetails } from "../models/model";
+import { Login, ResReviews, Restaurant, RestaurantDetails, postReviews } from "../models/model";
 import { UserAuthService } from "./user-auth.service";
 
 @Injectable()
@@ -50,16 +50,16 @@ export class UserService{
 
     public getRestaurantbyId(restaurantId: number): Promise<ResReviews>{
         return firstValueFrom(
-            this.http.get<ResReviews>("restaurant/" + restaurantId)
+            this.http.get<ResReviews>("/restaurant/" + restaurantId)
         )
     }
 
-    public postReview(reviews: FormData,restaurantId: number): Promise<string>{
+    public postReview(reviews: postReviews,restaurantId: number): Promise<string>{
+        const id = this.userAuthService.getUserId();
         const params = new HttpParams()
             .set("restaurantId", restaurantId)
-            .set("userId", `${this.userAuthService.getUserId()}`)
         return firstValueFrom(
-            this.http.post<string>("/admin/insertReview", reviews, { params: params })
+            this.http.post<string>("/user/insertReview/" + id, reviews, { params: params })
         )
     }
 }

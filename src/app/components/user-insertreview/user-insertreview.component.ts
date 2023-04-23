@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { postReviews } from 'src/app/models/model';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,6 +13,8 @@ export class UserInsertreviewComponent implements OnInit {
 
   @ViewChild('file')
   image: ElementRef | undefined;
+
+  selectedImage!: File;
   
   form!: FormGroup
 
@@ -19,6 +22,10 @@ export class UserInsertreviewComponent implements OnInit {
 
   ngOnInit(): void {
       this.form = this.createForm()
+  }
+
+  onImageSelected(event: any) {
+    this.selectedImage = <File>event.target.files[0];
   }
 
   createForm(): FormGroup{
@@ -30,13 +37,10 @@ export class UserInsertreviewComponent implements OnInit {
   }
 
   submitReview(){
-    const value = this.form.value; 
+    const value = this.form.value as postReviews; 
     const restaurantId = this.activatedRoute.snapshot.params["restaurantId"]
-    const formData = new FormData();
-    formData.set('description', value.description)
-    formData.set('ratings', value.ratings)
-    formData.set('image', this.image?.nativeElement.files[0])
-    this.userSvc.postReview(formData, restaurantId)
+    
+    this.userSvc.postReview(value, restaurantId)
     .then(result => {
       console.log(result)
     }).catch(error => {

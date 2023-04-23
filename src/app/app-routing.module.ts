@@ -11,6 +11,7 @@ import { UserComponent } from './components/user/user.component';
 import { UserReviewsComponent } from './components/user-reviews/user-reviews.component';
 import { UserHomeComponent } from './components/user-home/user-home.component';
 import { UserInsertreviewComponent } from './components/user-insertreview/user-insertreview.component';
+import { UserAuthService } from './services/user-auth.service';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,20 +22,24 @@ const routes: Routes = [
         { path: 'restaurantList', component: RestaurantListComponent},
         { path: 'restaurantdetails', component: RestaurantDetailsComponent},
         { path: 'restaurant/:restaurantId', component: UpdateRestaurantComponent},
-        { path: '', redirectTo: 'admin', pathMatch: 'full' }
+        { path: '', redirectTo: 'admin/restaurantList', pathMatch: 'full' }
       ]},
   { path: 'user', component: UserComponent,
       children: [
         { path: 'home', component: UserHomeComponent },
         { path: 'userReview/:restaurantId', component: UserReviewsComponent },
         { path: 'insertReview/:restaurantId', component: UserInsertreviewComponent },
-        { path: '', redirectTo: 'user', pathMatch: 'full' }
+        { path: '', redirectTo: 'user/home', pathMatch: 'full' }
       ]},
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: '', redirectTo: 'user/home', pathMatch: 'full' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { 
+
+  constructor(private userAuth: UserAuthService){ }
+  
+}

@@ -43,12 +43,10 @@ export interface RestaurantDetails{
 export interface reviews{
     id: number
     description: string
-    // images: string
     ratings: number
     userId: number
     restaurantId: number
     timestamp: string
-    image_type: string
 }
 
 export interface ResReviews{
@@ -59,5 +57,4 @@ export interface ResReviews{
 export interface postReviews{
     ratings: number
     description: string
-    image: string
 }
