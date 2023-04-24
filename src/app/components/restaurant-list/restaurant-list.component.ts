@@ -44,4 +44,7 @@ export class RestaurantListComponent implements OnInit {
     return this.adminSvc.getRestaurants(userId)
   }
 
+  addDeals(idx: number){
+    this.route.navigate(["/admin/insertDeals", idx])
+  }
 }

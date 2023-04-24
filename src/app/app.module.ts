@@ -30,6 +30,8 @@ import { MatCardModule } from '@angular/material/card';
 import { UserHomeComponent } from './components/user-home/user-home.component';
 import { UserInsertreviewComponent } from './components/user-insertreview/user-insertreview.component';
 import { DealDetailsComponent } from './components/deal-details/deal-details.component';
+import { DealService } from './services/deals.service';
+import { AllDealsComponent } from './components/all-deals/all-deals.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { DealDetailsComponent } from './components/deal-details/deal-details.com
     UserReviewsComponent,
     UserHomeComponent,
     UserInsertreviewComponent,
-    DealDetailsComponent
+    DealDetailsComponent,
+    AllDealsComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,7 @@ import { DealDetailsComponent } from './components/deal-details/deal-details.com
       provide: HTTP_INTERCEPTORS,
       useClass:AuthInterceptor,
       multi:true
-    }
+    }, DealService
   ],
   bootstrap: [AppComponent]
 })

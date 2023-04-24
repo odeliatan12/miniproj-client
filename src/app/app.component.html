@@ -22,10 +22,7 @@
             <a *ngIf="isLoggedIn() && userService.roleMatch('ADMIN')" class="nav-link active" aria-current="page" routerLink="admin/restaurantdetails">New Restaurant</a>
           </li>
           <li class="nav-item">
-            <a *ngIf="isLoggedIn() && userService.roleMatch('ADMIN')" class="nav-link active" aria-current="page" routerLink="admin/insertDeals">New Deals</a>
-          </li>
-          <li class="nav-item">
-            <a *ngIf="isLoggedIn() && userService.roleMatch('USER')" class="nav-link active" aria-current="page" routerLink="user/userReview">New Review</a>
+            <a *ngIf="isLoggedIn() && userService.roleMatch('USER')" class="nav-link active" aria-current="page" routerLink="user/allDeals">Deals</a>
           </li>
         </ul>
         <form class="d-flex" role="search">

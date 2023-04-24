@@ -1,0 +1,395 @@
+<div class="col-md-7 col-lg-8 margin">
+  <h4 class="mb-3">Restaurant details</h4>
+  <form [formGroup]="form" class="needs-validation" novalidate="" (ngSubmit)="postDeal()">
+    <div class="row g-3">
+      <!-- name -->
+      <div class="col-sm-12">
+        <label for="dealName" class="form-label"
+          >Create a title for your deal</label
+        >
+        <input
+          formControlName="name"
+          type="text"
+          class="form-control"
+          id="firstName"
+          placeholder=""
+          value=""
+          required=""
+        />
+        <div
+          *ngIf="form.get('name')?.hasError('required')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter name of deal
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <label for="originalAmount" class="form-label">Original Amount</label>
+        <input
+          formControlName="originalAmount"
+          type="number"
+          class="form-control"
+          id="lastName"
+          placeholder=""
+          value=""
+          required=""
+        />
+        <div
+          *ngIf="form.get('originalAmount')?.hasError('required')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the original amount for the deal
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <label for="newAmount" class="form-label">New Amount</label>
+        <input
+          formControlName="newAmount"
+          type="number"
+          class="form-control"
+          id="lastName"
+          placeholder=""
+          value=""
+          required=""
+        />
+        <div
+          *ngIf="form.get('newAmount')?.hasError('required')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the new amount for the deal
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <label for="quantity" class="form-label">Quantity</label>
+        <input
+          formControlName="quantity"
+          type="number"
+          class="form-control"
+          id="lastName"
+          placeholder=""
+          value=""
+          required=""
+        />
+        <div
+          *ngIf="form.get('quantity')?.hasError('required')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please select a quantity
+        </div>
+      </div>
+
+      <div class="col-12">
+        <label for="category" class="form-label">Category</label>
+        <select
+          formControlName="category"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option selected>Select a category</option>
+          <!-- Category dynamic -->
+          <option *ngFor="let c of categories" value="{{ c.id }}">{{ c.category }}</option>
+        </select>
+      </div>
+
+      <!-- Monday -->
+      <div class="col-lg-6 col-sm-12">
+        <label for="mondayFrom" class="form-label"
+          >Time the deal is starting on Monday</label
+        >
+        <input
+          formControlName="mondayFrom"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('mondayFrom')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="mondayTo1" class="form-label"
+          >Time the deal is ending on Monday</label
+        >
+        <input
+          formControlName="mondayTo1"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('mondayTo1')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <!-- Tuesday -->
+      <div class="col-lg-6 col-sm-12">
+        <label for="tuesdayFrom" class="form-label"
+          >Time the deal is starting on Tuesday</label
+        >
+        <input
+          formControlName="tuesdayFrom"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('tuesdayFrom')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="tuesdayTo" class="form-label"
+          >Time the deal is ending on Tuesday</label
+        >
+        <input
+          formControlName="tuesdayTo"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('tuesdayTo')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <!-- Wednesday -->
+      <div class="col-lg-6 col-sm-12">
+        <label for="wednesdayFrom" class="form-label"
+          >Time the deal is starting on Wednesday</label
+        >
+        <input
+          formControlName="wednesdayFrom"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('wednesdayFrom')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="wednesdayTo" class="form-label"
+          >Time the deal is ending on Wednesday</label
+        >
+        <input
+          formControlName="wednesdayTo"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('wednesdayTo')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <!-- Thursday -->
+      <div class="col-lg-6 col-sm-12">
+        <label for="thursdayFrom" class="form-label"
+          >Time the deal is starting on Thursday</label
+        >
+        <input
+          formControlName="thursdayFrom"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('thursdayFrom')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="thursdayTo" class="form-label"
+          >Time the deal is ending on Thursday</label
+        >
+        <input
+          formControlName="thursdayTo"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('thursdayTo')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <!-- Friday -->
+      <div class="col-lg-6 col-sm-12">
+        <label for="fridayFrom" class="form-label"
+          >Time the deal is starting on Friday</label
+        >
+        <input
+          formControlName="fridayFrom"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('fridayFrom')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="fridayTo" class="form-label"
+          >Time the deal is ending on Friday</label
+        >
+        <input
+          formControlName="fridayTo"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('fridayTo')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <!-- Saturday -->
+      <div class="col-lg-6 col-sm-12">
+        <label for="saturdayFrom" class="form-label"
+          >Time the deal is starting on Saturday</label
+        >
+        <input
+          formControlName="saturdayFrom"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('saturdayFrom')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="saturdayTo" class="form-label"
+          >Time the deal is ending on Saturday</label
+        >
+        <input
+          formControlName="saturdayTo"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('saturdayTo')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <!-- Sunday -->
+      <div class="col-lg-6 col-sm-12">
+        <label for="sundayFrom" class="form-label"
+          >Time the deal is starting on Sunday</label
+        >
+        <input
+          formControlName="sundayFrom"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('sundayFrom')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label for="sundayTo" class="form-label"
+          >Time the deal is ending on Sunday</label
+        >
+        <input
+          formControlName="sundayTo"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('sundayTo')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-4" />
+
+    <button class="w-100 btn btn-primary btn-lg" type="submit">
+      Save deal
+    </button>
+  </form>
+</div>

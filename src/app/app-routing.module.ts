@@ -13,6 +13,7 @@ import { UserHomeComponent } from './components/user-home/user-home.component';
 import { UserInsertreviewComponent } from './components/user-insertreview/user-insertreview.component';
 import { UserAuthService } from './services/user-auth.service';
 import { DealDetailsComponent } from './components/deal-details/deal-details.component';
+import { AllDealsComponent } from './components/all-deals/all-deals.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -23,7 +24,7 @@ const routes: Routes = [
         { path: 'restaurantList', component: RestaurantListComponent},
         { path: 'restaurantdetails', component: RestaurantDetailsComponent},
         { path: 'restaurant/:restaurantId', component: UpdateRestaurantComponent},
-        { path: 'insertDeals', component: DealDetailsComponent },
+        { path: 'insertDeals/:restaurantId', component: DealDetailsComponent },
         { path: '', redirectTo: 'admin/restaurantList', pathMatch: 'full' }
       ]},
   { path: 'user', component: UserComponent,
@@ -31,6 +32,7 @@ const routes: Routes = [
         { path: 'home', component: UserHomeComponent },
         { path: 'userReview/:restaurantId', component: UserReviewsComponent },
         { path: 'insertReview/:restaurantId', component: UserInsertreviewComponent },
+        { path: 'allDeals', component: AllDealsComponent },
         { path: '', redirectTo: 'user/home', pathMatch: 'full' }
       ]},
   { path: '', redirectTo: 'user/home', pathMatch: 'full' }

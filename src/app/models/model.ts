@@ -58,3 +58,30 @@ export interface postReviews{
     ratings: number
     description: string
 }
+
+export interface categories{
+    id: string
+    category: string
+}
+
+export interface deals{
+    name: string
+    originalAmount: number
+    newAmount: number
+    quantity: number
+    category: string
+    mondayFrom: string
+    mondayTo: string
+    tuesdayFrom: string
+    tuesdayTo: string
+    wednesdayFrom: string
+    wednesdayTo: string
+    thursdayFrom: string
+    thursdayTo: string
+    fridayFrom: string
+    fridayTo: string
+    saturdayFrom: string
+    saturdayTo: string
+    sundayFrom: string
+    sundayTo: string
+}
