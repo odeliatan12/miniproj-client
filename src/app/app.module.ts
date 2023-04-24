@@ -32,6 +32,7 @@ import { UserInsertreviewComponent } from './components/user-insertreview/user-i
 import { DealDetailsComponent } from './components/deal-details/deal-details.component';
 import { DealService } from './services/deals.service';
 import { AllDealsComponent } from './components/all-deals/all-deals.component';
+import { DealPagedetailsComponent } from './components/deal-pagedetails/deal-pagedetails.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AllDealsComponent } from './components/all-deals/all-deals.component';
     UserHomeComponent,
     UserInsertreviewComponent,
     DealDetailsComponent,
-    AllDealsComponent
+    AllDealsComponent,
+    DealPagedetailsComponent
   ],
   imports: [
     BrowserModule,

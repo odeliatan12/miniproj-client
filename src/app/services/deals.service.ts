@@ -22,7 +22,7 @@ export class DealService{
 
     public getAllDeals(): Promise<allDeals[]>{
         return firstValueFrom(
-            this.http.get<allDeals[]>("/getAllDeals")
+            this.http.get<allDeals[]>("/deals/getAllDeals")
         )
     }
 
