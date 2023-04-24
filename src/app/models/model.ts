@@ -85,3 +85,27 @@ export interface deals{
     sundayFrom: string
     sundayTo: string
 }
+
+export interface allDeals{
+    id: string
+    restaurantId: number
+    name: string
+    originalAmount: number
+    newAmount: number
+    quantity: number
+    category: string
+    mondayFrom: string
+    mondayTo: string
+    tuesdayFrom: string
+    tuesdayTo: string
+    wednesdayFrom: string
+    wednesdayTo: string
+    thursdayFrom: string
+    thursdayTo: string
+    fridayFrom: string
+    fridayTo: string
+    saturdayFrom: string
+    saturdayTo: string
+    sundayFrom: string
+    sundayTo: string
+}
