@@ -33,6 +33,7 @@ import { DealDetailsComponent } from './components/deal-details/deal-details.com
 import { DealService } from './services/deals.service';
 import { AllDealsComponent } from './components/all-deals/all-deals.component';
 import { DealPagedetailsComponent } from './components/deal-pagedetails/deal-pagedetails.component';
+import { PaypalbuttonComponent } from './components/paypalbutton/paypalbutton.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { DealPagedetailsComponent } from './components/deal-pagedetails/deal-pag
     UserInsertreviewComponent,
     DealDetailsComponent,
     AllDealsComponent,
-    DealPagedetailsComponent
+    DealPagedetailsComponent,
+    PaypalbuttonComponent
   ],
   imports: [
     BrowserModule,
