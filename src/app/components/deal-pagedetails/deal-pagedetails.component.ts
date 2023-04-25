@@ -44,4 +44,8 @@ export class DealPagedetailsComponent implements OnInit {
     return this.userService.getRestaurantbyId(idx)
   }
 
+  payNow(amount: number){
+    this.route.navigate(["user/payNow", amount])
+  }
+
 }

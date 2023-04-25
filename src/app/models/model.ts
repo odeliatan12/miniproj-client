@@ -110,3 +110,11 @@ export interface allDeals{
     sundayFrom: string
     sundayTo: string
 }
+
+export interface order{
+    price: number
+    currency: string
+    method: string
+    intent: string
+    description: string
+}

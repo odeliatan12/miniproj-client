@@ -15,6 +15,7 @@ import { UserAuthService } from './services/user-auth.service';
 import { DealDetailsComponent } from './components/deal-details/deal-details.component';
 import { AllDealsComponent } from './components/all-deals/all-deals.component';
 import { DealPagedetailsComponent } from './components/deal-pagedetails/deal-pagedetails.component';
+import { PaypalbuttonComponent } from './components/paypalbutton/paypalbutton.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
         { path: 'insertReview/:restaurantId', component: UserInsertreviewComponent },
         { path: 'allDeals', component: AllDealsComponent },
         { path: 'deals/:dealId', component: DealPagedetailsComponent },
+        { path: 'payNow/:amount', component: PaypalbuttonComponent },
         { path: '', redirectTo: 'user/home', pathMatch: 'full' }
       ]},
   { path: '', redirectTo: 'user/home', pathMatch: 'full' }
