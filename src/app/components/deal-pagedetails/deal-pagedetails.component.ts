@@ -45,6 +45,7 @@ export class DealPagedetailsComponent implements OnInit {
   }
 
   payNow(amount: number){
+    console.log(amount)
     this.route.navigate(["user/payNow", amount])
   }
 

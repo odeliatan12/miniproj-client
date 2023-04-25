@@ -42,7 +42,9 @@
             <h5 class="card-title">{{ d.name }}</h5>
             <p class="card-text">{{ d.newAmount }}</p>
             <a href="#" class="btn btn-primary" >Add to cart</a>
-            <a (click)="payNow( d.newAmount )" href="#" class="btn btn-primary">Buy now</a>
+            <button (click)="payNow(d.newAmount)" type="button" class="btn">
+                Buy now
+            </button>
           </div>
         </div>
       </div>

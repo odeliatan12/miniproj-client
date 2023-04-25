@@ -16,7 +16,7 @@ export class PaypalbuttonComponent implements OnInit {
   constructor(private payPalSvc: payPalService, private fb: FormBuilder, public activatedRoute: ActivatedRoute){ }
 
   ngOnInit(): void {
-      this.form = this.createForm()
+      // this.form = this.createForm()
   }
 
   createForm(): FormGroup{
