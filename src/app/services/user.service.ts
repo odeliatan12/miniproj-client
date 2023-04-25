@@ -62,4 +62,6 @@ export class UserService{
             this.http.post<string>("/user/insertReview/" + id, reviews, { params: params })
         )
     }
+
+    
 }

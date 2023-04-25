@@ -1,0 +1,52 @@
+<main class="main" *ngFor="let d of deal">
+  <div class="container py-4">
+
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">{{ d.name }} by {{ restaurantDetails.restaurant.name }}</h1>
+        <p class="col-md-8 fs-4">{{ restaurantDetails.restaurant.about }}</p>
+      </div>
+    </div>
+
+    <div class="row align-items-md-stretch">
+      <div class="col-md-9">
+        <div class="h-100 p-5 text-bg-light rounded-3">
+          <h1>About</h1>
+          <h4>Address</h4>
+          <p></p>
+          <p>
+            {{ restaurantDetails.restaurant.contact }}
+          </p>
+          <h4>Opening times</h4>
+          <h5 class="mb-0">Monday</h5>
+          <p>{{ restaurantDetails.restaurant.mondayOpening.slice(0,5) }} - {{ restaurantDetails.restaurant.mondayClosing.slice(0,5) }}</p>
+          <h5 class="mb-0">Tuesday</h5>
+          <p>{{ restaurantDetails.restaurant.tuesdayOpening.slice(0,5) }} - {{ restaurantDetails.restaurant.tuesdayClosing.slice(0,5) }}</p>
+          <h5 class="mb-0">Wednesday</h5>
+          <p>{{ restaurantDetails.restaurant.wednesdayOpening.slice(0,5) }} - {{ restaurantDetails.restaurant.wednesdayClosing.slice(0,5) }}</p>
+          <h5 class="mb-0">Thursday</h5>
+          <p>{{ restaurantDetails.restaurant.thursdayOpening.slice(0,5) }} - {{ restaurantDetails.restaurant.thursdayClosing.slice(0,5) }}</p>
+          <h5 class="mb-0">Friday</h5>
+          <p>{{ restaurantDetails.restaurant.fridayOpening.slice(0,5) }} - {{ restaurantDetails.restaurant.fridayClosing.slice(0,5) }}</p>
+          <h5 class="mb-0">Saturday</h5>
+          <p>{{ restaurantDetails.restaurant.saturdayOpening.slice(0,5) }} - {{ restaurantDetails.restaurant.saturdayClosing.slice(0,5) }}</p>
+          <h5 class="mb-0">Sunday</h5>
+          <p>{{ restaurantDetails.restaurant.sundayOpening.slice(0,5) }} - {{ restaurantDetails.restaurant.sundayClosing.slice(0,5) }}</p>
+
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="pt-3 mt-4 text-body-secondary border-top">© 2023</footer>
+  </div>
+</main>

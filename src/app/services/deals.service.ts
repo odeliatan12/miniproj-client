@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { allDeals, categories, deals } from "../models/model";
 import { firstValueFrom } from "rxjs";
@@ -23,6 +23,13 @@ export class DealService{
     public getAllDeals(): Promise<allDeals[]>{
         return firstValueFrom(
             this.http.get<allDeals[]>("/deals/getAllDeals")
+        )
+    }
+
+    public getDeal(idx: string): Promise<allDeals[]>{
+        const params = new HttpParams().set("id", idx)
+        return firstValueFrom(
+            this.http.get<allDeals[]>("/deals/getDeal", { params: params })
         )
     }
 

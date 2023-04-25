@@ -89,6 +89,7 @@ export interface deals{
 export interface allDeals{
     id: string
     restaurantId: number
+    restaurantName: string
     name: string
     originalAmount: number
     newAmount: number
