@@ -1,42 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { order } from 'src/app/models/model';
 import { payPalService } from 'src/app/services/paypal.service';
+import { render } from 'creditcardpayments/creditCardPayments';
 
 @Component({
   selector: 'app-paypalbutton',
   templateUrl: './paypalbutton.component.html',
   styleUrls: ['./paypalbutton.component.css']
 })
-export class PaypalbuttonComponent implements OnInit {
+export class PaypalbuttonComponent implements AfterContentInit {
 
   form!: FormGroup
   amount!: number
   result!: string
 
-  constructor(private payPalSvc: payPalService, private fb: FormBuilder, public activatedRoute: ActivatedRoute){ }
-
-  ngOnInit(): void {
-    this.amount = this.activatedRoute.snapshot.params["amount"]
-    this.form = this.createForm()
+  constructor(private payPalSvc: payPalService, private fb: FormBuilder, public activatedRoute: ActivatedRoute, private route: Router){ 
+    
   }
 
-  createForm(): FormGroup{
-    return this.fb.group({
-      dealId: this.activatedRoute.snapshot.params["dealId"], 
-      price: this.fb.control<number>(this.activatedRoute.snapshot.params["amount"]),
-      currency: 'SGD',
-      method: "PAYPAL",
-      intent: "SALE",
-      description: this.fb.control<string>(''),
-    })
+  ngAfterContentInit(): void {
+    render(
+      {
+          id: "#payments",
+          currency: "SGD",
+          value: this.activatedRoute.snapshot.params["amount"],
+          onApprove: (details) => {
+            alert("payment success")
+          }
+        }
+      );
   }
-
-  payNow(){
-    const value = this.form.value as order
-    this.payPalSvc.payNow(value)
-  }
-
 
 }

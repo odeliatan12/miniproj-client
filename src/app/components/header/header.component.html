@@ -1,0 +1,86 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-light p-4">
+  <div class="container-fluid">
+    <a *ngIf="!isLoggedIn()" class="navbar-brand" routerLink="home">Home</a>
+    <a
+      *ngIf="userService.roleMatch('ADMIN')"
+      class="navbar-brand"
+      routerLink="admin/restaurantList"
+      >Admin Dashboard</a
+    >
+    <a
+      *ngIf="userService.roleMatch('USER')"
+      class="navbar-brand"
+      routerLink="user/home"
+      >User Dashboard</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="true"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse show" id="navbarCollapse" style="">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a
+            *ngIf="!isLoggedIn()"
+            class="nav-link active"
+            aria-current="page"
+            routerLink="login"
+            >Login</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            *ngIf="isLoggedIn()"
+            class="nav-link active"
+            aria-current="page"
+            (click)="logout()"
+            >Logout</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            *ngIf="!isLoggedIn()"
+            class="nav-link active"
+            aria-current="page"
+            routerLink="register"
+            >Register</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            *ngIf="isLoggedIn() && userService.roleMatch('ADMIN')"
+            class="nav-link active"
+            aria-current="page"
+            routerLink="admin/restaurantdetails"
+            >New Restaurant</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            *ngIf="isLoggedIn() && userService.roleMatch('USER')"
+            class="nav-link active"
+            aria-current="page"
+            routerLink="user/allDeals"
+            >Deals</a
+          >
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input
+          class="form-control me-2 search-bar"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>

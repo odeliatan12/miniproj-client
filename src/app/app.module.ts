@@ -35,6 +35,8 @@ import { AllDealsComponent } from './components/all-deals/all-deals.component';
 import { DealPagedetailsComponent } from './components/deal-pagedetails/deal-pagedetails.component';
 import { PaypalbuttonComponent } from './components/paypalbutton/paypalbutton.component';
 import { payPalService } from './services/paypal.service';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { payPalService } from './services/paypal.service';
     DealDetailsComponent,
     AllDealsComponent,
     DealPagedetailsComponent,
-    PaypalbuttonComponent
+    PaypalbuttonComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

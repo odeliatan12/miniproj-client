@@ -1,0 +1,21 @@
+.navbar-brand, .nav-item a{
+    color: #103560;
+}
+.navbar-brand{
+    font-weight: 1000;
+    font-size: 24px;
+}
+nav{
+    box-shadow: 1px 10px 11px -4px rgba(173,170,170,0.60);
+    -webkit-box-shadow: 1px 10px 11px -4px rgba(173,170,170,0.60);
+    -moz-box-shadow: 1px 10px 11px -4px rgba(173,170,170,0.60);
+}
+
+::placeholder {
+    color: #103560;
+}
+
+button{
+    border-color: #103560;
+    color: #103560;
+}

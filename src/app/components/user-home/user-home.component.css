@@ -3,5 +3,28 @@
 }
 
 section{
-    height: 80vh;
+    height: 70vh;
+}
+.foodreview{
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.headers-restaurant h4{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.header-restaurant h5{
+    font-size: 20px;
+    font-weight: 500;
+}
+.title-restaurant{
+    font-size: 20px;
+    font-weight: 500;
+    margin: 2px 0;
+}
+.find-out{
+    font-size: 15px;
+    padding: 25px;
 }
