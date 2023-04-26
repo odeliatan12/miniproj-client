@@ -34,6 +34,7 @@ import { DealService } from './services/deals.service';
 import { AllDealsComponent } from './components/all-deals/all-deals.component';
 import { DealPagedetailsComponent } from './components/deal-pagedetails/deal-pagedetails.component';
 import { PaypalbuttonComponent } from './components/paypalbutton/paypalbutton.component';
+import { payPalService } from './services/paypal.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,7 @@ import { PaypalbuttonComponent } from './components/paypalbutton/paypalbutton.co
     }), HttpClientModule, ReactiveFormsModule, RouterModule, BrowserAnimationsModule, MatInputModule, MatButtonModule, MatSelectModule, MatRadioModule, MatCardModule
   ],
   providers: [ UserAuthService, UserService, AdminService,
-    AuthInterceptor, AuthGuard,
+    AuthInterceptor, AuthGuard, payPalService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass:AuthInterceptor,

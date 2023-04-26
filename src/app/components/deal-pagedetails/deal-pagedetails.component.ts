@@ -24,14 +24,8 @@ export class DealPagedetailsComponent implements OnInit {
           this.getRestaurantDetails(r.restaurantId)
             .then(result => {
               this.restaurantDetails = result
-            }).catch(error => {
-              console.log(error)
-              this.route.navigate(["/user/allDeals"])
             })
         }
-      }).catch(error => {
-        console.log(error)
-        this.route.navigate(["/user/allDeals"])
       })
   }
 
@@ -44,9 +38,9 @@ export class DealPagedetailsComponent implements OnInit {
     return this.userService.getRestaurantbyId(idx)
   }
 
-  payNow(amount: number){
+  payNow(dealId: string, amount: number){
     console.log(amount)
-    this.route.navigate(["user/payNow", amount])
+    this.route.navigate(["user/payNow" , dealId, amount])
   }
 
 }

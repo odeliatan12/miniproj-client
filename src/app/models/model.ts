@@ -112,6 +112,7 @@ export interface allDeals{
 }
 
 export interface order{
+    dealId: string
     price: number
     currency: string
     method: string

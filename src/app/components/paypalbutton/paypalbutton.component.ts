@@ -12,19 +12,23 @@ import { payPalService } from 'src/app/services/paypal.service';
 export class PaypalbuttonComponent implements OnInit {
 
   form!: FormGroup
+  amount!: number
+  result!: string
 
   constructor(private payPalSvc: payPalService, private fb: FormBuilder, public activatedRoute: ActivatedRoute){ }
 
   ngOnInit(): void {
-      // this.form = this.createForm()
+    this.amount = this.activatedRoute.snapshot.params["amount"]
+    this.form = this.createForm()
   }
 
   createForm(): FormGroup{
     return this.fb.group({
-      price: this.fb.control<number>(1),
-      currency: this.fb.control<string>(''),
-      method: this.fb.control<string>(''),
-      intent: this.fb.control<string>(''),
+      dealId: this.activatedRoute.snapshot.params["dealId"], 
+      price: this.fb.control<number>(this.activatedRoute.snapshot.params["amount"]),
+      currency: 'SGD',
+      method: "PAYPAL",
+      intent: "SALE",
       description: this.fb.control<string>(''),
     })
   }

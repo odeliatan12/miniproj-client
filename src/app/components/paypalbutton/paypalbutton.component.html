@@ -1,0 +1,29 @@
+<h1 class="margin">Enter details</h1>
+<form [formGroup]="form" (ngSubmit)="payNow()">
+  <div class="row margin">
+    <div class="col-sm-12">
+      <label for="price" class="form-label">Price</label>
+      <input
+        formControlName="price"
+        type="text"
+        class="form-control"
+        id="firstName"
+        placeholder="{{ amount }} SGD"
+        value="{{ amount }}"
+        required=""
+      />
+    </div>
+    <div class="col-sm-12">
+        <label for="description" class="form-label">Description</label>
+        <input
+          formControlName="description"
+          type="text"
+          class="form-control"
+          id="firstName"
+          placeholder="description"
+          required=""
+        />
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Buy</button>
+  </div>
+</form>
