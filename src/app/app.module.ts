@@ -37,6 +37,7 @@ import { PaypalbuttonComponent } from './components/paypalbutton/paypalbutton.co
 import { payPalService } from './services/paypal.service';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { RestaurantImageuploadComponent } from './components/restaurant-imageupload/restaurant-imageupload.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { FooterComponent } from './components/footer/footer.component';
     DealPagedetailsComponent,
     PaypalbuttonComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    RestaurantImageuploadComponent
   ],
   imports: [
     BrowserModule,

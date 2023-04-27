@@ -1,3 +1,17 @@
 .homeTable{
     margin-top: 15%;
 }
+li button{
+    width: 85%;
+    padding-left: 0;
+}
+.bi-trash{
+    color: red;
+}
+.bi-pencil-square{
+    color: green;
+}
+.bi-hand-thumbs-up-fill, .bi-file-earmark-image{
+    color: #4c85c6;
+    font-weight: 500;
+}

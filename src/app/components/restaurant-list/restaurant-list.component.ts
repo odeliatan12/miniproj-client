@@ -47,4 +47,8 @@ export class RestaurantListComponent implements OnInit {
   addDeals(idx: number){
     this.route.navigate(["/admin/insertDeals", idx])
   }
+
+  addImages(idx: number){
+    this.route.navigate(["/admin/insertImages", idx])
+  }
 }

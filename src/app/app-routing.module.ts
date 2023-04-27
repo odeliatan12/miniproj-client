@@ -16,6 +16,7 @@ import { DealDetailsComponent } from './components/deal-details/deal-details.com
 import { AllDealsComponent } from './components/all-deals/all-deals.component';
 import { DealPagedetailsComponent } from './components/deal-pagedetails/deal-pagedetails.component';
 import { PaypalbuttonComponent } from './components/paypalbutton/paypalbutton.component';
+import { RestaurantImageuploadComponent } from './components/restaurant-imageupload/restaurant-imageupload.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
         { path: 'restaurantdetails', component: RestaurantDetailsComponent},
         { path: 'restaurant/:restaurantId', component: UpdateRestaurantComponent},
         { path: 'insertDeals/:restaurantId', component: DealDetailsComponent },
+        { path: 'insertImages/:restaurantId', component: RestaurantImageuploadComponent },
         { path: '', redirectTo: 'admin/restaurantList', pathMatch: 'full' }
       ]},
   { path: 'user', component: UserComponent,

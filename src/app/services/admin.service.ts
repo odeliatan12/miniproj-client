@@ -63,4 +63,13 @@ export class AdminService{
             this.http.get<string>("/admin/cuisineType", { params: params })
         )
     }
+
+    public postImages(id: number, file: File): Promise<string>{
+        const fileName = file.name
+        const formData = new FormData()
+        formData.append("imgFile", file, fileName)
+        return firstValueFrom(
+            this.http.post<string>("/admin/insertImages/" + id, formData)
+        )
+    }
 }
