@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RestaurantDetails } from 'src/app/models/model';
+import { Restaurant, RestaurantDetails, cuisine } from 'src/app/models/model';
 import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
@@ -12,12 +12,10 @@ import { AdminService } from 'src/app/services/admin.service';
 export class UpdateRestaurantComponent implements OnInit {
 
   form!: FormGroup
-  selectedImage!: File;
-
-  @ViewChild('file')
-  image: ElementRef | undefined;
 
   restDetails!: RestaurantDetails
+  cuisine!: string
+  cuisines: cuisine[] = []
 
   constructor(private fb: FormBuilder, private adminSvc: AdminService, private activatedRoute: ActivatedRoute, private route: Router){ }
 
@@ -25,11 +23,21 @@ export class UpdateRestaurantComponent implements OnInit {
     this.getRestaurantDetails()
       .then( result => {
         this.restDetails = result
+        this.adminSvc.getCuisinebyId(this.restDetails.cuisine_id)
+          .then(result => {
+            this.cuisine = result
+          })
+        this.adminSvc.getCuisine()
+          .then(result => {
+            this.cuisines = result
+          })
         this.form.patchValue({
           name: this.restDetails.name,
           about: this.restDetails.about,
           contact: this.restDetails.contact,
           restaurantLink: this.restDetails.restaurantLink,
+          address: this.restDetails.address,
+          cuisine_id: this.restDetails.cuisine_id,
           menu: this.restDetails.menu,
           mondayOpening: (this.restDetails.mondayOpening).slice(0,5),
           mondayClosing: (this.restDetails.mondayClosing).slice(0,5),
@@ -58,40 +66,10 @@ export class UpdateRestaurantComponent implements OnInit {
     return this.adminSvc.getRestaurantDetails(restaurantId)
   }
 
-  onImageSelected(event: any) {
-    this.selectedImage = <File>event.target.files[0];
-  }
-
   updateRestaurant(){
     const restaurantId = this.activatedRoute.snapshot.params["restaurantId"]
     const value = this.form.value
-    console.log(value.name)
-    const formData = new FormData();
-    formData.set('name', value.name)
-    formData.set('about', value.about)
-    formData.set('contact', value.contact)
-    formData.set('restaurantLink', value.restaurantLink)
-    formData.set('menu', value.menu)
-    if (this.selectedImage) {
-      formData.set('image', this.selectedImage);
-    } else {
-      formData.set('image', "null")
-    }
-    formData.set('mondayOpening', value.mondayOpening)
-    formData.set('mondayClosing', value.mondayClosing)
-    formData.set('tuesdayOpening', value.tuesdayOpening)
-    formData.set('tuesdayClosing', value.tuesdayClosing)
-    formData.set('wednesdayOpening', value.wednesdayOpening)
-    formData.set('wednesdayClosing', value.wednesdayClosing)
-    formData.set('thursdayOpening', value.thursdayOpening)
-    formData.set('thursdayClosing', value.thursdayClosing)
-    formData.set('fridayOpening', value.fridayOpening)
-    formData.set('fridayClosing', value.fridayClosing)
-    formData.set('saturdayOpening', value.saturdayOpening)
-    formData.set('saturdayClosing', value.saturdayClosing)
-    formData.set('sundayOpening', value.sundayOpening)
-    formData.set('sundayClosing', value.sundayClosing)
-    this.adminSvc.updateRestaurant(formData, restaurantId)
+    this.adminSvc.updateRestaurant(value, restaurantId)
       .then(result => {
         console.log(result)
       }).catch(error => {
@@ -107,7 +85,6 @@ export class UpdateRestaurantComponent implements OnInit {
       contact: this.fb.control<string>(''),
       restaurantLink: this.fb.control<string>(''),
       menu: this.fb.control<string>(''),
-      image: this.fb.control(''),
       mondayOpening: this.fb.control<string>('', Validators.pattern(/^([01]\d|2[0-3]):([0-5]\d)$/)),
       mondayClosing: this.fb.control<string>('', Validators.pattern(/^([01]\d|2[0-3]):([0-5]\d)$/)),
       tuesdayOpening: this.fb.control<string>('', Validators.pattern(/^([01]\d|2[0-3]):([0-5]\d)$/)),

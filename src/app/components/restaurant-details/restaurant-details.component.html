@@ -37,6 +37,7 @@
         </div>
       </div>
 
+      <!-- about -->
       <div class="col-sm-12">
         <label for="about" class="form-label">About</label>
         <input
@@ -64,6 +65,42 @@
         </div>
       </div>
 
+      <!-- Cuisine -->
+      <div class="col-12">
+        <label for="cuisine" class="form-label">Cuisine</label>
+        <select
+          formControlName="cuisineId"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option selected>Select a cuisine</option>
+          <!-- Cuisine dynamic -->
+          <option *ngFor="let c of cuisine" value="{{ c.id }}">{{ c.type }}</option>
+        </select>
+      </div>
+
+      <!-- Address -->
+      <div class="col-sm-12">
+        <label for="address" class="form-label">Address</label>
+        <input
+          formControlName="address"
+          type="textarea"
+          class="form-control"
+          id="lastName"
+          placeholder=""
+          value=""
+          required=""
+        />
+        <div
+          *ngIf="form.get('address')?.hasError('required')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter address of restaurant
+        </div>
+      </div>
+
+      <!-- contact -->
       <div class="col-12">
         <label for="username" class="form-label">Contact</label>
         <div class="input-group has-validation">
@@ -79,6 +116,7 @@
         </div>
       </div>
 
+      <!-- restaurantLink -->
       <div class="col-12">
         <label for="restaurantLink" class="form-label">Restaurant url</label>
         <input
@@ -408,17 +446,6 @@
         >
           Please enter the correct time type HH:MM
         </div>
-      </div>
-
-      <div class="col-lg-6 col-sm-12">
-        <label for="sundayC" class="form-label">Restaurant Image</label>
-        <input
-          type="file"
-          class="form-control"
-          id="address2"
-          accept="image/*"
-          #file
-        />
       </div>
     </div>
 

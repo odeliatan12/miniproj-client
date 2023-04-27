@@ -23,7 +23,8 @@ export interface RestaurantDetails{
     contact: string
     restaurantLink: string
     menu: string
-    // image: string
+    address: string
+    cuisine_id: number
     mondayOpening: string
     mondayClosing: string
     tuesdayOpening: string
@@ -118,4 +119,9 @@ export interface order{
     method: string
     intent: string
     description: string
+}
+
+export interface cuisine{
+    id: number
+    type: string
 }

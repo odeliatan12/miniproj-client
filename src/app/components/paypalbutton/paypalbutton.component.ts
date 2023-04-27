@@ -12,10 +12,6 @@ import { render } from 'creditcardpayments/creditCardPayments';
 })
 export class PaypalbuttonComponent implements AfterContentInit {
 
-  form!: FormGroup
-  amount!: number
-  result!: string
-
   constructor(private payPalSvc: payPalService, private fb: FormBuilder, public activatedRoute: ActivatedRoute, private route: Router){ 
     
   }

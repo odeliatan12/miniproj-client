@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { firstValueFrom } from "rxjs";
-import { Restaurant, RestaurantDetails } from "../models/model";
+import { first, firstValueFrom } from "rxjs";
+import { Restaurant, RestaurantDetails, cuisine } from "../models/model";
 import { UserAuthService } from "./user-auth.service";
 
 @Injectable()
@@ -9,16 +9,13 @@ export class AdminService{
 
     constructor(private http: HttpClient, private userAuth: UserAuthService){ }
 
-    public saveRestaurant(formData: FormData): Promise<string>{
+    public saveRestaurant(form: Restaurant): Promise<string>{
         // const headers = new HttpHeaders()
         //     .set('Content-Type', 'application/json; charset=utf-8')
         //     .set( 'No-Auth', 'True' );
         const id = this.userAuth.getUserId()
-        const headers = new HttpHeaders()
-        .set('authorization', `Bearer ${this.userAuth.getToken()}`)
-        .set( 'No-Auth', 'True' );
         return firstValueFrom(
-            this.http.post<string>("/admin/insertRestaurant/" + id, formData)
+            this.http.post<string>("/admin/insertRestaurant/" + id, form)
         )
     }
 
@@ -36,12 +33,12 @@ export class AdminService{
         )
     }
 
-    public updateRestaurant(formData: FormData, restaurantId: number): Promise<string>{
+    public updateRestaurant(form: Restaurant, restaurantId: number): Promise<string>{
         const params = new HttpParams()
             .set("restaurantId", restaurantId)
             .set("userId", `${this.userAuth.getUserId()}`);
         return firstValueFrom(
-            this.http.post<string>("/admin/updateRestaurant", formData, { params: params})
+            this.http.post<string>("/admin/updateRestaurant", form, { params: params})
         )
     }
 
@@ -50,7 +47,20 @@ export class AdminService{
         .set('authorization', `Bearer ${this.userAuth.getToken()}`)
         .set( 'No-Auth', 'True' );
         return firstValueFrom(
-            this.http.post<string>("admin/delete/" + restaurantId, { headers: headers})
+            this.http.delete<string>("admin/delete/" + restaurantId, { headers: headers})
+        )
+    }
+
+    public getCuisine(): Promise<cuisine[]>{
+        return firstValueFrom(
+            this.http.get<cuisine[]>("admin/cuisine")
+        )
+    }
+
+    public getCuisinebyId(id: number): Promise<string>{
+        const params = new HttpParams().set("cuisineId", id)
+        return firstValueFrom(
+            this.http.get<string>("/admin/cuisineType", { params: params })
         )
     }
 }

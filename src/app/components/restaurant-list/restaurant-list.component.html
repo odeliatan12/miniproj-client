@@ -9,10 +9,10 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let r of restaurant">
-      <th scope="row">1</th>
+    <tr *ngFor="let r of restaurant; index as i">
+      <th scope="row">{{ i + 1}}</th>
       <td>{{ r.name }}</td>
-      <td>{{ r.about }}</td>
+      <td>{{ r.about.slice(0,50) }} ...</td>
       <td>{{ r.resturantLink }}</td>
       <td>
         <button
