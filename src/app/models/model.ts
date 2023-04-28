@@ -125,3 +125,9 @@ export interface cuisine{
     id: number
     type: string
 }
+
+export interface image{
+    id: number
+    picture: string
+    image_fileType: string
+}

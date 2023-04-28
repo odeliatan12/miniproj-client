@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { first, firstValueFrom } from "rxjs";
-import { Restaurant, RestaurantDetails, cuisine } from "../models/model";
+import { Restaurant, RestaurantDetails, cuisine, image } from "../models/model";
 import { UserAuthService } from "./user-auth.service";
 
 @Injectable()
@@ -70,6 +70,12 @@ export class AdminService{
         formData.append("imgFile", file, fileName)
         return firstValueFrom(
             this.http.post<string>("/admin/insertImages/" + id, formData)
+        )
+    }
+
+    public getImage(id: number): Promise<image>{
+        return firstValueFrom(
+            this.http.get<image>("/image/" + id)
         )
     }
 }
