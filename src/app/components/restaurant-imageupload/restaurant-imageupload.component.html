@@ -1,0 +1,15 @@
+<form [formGroup]="form" (ngSubmit)="saveImage()">
+  <div class="col-sm-12 margin">
+    <label for="imageUpload" class="form-label">Upload Image</label>
+    <input
+      #imageInput
+      class="m-3 form-control"
+      type="file"
+      name="picture"
+      accept="image/*"
+      (change)="onFileSelected($event)"
+      formControlName="picture"
+    />
+    <button class="w-100 btn btn-primary btn-lg" type="submit">Save</button>
+  </div>
+</form>

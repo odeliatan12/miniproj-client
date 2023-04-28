@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class RestaurantImageuploadComponent implements OnInit {
   form!: FormGroup
   selectedFile!: File;
 
-  constructor(private fb: FormBuilder, private adminSvc: AdminService, private activatedRoute: ActivatedRoute ){ }
+  constructor(private fb: FormBuilder, private adminSvc: AdminService, private activatedRoute: ActivatedRoute, private route: Router ){ }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -28,9 +28,18 @@ export class RestaurantImageuploadComponent implements OnInit {
   }
 
   saveImage(){
+    const value = this.selectedFile
     const restaurantId = this.activatedRoute.snapshot.params["restaurantId"]
-    
-    
+    this.adminSvc.postImages(restaurantId, value)
+      .then(
+        (response) => { console.debug(response) }
+      )
+      .catch(
+        (error) => { 
+          console.warn(error)  
+          this.route.navigate(["/admin/restaurantList"]);
+        }
+      );
   }
 
 }
