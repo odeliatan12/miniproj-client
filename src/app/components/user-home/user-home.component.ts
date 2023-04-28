@@ -14,9 +14,9 @@ export class UserHomeComponent implements OnInit {
 
   restaurant: RestaurantDetails[] = []
   image!: image
-  imsgeSrc!: string
+  imsgeSrc!: string[]
 
-  constructor(private userSvc: UserService, private route: Router, private authService: UserAuthService, private adminService: AdminService){ }
+  constructor(private userSvc: UserService, private route: Router, private authService: UserAuthService, public adminService: AdminService){ }
 
   ngOnInit(): void {
 
@@ -24,14 +24,10 @@ export class UserHomeComponent implements OnInit {
       .then(result => {
         console.log(result)
         this.restaurant = result
-        for(const r of result){
-          console.log(r.id)
+        for(const r of this.restaurant){
           this.adminService.getImage(r.id)
-            .then(result => {
-              this.image = result
-              console.log(this.image.picture)
-              const image = new Image()
-              this.imsgeSrc = 'data:' + this.image.image_fileType + ';base64,' + this.image.picture
+            .then(imageData => {
+              return r.restaurantLink = imageData
             })
         }
       })

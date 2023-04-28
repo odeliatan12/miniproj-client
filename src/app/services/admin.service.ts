@@ -72,10 +72,15 @@ export class AdminService{
             this.http.post<string>("/admin/insertImages/" + id, formData)
         )
     }
-
-    public getImage(id: number): Promise<image>{
+    
+    public getImage(id: number): Promise<any>{
         return firstValueFrom(
             this.http.get<image>("/image/" + id)
-        )
+        ).then(result => {
+            console.log(result.picture)
+            const image = new Image()
+            image.src = 'data:' + result.image_fileType + ';base64,' + result.picture
+            return image.src 
+        })
     }
 }
