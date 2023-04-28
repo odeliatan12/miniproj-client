@@ -5,6 +5,9 @@
 section{
     height: 70vh;
 }
+.btn{
+    padding: 0;
+}
 .foodreview{
     font-size: 40px;
     font-weight: 800;

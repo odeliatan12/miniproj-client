@@ -72,7 +72,7 @@ export class AdminService{
             this.http.post<string>("/admin/insertImages/" + id, formData)
         )
     }
-    
+
     public getImage(id: number): Promise<any>{
         return firstValueFrom(
             this.http.get<image>("/image/" + id)

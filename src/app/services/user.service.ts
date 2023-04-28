@@ -63,5 +63,11 @@ export class UserService{
         )
     }
 
+    public getReviewCount(restaurantId: number): Promise<number>{
+        return firstValueFrom(
+            this.http.get<number>("/user/" + restaurantId + "/getReviewCount")
+        )
+    }
+
     
 }

@@ -30,16 +30,15 @@
               <p class="card-text title-restaurant">
                 {{ r.name }}
               </p>
-              <p class="card-text">
-                {{ r.about.slice(0,30) }} ...
-              </p>
-              <div
-                class="d-flex justify-content-between align-items-center"
-              ></div>
+              <p class="card-text">{{ r.about.slice(0, 30) }} ...</p>
+              <button
+                (click)="restaurantPage(r.id)"
+                type="button"
+                class="btn find-out col-12"
+              >
+                Find out more
+              </button>
             </div>
-            <button (click)="restaurantPage(r.id)" type="button" class="btn find-out col-6">
-              Find out more
-            </button>
           </div>
         </div>
       </div>

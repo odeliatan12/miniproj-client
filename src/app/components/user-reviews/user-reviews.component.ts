@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResReviews } from 'src/app/models/model';
+import { AdminService } from 'src/app/services/admin.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,8 +13,9 @@ import { UserService } from 'src/app/services/user.service';
 export class UserReviewsComponent implements OnInit {
 
   resReviews!: ResReviews
+  image!: string
   
-  constructor(private activatedRoute: ActivatedRoute, private route: Router, private userSvc: UserService){ }
+  constructor(private activatedRoute: ActivatedRoute, private route: Router, private userSvc: UserService, private adminSvc: AdminService){ }
 
   ngOnInit(): void {
 
@@ -38,6 +40,13 @@ export class UserReviewsComponent implements OnInit {
         console.log(error)
         this.route.navigate(["/user/home"])
       })
+
+      this.adminSvc.getImage(this.activatedRoute.snapshot.params["restaurantId"])
+        .then(result => {
+          this.image = result
+        })
+
+      
       
   }
 
