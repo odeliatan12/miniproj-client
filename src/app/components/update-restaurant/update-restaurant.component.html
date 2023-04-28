@@ -70,9 +70,10 @@
           class="form-select"
           aria-label="Default select example"
         >
-          <option selected>{{ cuisine }}</option>
           <!-- Cuisine dynamic -->
-          <option *ngFor="let c of cuisines" value="{{ c.id }}">{{ c.type }}</option>
+          <option *ngFor="let c of cuisines" value="{{ c.id }}">
+            {{ c.type }}
+          </option>
         </select>
       </div>
 
@@ -85,8 +86,6 @@
           class="form-control"
           id="lastName"
           placeholder="{{ restDetails.address }}"
-          value=""
-          required=""
         />
         <div
           *ngIf="form.get('address')?.hasError('required')"
@@ -99,17 +98,13 @@
 
       <div class="col-12">
         <label for="username" class="form-label">Contact</label>
-        <div class="input-group has-validation">
-          <input
-            formControlName="contact"
-            type="text"
-            class="form-control"
-            id="username"
-            placeholder="{{ restDetails.contact }}"
-            required=""
-            pattern="^[0-9]{8}$"
-          />
-        </div>
+        <input
+          formControlName="contact"
+          type="text"
+          class="form-control"
+          id="username"
+          placeholder="{{ restDetails.contact }}"
+        />
       </div>
 
       <div class="col-12">
@@ -136,11 +131,7 @@
       </div>
 
       <div class="col-lg-6 col-sm-12">
-        <label for="mondayO" class="form-label"
-          >Monday opening hours<span class="text-body-secondary"
-            >(Optional)</span
-          ></label
-        >
+        <label for="mondayO" class="form-label">Monday opening hours</label>
         <input
           formControlName="mondayOpening"
           type="text"
@@ -158,11 +149,7 @@
       </div>
 
       <div class="col-lg-6 col-sm-12">
-        <label for="mondayC" class="form-label"
-          >Monday closing hours<span class="text-body-secondary"
-            >(Optional)</span
-          ></label
-        >
+        <label for="mondayC" class="form-label">Monday closing hours</label>
         <input
           formControlName="mondayClosing"
           type="text"

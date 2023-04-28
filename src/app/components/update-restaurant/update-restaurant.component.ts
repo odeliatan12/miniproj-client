@@ -85,6 +85,8 @@ export class UpdateRestaurantComponent implements OnInit {
       contact: this.fb.control<string>(''),
       restaurantLink: this.fb.control<string>(''),
       menu: this.fb.control<string>(''),
+      address: this.fb.control<string>(""),
+      cuisineId: this.fb.control<number>(1),
       mondayOpening: this.fb.control<string>('', Validators.pattern(/^([01]\d|2[0-3]):([0-5]\d)$/)),
       mondayClosing: this.fb.control<string>('', Validators.pattern(/^([01]\d|2[0-3]):([0-5]\d)$/)),
       tuesdayOpening: this.fb.control<string>('', Validators.pattern(/^([01]\d|2[0-3]):([0-5]\d)$/)),
