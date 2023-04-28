@@ -14,6 +14,7 @@ export class UserReviewsComponent implements OnInit {
 
   resReviews!: ResReviews
   image!: string
+  number!: number
   
   constructor(private activatedRoute: ActivatedRoute, private route: Router, private userSvc: UserService, private adminSvc: AdminService){ }
 
@@ -36,8 +37,8 @@ export class UserReviewsComponent implements OnInit {
         this.resReviews.restaurant.saturdayClosing = (result.restaurant.saturdayClosing).slice(0,5),
         this.resReviews.restaurant.sundayOpening = (result.restaurant.sundayOpening).slice(0,5),
         this.resReviews.restaurant.sundayClosing = (result.restaurant.sundayClosing).slice(0,5)
+
       }).catch(error => {
-        console.log(error)
         this.route.navigate(["/user/home"])
       })
 
@@ -46,7 +47,10 @@ export class UserReviewsComponent implements OnInit {
           this.image = result
         })
 
-      
+      this.userSvc.getReviewCount(this.activatedRoute.snapshot.params["restaurantId"])
+        .then(result => {
+          this.number = result
+        })
       
   }
 
