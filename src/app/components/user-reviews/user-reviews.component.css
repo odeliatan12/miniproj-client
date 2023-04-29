@@ -32,3 +32,7 @@
     color: black;
     background-color: rgba(0, 0, 0, 0.1);
 }
+.reviewBtn:hover{
+    background-color: #103560ad;
+    color: whitesmoke;
+}

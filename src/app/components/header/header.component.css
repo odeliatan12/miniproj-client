@@ -1,5 +1,6 @@
 .navbar-brand, .nav-item a{
     color: #103560;
+    cursor: pointer;
 }
 .navbar-brand{
     font-weight: 1000;
@@ -10,7 +11,6 @@ nav{
     -webkit-box-shadow: 1px 10px 11px -4px rgba(173,170,170,0.60);
     -moz-box-shadow: 1px 10px 11px -4px rgba(173,170,170,0.60);
 }
-
 ::placeholder {
     color: #103560;
 }

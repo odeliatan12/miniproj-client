@@ -131,3 +131,8 @@ export interface image{
     picture: string
     image_fileType: string
 }
+
+export interface mealNames{
+    id: number
+    name: string
+}

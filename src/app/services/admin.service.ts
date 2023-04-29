@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { first, firstValueFrom } from "rxjs";
-import { Restaurant, RestaurantDetails, cuisine, image } from "../models/model";
+import { Restaurant, RestaurantDetails, cuisine, image, mealNames } from "../models/model";
 import { UserAuthService } from "./user-auth.service";
 
 @Injectable()
@@ -82,5 +82,17 @@ export class AdminService{
             image.src = 'data:' + result.image_fileType + ';base64,' + result.picture
             return image.src 
         })
+    }
+
+    public getAllMeals(): Promise<mealNames[]>{
+        return firstValueFrom(
+            this.http.get<mealNames[]>("/meal/allNames")
+        )
+    }
+
+    public getAllCategories(): Promise<mealNames[]>{
+        return firstValueFrom(
+            this.http.get<mealNames[]>("/meal/allCategories")
+        )
     }
 }
