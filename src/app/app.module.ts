@@ -74,8 +74,9 @@ import { AgmCoreModule } from '@agm/core';
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    }), HttpClientModule, ReactiveFormsModule, RouterModule, BrowserAnimationsModule, MatInputModule, MatButtonModule, MatSelectModule, MatRadioModule, MatCardModule, AgmCoreModule.forRoot({
-      apiKey: 'GOOGLE API KEY',
+    }), HttpClientModule, ReactiveFormsModule, RouterModule, BrowserAnimationsModule, MatInputModule, MatButtonModule, MatSelectModule, MatRadioModule, MatCardModule, 
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCIr56HQCyEkGEQb847eaN0I91kvG6PPDs',
       libraries: ['places']
     })
   ],
