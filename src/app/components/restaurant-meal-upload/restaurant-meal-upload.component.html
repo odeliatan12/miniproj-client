@@ -1,100 +1,102 @@
 <div class="col-md-7 col-lg-8 margin">
-    <h4 class="mb-3">Restaurant details</h4>
-    <form
-      [formGroup]="form"
-      class="needs-validation"
-      novalidate=""
-      (ngSubmit)="saveForm()"
-    >
-      <div class="row g-3">
-        <!-- name -->
-        <div class="col-sm-12">
-          <label for="name" class="form-label">Meal Name</label>
-          <select
-            formControlName="name"
-            class="form-select"
-            aria-label="Default select example"
-          >
-            <option selected>Select a category</option>
-            <!-- Meal names dynamic -->
-            <option *ngFor="let ml of mealNames" value="{{ ml.id }}">
-              {{ ml.name }}
-            </option>
-          </select>
-        </div>
+  <h4 class="mb-3">Restaurant details</h4>
+  <form
+    [formGroup]="form"
+    class="needs-validation"
+    novalidate=""
+    (ngSubmit)="saveForm()"
+  >
+    <div class="row g-3">
+      <!-- name -->
+      <div class="col-sm-12">
+        <label for="name" class="form-label">Meal Name</label>
+        <select
+          formControlName="name"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option selected>Select a category</option>
+          <!-- Meal names dynamic -->
+          <option *ngFor="let ml of mealNames" value="{{ ml.id }}">
+            {{ ml.name }}
+          </option>
+        </select>
       </div>
-  
-      <div class="row g-3">
-        <!-- name -->
-        <div class="col-sm-12">
-          <label for="name" class="form-label">Meal Category</label>
-          <select
-            formControlName="category"
-            class="form-select"
-            aria-label="Default select example"
-          >
-            <option selected>Select a category</option>
-            <!-- Meal names dynamic -->
-            <option *ngFor="let ml of mealCategories" value="{{ ml.id }}">
-              {{ ml.name }}
-            </option>
-          </select>
-        </div>
+    </div>
+
+    <div class="row g-3">
+      <!-- name -->
+      <div class="col-sm-12">
+        <label for="name" class="form-label">Meal Category</label>
+        <select
+          formControlName="category"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option selected>Select a category</option>
+          <!-- Meal names dynamic -->
+          <option *ngFor="let ml of mealCategories" value="{{ ml.id }}">
+            {{ ml.name }}
+          </option>
+        </select>
       </div>
-  
-      <div class="row g-3">
-        <div class="col-sm-12">
-          <label for="amount" class="form-label">Meal Price</label>
-          <input
-            formControlName="amount"
-            type="text"
-            class="form-control"
-            id="lastName"
-          />
-        </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-sm-12">
+        <label for="amount" class="form-label">Meal Price</label>
+        <input
+          formControlName="amount"
+          type="text"
+          class="form-control"
+          id="lastName"
+        />
       </div>
-    </form>
-    <button
-      (click)="addFormArray()"
-      class="w-100 btn btn-primary btn-lg mt-3"
-      type="button"
-    >
-      Add dish
-    </button>
-    <button
-      (click)="saveForm()"
-      class="w-100 btn btn-primary btn-lg mt-3"
-      type="button"
-    >
-      Save List
-    </button>
-  </div>
-  
-  <div class="col-md-7 col-lg-8 mt-3" *ngIf="this.meals.length <= 0">Please enter a new dish</div>
-  
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Dish name</th>
-        <th scope="col">Amount</th>
-        <th scope="col">Remove</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let m of meals; index as i">
-      <tr>
-        <th scope="row">{{ i + 1 }}</th>
-        <td>{{ m.nameId }}</td>
-        <td>{{ m.amount }}</td>
-        <td>
-          <button
-            (click)="deleteForm(i)"
-            class="w-100 btn btn-primary btn-sm"
-            type="button"
-          >
-            X
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    </div>
+  </form>
+  <button
+    (click)="addFormArray()"
+    class="w-100 btn btn-primary btn-lg mt-3"
+    type="button"
+  >
+    Add dish
+  </button>
+  <button
+    (click)="saveForm()"
+    class="w-100 btn btn-primary btn-lg mt-3"
+    type="button"
+  >
+    Save List
+  </button>
+</div>
+
+<div class="col-md-7 col-lg-8 mt-3" *ngIf="this.meals.length <= 0">
+  Please enter a new dish
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Dish name</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Remove</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let m of meals; index as i">
+    <tr>
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ m.nameId }}</td>
+      <td>{{ m.amount }}</td>
+      <td>
+        <button
+          (click)="deleteForm(i)"
+          class="w-100 btn btn-primary btn-sm"
+          type="button"
+        >
+          X
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
