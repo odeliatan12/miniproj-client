@@ -136,17 +136,3 @@ export interface mealNames{
     id: number
     name: string
 }
-
-export class meals{
-    restaurantId: number
-    nameId: number
-    categoryId: number
-    amount: number
-
-    constructor(restaurantId: number, nameId: number, categoryId: number, amount: number) {
-        this.restaurantId = restaurantId;
-        this.nameId = nameId;
-        this.categoryId = categoryId;
-        this.amount = amount
-    }
-}

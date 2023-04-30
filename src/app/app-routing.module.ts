@@ -31,7 +31,7 @@ const routes: Routes = [
         { path: 'restaurant/:restaurantId', component: UpdateRestaurantComponent},
         { path: 'insertDeals/:restaurantId', component: DealDetailsComponent },
         { path: 'insertImages/:restaurantId', component: RestaurantImageuploadComponent },
-        { path: 'mealUpload/:restaurantId', component: RestaurantMealUploadComponent },
+        { path: 'mealUpload', component: RestaurantMealUploadComponent },
         { path: '', redirectTo: 'admin/restaurantList', pathMatch: 'full' }
       ]},
   { path: 'user', component: UserComponent,
