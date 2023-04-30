@@ -20,13 +20,7 @@ import { RestaurantDetailsComponent } from './components/restaurant-details/rest
 import { AdminService } from './services/admin.service';
 import { UpdateRestaurantComponent } from './components/update-restaurant/update-restaurant.component';
 import { RestaurantListComponent } from './components/restaurant-list/restaurant-list.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserReviewsComponent } from './components/user-reviews/user-reviews.component';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatCardModule } from '@angular/material/card';
 import { UserHomeComponent } from './components/user-home/user-home.component';
 import { UserInsertreviewComponent } from './components/user-insertreview/user-insertreview.component';
 import { DealDetailsComponent } from './components/deal-details/deal-details.component';
@@ -39,8 +33,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RestaurantImageuploadComponent } from './components/restaurant-imageupload/restaurant-imageupload.component';
 import { RestaurantMealUploadComponent } from './components/restaurant-meal-upload/restaurant-meal-upload.component';
-import { UserSearchComponent } from './components/user-search/user-search.component';
-import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -63,8 +55,7 @@ import { AgmCoreModule } from '@agm/core';
     HeaderComponent,
     FooterComponent,
     RestaurantImageuploadComponent,
-    RestaurantMealUploadComponent,
-    UserSearchComponent
+    RestaurantMealUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -74,11 +65,7 @@ import { AgmCoreModule } from '@agm/core';
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    }), HttpClientModule, ReactiveFormsModule, RouterModule, BrowserAnimationsModule, MatInputModule, MatButtonModule, MatSelectModule, MatRadioModule, MatCardModule, 
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCIr56HQCyEkGEQb847eaN0I91kvG6PPDs',
-      libraries: ['places']
-    })
+    }), HttpClientModule, ReactiveFormsModule, RouterModule,
   ],
   providers: [ UserAuthService, UserService, AdminService,
     AuthInterceptor, AuthGuard, payPalService,
