@@ -71,6 +71,15 @@
             >Deals</a
           >
         </li>
+        <li class="nav-item">
+          <a
+            *ngIf="isLoggedIn() && userService.roleMatch('USER')"
+            class="nav-link active"
+            aria-current="page"
+            routerLink="user/search"
+            >Search for food</a
+          >
+        </li>
       </ul>
       <form class="d-flex" role="search">
         <input

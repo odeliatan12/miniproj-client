@@ -22,7 +22,6 @@ export class UserHomeComponent implements OnInit {
 
     this.userSvc.getAllRestaurants()
       .then(result => {
-        console.log(result)
         this.restaurant = result
         for(const r of this.restaurant){
           this.adminService.getImage(r.id)

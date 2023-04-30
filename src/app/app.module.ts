@@ -39,6 +39,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RestaurantImageuploadComponent } from './components/restaurant-imageupload/restaurant-imageupload.component';
 import { RestaurantMealUploadComponent } from './components/restaurant-meal-upload/restaurant-meal-upload.component';
+import { UserSearchComponent } from './components/user-search/user-search.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import { RestaurantMealUploadComponent } from './components/restaurant-meal-uplo
     HeaderComponent,
     FooterComponent,
     RestaurantImageuploadComponent,
-    RestaurantMealUploadComponent
+    RestaurantMealUploadComponent,
+    UserSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,10 @@ import { RestaurantMealUploadComponent } from './components/restaurant-meal-uplo
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    }), HttpClientModule, ReactiveFormsModule, RouterModule, BrowserAnimationsModule, MatInputModule, MatButtonModule, MatSelectModule, MatRadioModule, MatCardModule
+    }), HttpClientModule, ReactiveFormsModule, RouterModule, BrowserAnimationsModule, MatInputModule, MatButtonModule, MatSelectModule, MatRadioModule, MatCardModule, AgmCoreModule.forRoot({
+      apiKey: 'GOOGLE API KEY',
+      libraries: ['places']
+    })
   ],
   providers: [ UserAuthService, UserService, AdminService,
     AuthInterceptor, AuthGuard, payPalService,
