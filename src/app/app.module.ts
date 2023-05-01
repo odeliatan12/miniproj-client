@@ -33,6 +33,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RestaurantImageuploadComponent } from './components/restaurant-imageupload/restaurant-imageupload.component';
 import { RestaurantMealUploadComponent } from './components/restaurant-meal-upload/restaurant-meal-upload.component';
+import { UserMealsearchComponent } from './components/user-mealsearch/user-mealsearch.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { RestaurantMealUploadComponent } from './components/restaurant-meal-uplo
     HeaderComponent,
     FooterComponent,
     RestaurantImageuploadComponent,
-    RestaurantMealUploadComponent
+    RestaurantMealUploadComponent,
+    UserMealsearchComponent,
   ],
   imports: [
     BrowserModule,
