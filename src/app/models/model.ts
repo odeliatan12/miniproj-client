@@ -150,3 +150,13 @@ export class meals{
         this.amount = amount
     }
 }
+
+export interface mealRest{
+    name: string
+    amount: number
+    restaurant_id: number
+    category_name: string
+    restaurant_name: string
+    address: string
+    contact: string
+}

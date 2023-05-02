@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { firstValueFrom } from "rxjs";
-import { Login, ResReviews, Restaurant, RestaurantDetails, postReviews } from "../models/model";
+import { Observable, firstValueFrom } from "rxjs";
+import { Login, ResReviews, Restaurant, RestaurantDetails, mealRest, postReviews } from "../models/model";
 import { UserAuthService } from "./user-auth.service";
 
 @Injectable()
@@ -67,6 +67,11 @@ export class UserService{
         return firstValueFrom(
             this.http.get<number>("/user/" + restaurantId + "/getReviewCount")
         )
+    }
+
+    public getMealRestInfo(request: string): Observable<mealRest[]>{
+        const params = new HttpParams().set("meals", request)
+        return this.http.get<mealRest[]>("meal/search", { params: params})
     }
 
     

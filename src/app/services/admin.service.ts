@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { first, firstValueFrom } from "rxjs";
+import { Observable, first, firstValueFrom } from "rxjs";
 import { Restaurant, RestaurantDetails, cuisine, image, mealNames, meals } from "../models/model";
 import { UserAuthService } from "./user-auth.service";
 
@@ -100,5 +100,9 @@ export class AdminService{
         return firstValueFrom(
             this.http.post<string>("meal/insertMeals", meals)
         )
+    }
+
+    public getMeals(): Observable<mealNames[]>{
+        return this.http.get<mealNames[]>("/meal/allNames")
     }
 }
