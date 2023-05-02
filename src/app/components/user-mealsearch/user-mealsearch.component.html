@@ -1,6 +1,11 @@
 <div class="container margin">
   <div class="input-wrap">
-    <input type="search" [(ngModel)] = mealName placeholder="Find a meal dish">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="mealName"
+      placeholder="Find a meal dish"
+    />
   </div>
   <div *ngFor="let ml of mealNames | filterpipe : mealName" class="city" >
     {{ml}}

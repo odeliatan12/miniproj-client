@@ -35,8 +35,10 @@ export class UserMealsearchComponent implements OnInit {
       })
   }
 
-  
-
-
-
+  getInformation(request: string){
+    this.userService.getMealRestInfo(request)
+      .subscribe(data => {
+        
+      })
+  }
 }
