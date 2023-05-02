@@ -1,17 +1,8 @@
 <div class="container margin">
-  
-    <form [formGroup]="form">
-      <mat-form-field>
-        <mat-label>
-          meal names
-        </mat-label>
-        <input matInput type="text" [matAutocomplete]="auto" [formControl]="mealsControl"/>
-        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-          <mat-option *ngFor="let meal of filteredMeals | async" [value]="meal">
-            {{meal}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </form>
-  
+  <div class="input-wrap">
+    <input type="search" [(ngModel)] = mealName placeholder="Find a meal dish">
+  </div>
+  <div *ngFor="let ml of mealNames | filterpipe : mealName" class="city" >
+    {{ml}}
+  </div>
 </div>

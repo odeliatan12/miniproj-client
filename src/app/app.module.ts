@@ -37,6 +37,7 @@ import { UserMealsearchComponent } from './components/user-mealsearch/user-meals
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FilterpipePipe } from './pipe/filterpipe.pipe';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RestaurantImageuploadComponent,
     RestaurantMealUploadComponent,
     UserMealsearchComponent,
+    FilterpipePipe,
   ],
   imports: [
     BrowserModule,
