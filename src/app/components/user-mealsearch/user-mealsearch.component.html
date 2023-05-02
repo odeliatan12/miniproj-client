@@ -8,6 +8,15 @@
     />
   </div>
   <div *ngFor="let ml of mealNames | filterpipe : mealName" class="city" >
-    {{ml}}
+    <button class="btn" (click)="getInformation(ml)">
+      {{ ml }}
+    </button>
+  </div>
+
+  <div *ngFor="let m of mealRest">
+    <h5>{{ m.name }}</h5>
+    <h5>{{ m.amount }}</h5>
+    <button (click)="redirectToRestaurant(m.restaurant_id)" class="btn">{{ m.address }}</button>
   </div>
 </div>
+<app-user-mealmap></app-user-mealmap>

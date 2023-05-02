@@ -38,6 +38,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterpipePipe } from './pipe/filterpipe.pipe';
+import { AgmCoreModule } from '@agm/core';
+import { UserMealmapComponent } from './components/user-mealmap/user-mealmap.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,7 @@ import { FilterpipePipe } from './pipe/filterpipe.pipe';
     RestaurantMealUploadComponent,
     UserMealsearchComponent,
     FilterpipePipe,
+    UserMealmapComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,9 @@ import { FilterpipePipe } from './pipe/filterpipe.pipe';
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    }), HttpClientModule, ReactiveFormsModule, RouterModule, FormsModule, MatInputModule, MatAutocompleteModule, BrowserAnimationsModule
+    }), HttpClientModule, ReactiveFormsModule, RouterModule, FormsModule, MatInputModule, MatAutocompleteModule, BrowserAnimationsModule,AgmCoreModule.forRoot({  
+      apiKey: 'AIzaSyCIr56HQCyEkGEQb847eaN0I91kvG6PPDs'  
+    })
   ],
   providers: [ UserAuthService, UserService, AdminService,
     AuthInterceptor, AuthGuard, payPalService,
