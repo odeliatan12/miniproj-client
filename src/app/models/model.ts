@@ -41,6 +41,30 @@ export interface RestaurantDetails{
     sundayClosing: string
 }
 
+export interface RestaurantPost{
+    name: string
+    about: string
+    contact: string
+    restaurantLink: string
+    menu: string
+    address: string
+    cuisine_id: number
+    mondayOpening: string
+    mondayClosing: string
+    tuesdayOpening: string
+    tuesdayClosing: string
+    wednesdayOpening: string
+    wednesdayClosing: string
+    thursdayOpening: string
+    thursdayClosing: string
+    fridayOpening: string
+    fridayClosing: string
+    saturdayOpening: string
+    saturdayClosing: string
+    sundayOpening: string
+    sundayClosing: string
+}
+
 export interface reviews{
     id: number
     description: string

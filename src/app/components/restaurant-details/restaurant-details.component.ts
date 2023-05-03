@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Restaurant, cuisine } from 'src/app/models/model';
+import { Restaurant, RestaurantDetails, RestaurantPost, cuisine } from 'src/app/models/model';
 import { AdminService } from 'src/app/services/admin.service';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 
@@ -71,7 +71,8 @@ export class RestaurantDetailsComponent implements OnInit {
   }
 
   saveRestaurant(){
-    const value = this.form.value as Restaurant
+    const value = this.form.value as RestaurantPost
+    value.address = this.formattedaddress
 
     this.adminSvc.saveRestaurant(value)
       .then( result => 

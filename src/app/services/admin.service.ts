@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, first, firstValueFrom } from "rxjs";
-import { Restaurant, RestaurantDetails, cuisine, image, mealNames, meals } from "../models/model";
+import { Restaurant, RestaurantDetails, RestaurantPost, cuisine, image, mealNames, meals } from "../models/model";
 import { UserAuthService } from "./user-auth.service";
 
 @Injectable()
@@ -9,7 +9,7 @@ export class AdminService{
 
     constructor(private http: HttpClient, private userAuth: UserAuthService){ }
 
-    public saveRestaurant(form: Restaurant): Promise<string>{
+    public saveRestaurant(form: RestaurantPost): Promise<string>{
         // const headers = new HttpHeaders()
         //     .set('Content-Type', 'application/json; charset=utf-8')
         //     .set( 'No-Auth', 'True' );
