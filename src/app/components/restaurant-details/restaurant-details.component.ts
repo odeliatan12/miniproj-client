@@ -14,6 +14,20 @@ export class RestaurantDetailsComponent implements OnInit {
 
   form!: FormGroup;
   cuisine : cuisine[] = []
+  formattedaddress=" ";
+  options = {
+    bounds: new google.maps.LatLngBounds(
+      new google.maps.LatLng(-33.8902, 151.1759),
+      new google.maps.LatLng(-33.8474, 151.2631)
+    ),
+    componentRestrictions:{
+      country:"SG"
+    },
+    fields: [],
+    origin: new google.maps.LatLng(0, 0),
+    strictBounds: false,
+    types: []
+  }
 
   constructor(private fb: FormBuilder, private adminSvc: AdminService, private userAuthService: UserAuthService, private route: Router){}
 
@@ -23,6 +37,11 @@ export class RestaurantDetailsComponent implements OnInit {
       .then(result => {
         this.cuisine = result
       })
+  }
+
+  public AddressChange(address: any) {
+    //setting address from API to local variable
+     this.formattedaddress=address.formatted_address
   }
   
   createForm(): FormGroup{

@@ -75,7 +75,9 @@
         >
           <option selected>Select a cuisine</option>
           <!-- Cuisine dynamic -->
-          <option *ngFor="let c of cuisine" value="{{ c.id }}">{{ c.type }}</option>
+          <option *ngFor="let c of cuisine" value="{{ c.id }}">
+            {{ c.type }}
+          </option>
         </select>
       </div>
 
@@ -86,9 +88,12 @@
           formControlName="address"
           type="textarea"
           class="form-control"
-          id="lastName"
           placeholder="Address"
+          ngx-google-places-autocomplete
+          [options]="options"
+          (onAddressChange)="AddressChange($event)"
         />
+        {{ formattedaddress }}
         <div
           *ngIf="form.get('address')?.hasError('required')"
           class="alert alert-danger size"

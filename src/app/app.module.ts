@@ -40,6 +40,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterpipePipe } from './pipe/filterpipe.pipe';
 import { AgmCoreModule } from '@agm/core';
 import { UserMealmapComponent } from './components/user-mealmap/user-mealmap.component';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+
+
 
 @NgModule({
   declarations: [
@@ -77,7 +80,7 @@ import { UserMealmapComponent } from './components/user-mealmap/user-mealmap.com
       registrationStrategy: 'registerWhenStable:30000'
     }), HttpClientModule, ReactiveFormsModule, RouterModule, FormsModule, MatInputModule, MatAutocompleteModule, BrowserAnimationsModule,AgmCoreModule.forRoot({  
       apiKey: 'AIzaSyCIr56HQCyEkGEQb847eaN0I91kvG6PPDs'  
-    })
+    }), GooglePlaceModule
   ],
   providers: [ UserAuthService, UserService, AdminService,
     AuthInterceptor, AuthGuard, payPalService,
