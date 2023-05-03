@@ -1,5 +1,5 @@
 import { AgmMap, MapsAPILoader } from '@agm/core';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-user-mealmap',
@@ -17,6 +17,12 @@ export class UserMealmapComponent implements OnInit {
   longitude: any
   latitude: any
   currentLocation: string | undefined;
+
+  @Input() 
+  latitudeChild: any;
+
+  @Input()
+  longitudeChild: any;
 
   constructor(private apiLoader: MapsAPILoader){ }
 

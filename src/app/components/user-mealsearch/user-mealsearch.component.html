@@ -19,4 +19,5 @@
     <button (click)="redirectToRestaurant(m.restaurant_id)" class="btn">{{ m.address }}</button>
   </div>
 </div>
-<app-user-mealmap></app-user-mealmap>
+
+<app-user-mealmap [latitudeChild]="this.latitudeChild" [longitudeChild]="this.longtitudeParent"></app-user-mealmap>

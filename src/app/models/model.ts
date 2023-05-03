@@ -63,6 +63,8 @@ export interface RestaurantPost{
     saturdayClosing: string
     sundayOpening: string
     sundayClosing: string
+    longtitude: number
+    latitude: number
 }
 
 export interface reviews{

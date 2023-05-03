@@ -20,6 +20,9 @@ export class UserMealsearchComponent implements OnInit {
   mealNames: string[] = [];
   mealRest: mealRest[] = []
 
+  latitudeChild = 1.290270;
+  longtitudeParent = 103.820268;
+  
   constructor(private userService: UserService, private fb: FormBuilder, private adminService: AdminService, private route: Router){ }
 
   ngOnInit(): void {

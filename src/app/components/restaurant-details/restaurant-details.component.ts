@@ -29,6 +29,9 @@ export class RestaurantDetailsComponent implements OnInit {
     types: []
   }
 
+  latitude!: number;
+  longitude!: number;
+
   constructor(private fb: FormBuilder, private adminSvc: AdminService, private userAuthService: UserAuthService, private route: Router){}
 
   ngOnInit(): void {
@@ -41,7 +44,22 @@ export class RestaurantDetailsComponent implements OnInit {
 
   public AddressChange(address: any) {
     //setting address from API to local variable
-     this.formattedaddress=address.formatted_address
+    this.formattedaddress=address.formatted_address
+
+    let geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'address': address.formatted_address }, (results, status) => {
+    if (status === 'OK') {
+      if (results[0]) {
+        this.latitude = results[0].geometry.location.lat();
+        this.longitude = results[0].geometry.location.lng();
+        console.log(this.latitude)
+        console.log(this.longitude)
+      } else {
+        console.log('No results found');
+      }} else {
+        console.log('Geocoder failed due to: ' + status);
+      }
+    });
   }
   
   createForm(): FormGroup{
@@ -73,6 +91,8 @@ export class RestaurantDetailsComponent implements OnInit {
   saveRestaurant(){
     const value = this.form.value as RestaurantPost
     value.address = this.formattedaddress
+    value.longtitude = this.longitude
+    value.latitude = this.latitude
 
     this.adminSvc.saveRestaurant(value)
       .then( result => 
