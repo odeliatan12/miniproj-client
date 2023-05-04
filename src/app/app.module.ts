@@ -39,7 +39,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterpipePipe } from './pipe/filterpipe.pipe';
 import { AgmCoreModule } from '@agm/core';
-import { UserMealmapComponent } from './components/user-mealmap/user-mealmap.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 
@@ -67,8 +66,7 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     RestaurantImageuploadComponent,
     RestaurantMealUploadComponent,
     UserMealsearchComponent,
-    FilterpipePipe,
-    UserMealmapComponent,
+    FilterpipePipe
   ],
   imports: [
     BrowserModule,

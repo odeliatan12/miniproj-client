@@ -20,8 +20,7 @@ export class UserMealsearchComponent implements OnInit {
   mealNames: string[] = [];
   mealRest: mealRest[] = []
   markers: location[] = []
-  latitudeChild = 1.290270;
-  longtitudeParent = 103.820268;
+  mycustommarker: string = "my custom marker"
 
   public agmMap: AgmMap | undefined;
   public showMap: boolean = false;
@@ -139,4 +138,6 @@ export class UserMealsearchComponent implements OnInit {
     const distance = earthRadius * c;
     return distance * 1000; // convert to meters
   }
+
+  
 }

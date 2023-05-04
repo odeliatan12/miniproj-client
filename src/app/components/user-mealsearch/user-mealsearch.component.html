@@ -22,7 +22,6 @@
   </div>
 </div>
 
-
 <div *ngIf="showMap">
   <agm-map
     style="height: 300px"
@@ -32,8 +31,10 @@
     (mapClick)="mapClicked($event)"
   >
     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-    <agm-marker *ngFor="let marker of markers" [latitude]="marker.latitude" [longitude]="marker.longitude"></agm-marker>
+    <agm-marker
+      *ngFor="let marker of markers"
+      [latitude]="marker.latitude"
+      [longitude]="marker.longitude"
+    ></agm-marker>
   </agm-map>
 </div>
-
-
