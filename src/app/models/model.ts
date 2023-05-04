@@ -181,10 +181,15 @@ export interface mealRest{
     name: string
     amount: number
     restaurant_id: number
-    longtitude: number
+    address: string
+    longitude: number
     latitude: number
     category_name: string
     restaurant_name: string
-    address: string
     contact: string
+}
+
+export interface location{
+    longitude: number
+    latitude: number
 }

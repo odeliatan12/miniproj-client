@@ -7,7 +7,7 @@
       placeholder="Find a meal dish"
     />
   </div>
-  <div *ngFor="let ml of mealNames | filterpipe : mealName" class="city" >
+  <div *ngFor="let ml of mealNames | filterpipe : mealName" class="city">
     <button class="btn" (click)="getInformation(ml)">
       {{ ml }}
     </button>
@@ -16,8 +16,24 @@
   <div *ngFor="let m of mealRest">
     <h5>{{ m.name }}</h5>
     <h5>{{ m.amount }}</h5>
-    <button (click)="redirectToRestaurant(m.restaurant_id)" class="btn">{{ m.address }}</button>
+    <button (click)="redirectToRestaurant(m.restaurant_id)" class="btn">
+      {{ m.address }}
+    </button>
   </div>
 </div>
 
-<app-user-mealmap [latitudeChild]="this.latitudeChild" [longitudeChild]="this.longtitudeParent"></app-user-mealmap>
+
+<div *ngIf="showMap">
+  <agm-map
+    style="height: 300px"
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="zoom"
+    (mapClick)="mapClicked($event)"
+  >
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    <agm-marker *ngFor="let marker of markers" [latitude]="marker.latitude" [longitude]="marker.longitude"></agm-marker>
+  </agm-map>
+</div>
+
+
