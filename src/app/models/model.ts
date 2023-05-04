@@ -192,4 +192,5 @@ export interface mealRest{
 export interface location{
     longitude: number
     latitude: number
+    restaurant_name: string
 }

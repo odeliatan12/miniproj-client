@@ -97,9 +97,10 @@ export class RestaurantDetailsComponent implements OnInit {
     this.adminSvc.saveRestaurant(value)
       .then( result => 
         console.log(result)
-      ).catch( error => 
-        console.log(error)  
-      )
+      ).catch( error => {
+        console.log(error)
+        this.route.navigate(["/admin/restaurantList"])
+      })
   }
 
 }

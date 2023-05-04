@@ -1,27 +1,38 @@
-<div class="container margin">
-  <div class="input-wrap">
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="mealName"
-      placeholder="Find a meal dish"
-    />
+<div class="row">
+  <div class="col-md-6 margin mb-2">
+    <div class="h-100 p-2 bg-body-tertiary border rounded-3">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="mealName"
+        placeholder="Find a meal dish"
+      />
+      <div *ngFor="let ml of mealNames | filterpipe : mealName" class="city">
+        <button class="btn" (click)="getInformation(ml)">
+          {{ ml }}
+        </button>
+      </div>
+    </div>
   </div>
-  <div *ngFor="let ml of mealNames | filterpipe : mealName" class="city">
-    <button class="btn" (click)="getInformation(ml)">
-      {{ ml }}
-    </button>
-  </div>
-
-  <div *ngFor="let m of mealRest">
-    <h5>{{ m.name }}</h5>
-    <h5>{{ m.amount }}</h5>
-    <button (click)="redirectToRestaurant(m.restaurant_id)" class="btn">
-      {{ m.address }}
-    </button>
+  
+  <div class="col-md-6 margin">
+    <div
+      *ngFor="let m of mealRest"
+      class="h-100 p-2 sm-body-tertiary border rounded-3"
+    >
+      <h3>{{ m.name }} - ${{ m.amount }}</h3>
+      <button
+        (click)="redirectToRestaurant(m.restaurant_id)"
+        type="button"
+        class="btn reviewBtn"
+      >
+        {{ m.restaurant_name }}
+      </button>
+    </div>
   </div>
 </div>
 
+<!-- show map when clicked -->
 <div *ngIf="showMap">
   <agm-map
     style="height: 300px"
@@ -35,6 +46,18 @@
       *ngFor="let marker of markers"
       [latitude]="marker.latitude"
       [longitude]="marker.longitude"
-    ></agm-marker>
+      [label]="marker.restaurant_name"
+      (mouseOver)="infoWindow?.open()"
+      (mouseOut)="infoWindow?.close()"
+    >
+      <agm-info-window
+        #infoWindow
+        *ngIf="selectedMarker === marker"
+        [latitude]="selectedMarker.latitude"
+        [longitude]="selectedMarker.longitude"
+      >
+        {{ selectedMarker.restaurant_name }}
+      </agm-info-window>
+    </agm-marker>
   </agm-map>
 </div>

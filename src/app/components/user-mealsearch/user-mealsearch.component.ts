@@ -1,4 +1,4 @@
-import { AgmMap, AgmMarker, MapsAPILoader } from '@agm/core';
+import { AgmInfoWindow, AgmMap, AgmMarker, MapsAPILoader } from '@agm/core';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,15 +15,20 @@ import { UserService } from 'src/app/services/user.service';
 export class UserMealsearchComponent implements OnInit {
 
 
+  form!: FormGroup
   meals: mealNames[] = [];
   mealName = '';
   mealNames: string[] = [];
   mealRest: mealRest[] = []
   markers: location[] = []
   mycustommarker: string = "my custom marker"
+  image!: string 
+  selectedMarker!: location
 
   public agmMap: AgmMap | undefined;
   public showMap: boolean = false;
+  @ViewChild('infoWindow') 
+  infoWindow: AgmInfoWindow | undefined;
 
   zoom: any
   lat: any
@@ -54,16 +59,27 @@ export class UserMealsearchComponent implements OnInit {
       })
   }
 
+  createForm(){
+    return this.fb.group({
+      
+    })
+  }
+
   getInformation(request: string){
     this.userService.getMealRestInfo(request)
       .subscribe(data => {
         this.mealRest = data
         this.mealRest.forEach(m => {
-          const marker: location = {
-            latitude: m.latitude,
-            longitude: m.longitude
-          };
-          this.markers.push(marker);
+          const distance = this.calculateDistance(this.lat, this.lng, m.latitude, m.longitude)
+
+          if(distance <= 5000){
+            const marker: location = {
+              latitude: m.latitude,
+              longitude: m.longitude,
+              restaurant_name: m.restaurant_name
+            };
+            this.markers.push(marker);
+          }
         });
         console.log(this.markers)
         this.showMap = true;
@@ -73,6 +89,7 @@ export class UserMealsearchComponent implements OnInit {
   redirectToRestaurant(idx: number){
     this.route.navigate(['/user/userReview', idx])
   }
+
 
   get(){
     if (navigator.geolocation) {
@@ -139,5 +156,5 @@ export class UserMealsearchComponent implements OnInit {
     return distance * 1000; // convert to meters
   }
 
-  
+
 }

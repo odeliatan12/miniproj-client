@@ -1,3 +1,18 @@
 .margin{
     margin-top: 15%;
 }
+
+agm-info-window {
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+  }
+
+.infoWindow{
+    background-color: white;
+    font-size: 20px;
+    height: 40px;
+    width: 40px;
+}
