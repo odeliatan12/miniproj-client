@@ -24,6 +24,7 @@ export class UserMealsearchComponent implements OnInit {
   mycustommarker: string = "my custom marker"
   image!: string 
   selectedMarker!: location
+  showMealName!: boolean 
 
   public agmMap: AgmMap | undefined;
   public showMap: boolean = false;
@@ -61,7 +62,9 @@ export class UserMealsearchComponent implements OnInit {
 
   createForm(){
     return this.fb.group({
-      
+      meal: this.fb.control<string>(''),
+      distance: this.fb.control<number>(0),
+      price: this.fb.control<number>(0)
     })
   }
 

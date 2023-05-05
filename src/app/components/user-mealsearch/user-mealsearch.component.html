@@ -1,21 +1,37 @@
 <div class="row">
-  <div class="col-md-6 margin mb-2">
+  <div class="col-md-3 margin mb-2">
     <div class="h-100 p-2 bg-body-tertiary border rounded-3">
       <input
         type="text"
         class="form-control"
-        [(ngModel)]="mealName"
         placeholder="Find a meal dish"
+        [(ngModel)]="mealName"
+        (keydown)="showMealName = true"
       />
-      <div *ngFor="let ml of mealNames | filterpipe : mealName" class="city">
-        <button class="btn" (click)="getInformation(ml)">
-          {{ ml }}
-        </button>
+      <div *ngIf="showMealName">
+        <div *ngFor="let ml of mealNames | filterpipe : mealName" class="city">
+          <button class="btn" (click)="getInformation(ml)">
+            {{ ml }}
+          </button>
+        </div>
       </div>
+
+      <!-- Distance -->
+      <select
+        formControlName="distance"
+        class="form-select"
+        aria-label="Default select example"
+      >
+        <option selected>Select distance</option>
+        <!-- Distance dynamic -->
+        <option >
+          
+        </option>
+      </select>
     </div>
   </div>
-  
-  <div class="col-md-6 margin">
+
+  <div class="col-md-9 margin">
     <div
       *ngFor="let m of mealRest"
       class="h-100 p-2 sm-body-tertiary border rounded-3"
