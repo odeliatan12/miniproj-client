@@ -26,6 +26,17 @@ agm-info-window {
     background-color:#103560;
     padding: 2px;
 }
+.buttonWidth{
+    width: 100%;
+    background-color: white;
+    color: #103560;
+    border: #103560 1px solid;
+}
+ul{
+    width: 100%;
+    color: #103560;
+    text-align: center;
+}
 .checkbox{
     margin: 5px;
 }
@@ -34,8 +45,6 @@ agm-info-window {
     font-size: 20px;
     font-weight: 400;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    margin: 25px;
-    padding: 5px;
 }
 .mealName a{
     margin-left: 50px;

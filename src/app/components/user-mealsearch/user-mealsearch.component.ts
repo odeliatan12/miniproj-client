@@ -51,6 +51,7 @@ export class UserMealsearchComponent implements OnInit {
       .then(result => {
         this.distance = result;
       })
+    this.form = this.createForm()
   }
 
   getMealNames(){
@@ -69,22 +70,25 @@ export class UserMealsearchComponent implements OnInit {
     return this.fb.group({
       meal: this.fb.control<string>(''),
       distance: this.fb.control<number>(0),
-      price: this.fb.control<number>(0)
+      // price: this.fb.control<number>(0)
     })
   }
 
-  findMeal(request: string){
-    this.getInformation(request)
+  findMeal(){
+    const value = this.form.value
+    console.log(value.meal)
+    console.log(value.distance)
+    this.getInformation(value.meal, value.distance)
   }
 
-  getInformation(request: string){
+  getInformation(request: string, d: number){
     this.userService.getMealRestInfo(request)
       .subscribe(data => {
         this.mealRest = data
         this.mealRest.forEach(m => {
           const distance = this.calculateDistance(this.lat, this.lng, m.latitude, m.longitude)
 
-          if(distance <= 5000){
+          if(distance <= d){
             const marker: location = {
               latitude: m.latitude,
               longitude: m.longitude,
