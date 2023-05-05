@@ -194,3 +194,8 @@ export interface location{
     latitude: number
     restaurant_name: string
 }
+
+export interface distance{
+    id: number
+    distance: number
+}

@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription, debounceTime, map, startWith } from 'rxjs';
-import { location, mealNames, mealRest } from 'src/app/models/model';
+import { distance, location, mealNames, mealRest } from 'src/app/models/model';
 import { AdminService } from 'src/app/services/admin.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -38,6 +38,7 @@ export class UserMealsearchComponent implements OnInit {
   longitude: any
   latitude: any
   currentLocation: string | undefined;
+  distance: distance[] = []
 
   constructor(private userService: UserService, private fb: FormBuilder, private adminService: AdminService, private route: Router, private apiLoader: MapsAPILoader){ }
 
@@ -46,6 +47,10 @@ export class UserMealsearchComponent implements OnInit {
     this.get()
     this.agmMap?.triggerResize(true)
     this.zoom = 16;
+    this.userService.getDistance()
+      .then(result => {
+        this.distance = result;
+      })
   }
 
   getMealNames(){
@@ -66,6 +71,10 @@ export class UserMealsearchComponent implements OnInit {
       distance: this.fb.control<number>(0),
       price: this.fb.control<number>(0)
     })
+  }
+
+  findMeal(request: string){
+    this.getInformation(request)
   }
 
   getInformation(request: string){
