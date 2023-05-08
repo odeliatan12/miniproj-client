@@ -26,9 +26,15 @@ export class UserProfileComponent implements OnInit {
 
   createForm(): FormGroup{
     return this.fb.group({
+      username: this.fb.control<string>(''),
       email: this.fb.control<string>('', [ Validators.email ]),
       phone: this.fb.control<string>('')
     })
   }
 
+  updateChanges(){
+
+  }
+
+  
 }
