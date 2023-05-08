@@ -80,14 +80,31 @@
             >Search for food</a
           >
         </li>
+        <li class="nav-item">
+          <a
+            *ngIf="isLoggedIn() && userService.roleMatch('USER')"
+            class="nav-link active"
+            aria-current="page"
+            routerLink="user/profile"
+            >Account Profile</a
+          >
+        </li>
       </ul>
       <form class="d-flex" role="search">
         <input
           class="form-control me-2 search-bar"
-          type="search"
+          (keyup)="searchTerm$.next($any($event.target).value)"
           placeholder="Search"
           aria-label="Search"
         />
+        <!-- Pass search terms as we type -->
+        <ul *ngIf="results">
+          <li *ngFor="let result of results">
+            <a href="{{ result.id }}" target="_blank">
+              {{ result.name }}
+            </a>
+          </li>
+        </ul>
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>

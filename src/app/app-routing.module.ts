@@ -19,6 +19,7 @@ import { PaypalbuttonComponent } from './components/paypalbutton/paypalbutton.co
 import { RestaurantImageuploadComponent } from './components/restaurant-imageupload/restaurant-imageupload.component';
 import { RestaurantMealUploadComponent } from './components/restaurant-meal-upload/restaurant-meal-upload.component';
 import { UserMealsearchComponent } from './components/user-mealsearch/user-mealsearch.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -43,6 +44,7 @@ const routes: Routes = [
         { path: 'deals/:dealId', component: DealPagedetailsComponent },
         { path: 'payNow/:dealId/:amount', component: PaypalbuttonComponent },
         { path: 'search', component: UserMealsearchComponent },
+        { path: 'profile', component: UserProfileComponent},
         { path: '', redirectTo: 'user/home', pathMatch: 'full' }
       ]},
   { path: '', redirectTo: 'user/home', pathMatch: 'full' }

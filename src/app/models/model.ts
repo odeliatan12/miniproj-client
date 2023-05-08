@@ -1,7 +1,16 @@
 export interface Login{
     username: string
     password: string
+    email: string
+    contact: string
     roleId: number
+}
+
+export interface User{
+    id: number
+    userName: string
+    email: string
+    contact: string
 }
 
 export interface token{

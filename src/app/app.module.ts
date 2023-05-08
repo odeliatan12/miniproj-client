@@ -40,6 +40,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterpipePipe } from './pipe/filterpipe.pipe';
 import { AgmCoreModule } from '@agm/core';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { SearchService } from './services/search.service';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 
@@ -66,7 +68,8 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     RestaurantImageuploadComponent,
     RestaurantMealUploadComponent,
     UserMealsearchComponent,
-    FilterpipePipe
+    FilterpipePipe,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +89,7 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
       provide: HTTP_INTERCEPTORS,
       useClass:AuthInterceptor,
       multi:true
-    }, DealService
+    }, DealService, SearchService
   ],
   bootstrap: [AppComponent]
 })
