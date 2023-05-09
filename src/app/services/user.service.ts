@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, firstValueFrom } from "rxjs";
-import { Login, ResReviews, Restaurant, RestaurantDetails, User, distance, mealRest, postReviews } from "../models/model";
+import { Login, ResReviews, Restaurant, RestaurantDetails, UpdateUser, User, distance, image, mealRest, postReviews } from "../models/model";
 import { UserAuthService } from "./user-auth.service";
 
 @Injectable()
@@ -84,6 +84,23 @@ export class UserService{
         return firstValueFrom(
             this.http.get<distance[]>("meal/getDistance")
         )
+    }
+
+    public updateUser(form: UpdateUser, id: string | null): Promise<string>{
+        return firstValueFrom(
+            this.http.put<string>("/user/updateUser/" + id, form)
+        )
+    }
+
+    public getImage(id: number): Promise<any>{
+        return firstValueFrom(
+            this.http.get<image>("/image/" + id)
+        ).then(result => {
+            console.log(result.picture)
+            const image = new Image()
+            image.src = 'data:' + result.image_fileType + ';base64,' + result.picture
+            return image.src 
+        })
     }
 
     

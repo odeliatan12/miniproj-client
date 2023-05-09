@@ -13,6 +13,7 @@ export class DealPagedetailsComponent implements OnInit {
 
   deal: allDeals[] = []
   restaurantDetails!: ResReviews
+  image!: string
 
   constructor(private activatedRoute: ActivatedRoute, private dealService: DealService, private route: Router, private userService: UserService){ }
 
@@ -21,6 +22,10 @@ export class DealPagedetailsComponent implements OnInit {
       .then(result => {
         this.deal = result
         for(const r of result){
+          this.userService.getImage(r.restaurantId)
+            .then(result => {
+              this.image = result
+            })
           this.getRestaurantDetails(r.restaurantId)
             .then(result => {
               this.restaurantDetails = result

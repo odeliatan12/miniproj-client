@@ -13,6 +13,12 @@ export interface User{
     contact: string
 }
 
+export interface UpdateUser{
+    username: string
+    email: string
+    phone: string
+}
+
 export interface token{
     token: string
     role: string

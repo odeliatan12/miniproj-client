@@ -1,32 +1,32 @@
-<div class="text-center p-5">
+<div class="text-center p-5 mt-5">
   <main class="form-signin w-100 m-auto h3 p-5">
     <form [formGroup]="form" (ngSubmit)="submitLoginForm()">
-      <h3 class="h3 mb-3 fw-normal">Please sign in</h3>
+      <h3 class="h3 mb-2 fw-normal">Please sign in</h3>
 
-      <div class="form-floating">
-        <input
-          type="email"
-          class="form-control"
-          id="floatingInput"
-          placeholder="Username"
-          formControlName="username"
-        />
+      <div class="row g-3">
+        <!-- name -->
+        <div class="col-sm-12">
+          <input
+            formControlName="username"
+            type="text"
+            class="form-control"
+            id="firstName"
+            placeholder="username"
+          />
+        </div>
+        
+        <!-- Password -->
+        <div class="col-sm-12">
+          <input
+            formControlName="password"
+            type="password"
+            class="form-control mb-2"
+            id="firstName"
+            placeholder="password"
+          />
+        </div>
       </div>
-      <div class="form-floating">
-        <input
-          type="password"
-          class="form-control"
-          id="floatingPassword"
-          placeholder="Password"
-          formControlName="password"
-        />
-      </div>
-
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me" /> Remember me
-        </label>
-      </div>
+      
       <button class="w-100 btn btn-lg btn-primary" type="submit">
         Sign in
       </button>
