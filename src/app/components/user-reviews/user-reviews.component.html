@@ -19,7 +19,46 @@
     <button (click)="insertReview()" type="button" class="btn reviewBtn">
       Post a review
     </button>
-    
+    <h2 class="review display-5 fw-bold mt-5">Reservation</h2>
+    <form [formGroup]="form">
+      <label for="pax" class="form-label">Pax</label>
+      <input
+        formControlName="pax"
+        type="number"
+        class="form-control"
+        id="firstName"
+        placeholder=""
+        value=""
+        required=""
+      />
+
+      <label for="timing" class="form-label">Timing</label>
+      <select
+        formControlName="timeReserve"
+        class="form-select mt-2 buttonWidth"
+        aria-label="Default select example"
+      >
+        <option>Select Timing</option>
+        <!-- Distance timing -->
+        <option *ngFor="let t of timing" value="{{ t.id }}">
+          {{ t.startTiming.slice(0, 5) }} - {{ t.endTiming.slice(0, 5) }}
+        </option>
+      </select>
+
+      <label for="date" class="form-label">Date</label>
+      <input
+        formControlName="dateReserve"
+        type="date"
+        class="form-control"
+        id="firstName"
+        placeholder=""
+        value=""
+        required=""
+      />
+      <button (click)="insertReservation()" type="button" class="btn reviewBtn mt-3">
+        Book Reservation
+      </button>
+    </form>
   </div>
 </div>
 

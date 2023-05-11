@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ResReviews } from 'src/app/models/model';
+import { ResReviews, reservation, timing } from 'src/app/models/model';
 import { AdminService } from 'src/app/services/admin.service';
+import { ReservationService } from 'src/app/services/reservation.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -16,8 +17,9 @@ export class UserReviewsComponent implements OnInit {
   resReviews!: ResReviews
   image!: string
   number!: number
+  timing: timing[] = []
   
-  constructor(private activatedRoute: ActivatedRoute, private route: Router, private userSvc: UserService, private adminSvc: AdminService, private fb: FormBuilder){ }
+  constructor(private activatedRoute: ActivatedRoute, private route: Router, private userSvc: UserService, private adminSvc: AdminService, private fb: FormBuilder, private reservationService: ReservationService){ }
 
   ngOnInit(): void {
 
@@ -43,21 +45,29 @@ export class UserReviewsComponent implements OnInit {
         this.route.navigate(["/user/home"])
       })
 
-      this.adminSvc.getImage(this.activatedRoute.snapshot.params["restaurantId"])
-        .then(result => {
-          this.image = result
-        })
+    this.adminSvc.getImage(this.activatedRoute.snapshot.params["restaurantId"])
+      .then(result => {
+        this.image = result
+      })
 
-      this.userSvc.getReviewCount(this.activatedRoute.snapshot.params["restaurantId"])
-        .then(result => {
-          this.number = result
-        })
+    this.userSvc.getReviewCount(this.activatedRoute.snapshot.params["restaurantId"])
+      .then(result => {
+        this.number = result
+      })
+    
+    this.reservationService.getTimings(this.activatedRoute.snapshot.params["restaurantId"])
+      .then(result => {
+        this.timing = result
+      })
+      
+    this.form = this.createForm()
       
   }
 
   createForm(): FormGroup{
     return this.fb.group({
-      timeReserve: this.fb.control<string>('', Validators.pattern(/^([01]\d|2[0-3]):([0-5]\d)$/)),
+      pax: this.fb.control<number>(0),
+      timeReserve: this.fb.control<number>(0),
       dateReserve: this.fb.control<string>('')
     })
   }
@@ -70,6 +80,14 @@ export class UserReviewsComponent implements OnInit {
   insertReview(){
     const restaurantId = this.activatedRoute.snapshot.params["restaurantId"]
     this.route.navigate(["/user/insertReview", restaurantId])
+  }
+
+  insertReservation(){
+    const value = this.form.value as reservation
+    this.reservationService.insertReservation(this.activatedRoute.snapshot.params["restaurantId"], value)
+      .then(result => {
+        console.log(result)
+      })
   }
 
 

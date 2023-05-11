@@ -228,3 +228,17 @@ export class capacity{
         this.restaurantId = restaurantId
     }
 }
+
+export interface timing{
+    id: number
+    startTiming: string
+    endTiming: string
+    capacity: number
+    restaurantId: number
+}
+
+export interface reservation{
+    pax: number
+    timeReserve: number
+    dateReserve: string
+}

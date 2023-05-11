@@ -43,6 +43,7 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { SearchService } from './services/search.service';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { RestaurantCapacityComponent } from './components/restaurant-capacity/restaurant-capacity.component';
+import { ReservationService } from './services/reservation.service';
 
 
 
@@ -91,7 +92,7 @@ import { RestaurantCapacityComponent } from './components/restaurant-capacity/re
       provide: HTTP_INTERCEPTORS,
       useClass:AuthInterceptor,
       multi:true
-    }, DealService, SearchService
+    }, DealService, SearchService, ReservationService
   ],
   bootstrap: [AppComponent]
 })
