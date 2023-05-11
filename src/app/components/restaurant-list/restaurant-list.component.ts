@@ -55,4 +55,8 @@ export class RestaurantListComponent implements OnInit {
   addMeals(idx: number){
     this.route.navigate(["/admin/mealUpload", idx])
   }
+
+  addCapacity(idx: number){
+    this.route.navigate(["/admin/capacityUpload", idx])
+  }
 }

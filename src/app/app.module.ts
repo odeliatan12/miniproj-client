@@ -42,6 +42,7 @@ import { AgmCoreModule } from '@agm/core';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { SearchService } from './services/search.service';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { RestaurantCapacityComponent } from './components/restaurant-capacity/restaurant-capacity.component';
 
 
 
@@ -69,7 +70,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     RestaurantMealUploadComponent,
     UserMealsearchComponent,
     FilterpipePipe,
-    UserProfileComponent
+    UserProfileComponent,
+    RestaurantCapacityComponent
   ],
   imports: [
     BrowserModule,

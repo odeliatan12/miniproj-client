@@ -214,3 +214,17 @@ export interface distance{
     id: number
     distance: number
 }
+
+export class capacity{
+    capacity: number
+    starttiming: string
+    endtiming: string
+    restaurantId: number
+    
+    constructor(capacity: number, starttiming: string, endtiming: string, restaurantId: number){
+        this.capacity = capacity
+        this.starttiming = starttiming
+        this.endtiming = endtiming
+        this.restaurantId = restaurantId
+    }
+}

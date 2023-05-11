@@ -1,0 +1,106 @@
+<div class="col-md-7 col-lg-8 margin">
+  <h4 class="mb-3">Restaurant details</h4>
+  <form [formGroup]="form" class="needs-validation" novalidate="">
+    <div class="row g-3">
+      <!-- Capacity -->
+      <div class="col-sm-12">
+        <label for="name" class="form-label">Capacity</label>
+        <input
+          formControlName="capacity"
+          type="number"
+          class="form-control"
+          id="lastName"
+        />
+      </div>
+    </div>
+
+    <div class="row g-3 mt-2">
+      <!-- timing -->
+      <div class="col-sm-12">
+        <label for="name" class="form-label">Start timing</label>
+        <input
+          formControlName="starttiming"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('starttiming')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3 mt-2">
+      <!-- timing -->
+      <div class="col-sm-12">
+        <label for="name" class="form-label">End timing</label>
+        <input
+          formControlName="endtiming"
+          type="text"
+          class="form-control"
+          id="address2"
+          placeholder="HH:MM"
+        />
+        <div
+          *ngIf="form.get('endtiming')?.hasError('pattern')"
+          class="alert alert-danger size"
+          role="alert"
+        >
+          Please enter the correct time type HH:MM
+        </div>
+      </div>
+    </div>
+  </form>
+  <button
+    (click)="addFormArray()"
+    class="w-100 btn btn-primary btn-lg mt-3"
+    type="button"
+  >
+    Add Capacity
+  </button>
+  <button
+    (click)="saveForm()"
+    class="w-100 btn btn-primary btn-lg mt-3"
+    type="button"
+  >
+    Save List
+  </button>
+</div>
+
+<div class="col-md-7 col-lg-8 mt-3" *ngIf="this.capacities.length <= 0">
+    Please enter a new timing
+</div>
+
+<table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Capacity</th>
+      <th scope="col">Start timing</th>
+      <th scope="col">End timing</th>
+      <th scope="col">Remove</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let c of capacities; index as i">
+    <tr>
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ c.capacity }}</td>
+      <td>{{ c.starttiming }}</td>
+      <td>{{ c.endtiming }}</td>
+      <td>
+        <button
+          (click)="deleteForm(i)"
+          class="w-100 btn btn-primary btn-sm"
+          type="button"
+        >
+          X
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -11,7 +11,6 @@ import { AdminService } from 'src/app/services/admin.service';
 })
 export class RestaurantMealUploadComponent implements OnInit {
 
-  formArray!: FormArray;
   form!: FormGroup
   mealNames: mealNames[] = []
   mealCategories: mealNames[] = []
@@ -33,7 +32,6 @@ export class RestaurantMealUploadComponent implements OnInit {
   }
 
   createForm(): FormGroup{
-    // this.formArray = this.fb.array([], [ Validators.minLength(1) ])
     return this.fb.group({
       name: this.fb.control<number>(0),
       category: this.fb.control<number>(0),

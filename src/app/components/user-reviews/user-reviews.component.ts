@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResReviews } from 'src/app/models/model';
 import { AdminService } from 'src/app/services/admin.service';
@@ -12,11 +12,12 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserReviewsComponent implements OnInit {
 
+  form!: FormGroup
   resReviews!: ResReviews
   image!: string
   number!: number
   
-  constructor(private activatedRoute: ActivatedRoute, private route: Router, private userSvc: UserService, private adminSvc: AdminService){ }
+  constructor(private activatedRoute: ActivatedRoute, private route: Router, private userSvc: UserService, private adminSvc: AdminService, private fb: FormBuilder){ }
 
   ngOnInit(): void {
 
@@ -52,6 +53,13 @@ export class UserReviewsComponent implements OnInit {
           this.number = result
         })
       
+  }
+
+  createForm(): FormGroup{
+    return this.fb.group({
+      timeReserve: this.fb.control<string>('', Validators.pattern(/^([01]\d|2[0-3]):([0-5]\d)$/)),
+      dateReserve: this.fb.control<string>('')
+    })
   }
 
   getRestaurantDetails(){

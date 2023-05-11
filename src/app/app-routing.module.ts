@@ -20,6 +20,7 @@ import { RestaurantImageuploadComponent } from './components/restaurant-imageupl
 import { RestaurantMealUploadComponent } from './components/restaurant-meal-upload/restaurant-meal-upload.component';
 import { UserMealsearchComponent } from './components/user-mealsearch/user-mealsearch.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { RestaurantCapacityComponent } from './components/restaurant-capacity/restaurant-capacity.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
         { path: 'insertDeals/:restaurantId', component: DealDetailsComponent },
         { path: 'insertImages/:restaurantId', component: RestaurantImageuploadComponent },
         { path: 'mealUpload/:restaurantId', component: RestaurantMealUploadComponent },
+        { path: 'capacityUpload/:restaurantId', component: RestaurantCapacityComponent },
         { path: '', redirectTo: 'admin/restaurantList', pathMatch: 'full' }
       ]},
   { path: 'user', component: UserComponent,
