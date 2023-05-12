@@ -15,6 +15,14 @@ export class ReservationService{
         )
     }
 
+    public getAvailableTimings(date: string, restaurantId: number): Promise<timing[]>{
+        const params = new HttpParams()
+            .set("date", date)
+        return firstValueFrom(
+            this.http.get<timing[]>("/getAvailabletimings/" + restaurantId, { params: params })
+        )
+    }
+
     public insertReservation(restaurantId: number, reservation: reservation): Promise<string>{
         const userId = this.userAuthService.getUserId()
         const params = new HttpParams()

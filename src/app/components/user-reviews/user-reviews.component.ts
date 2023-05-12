@@ -55,10 +55,10 @@ export class UserReviewsComponent implements OnInit {
         this.number = result
       })
     
-    this.reservationService.getTimings(this.activatedRoute.snapshot.params["restaurantId"])
-      .then(result => {
-        this.timing = result
-      })
+    // this.reservationService.getTimings(this.activatedRoute.snapshot.params["restaurantId"])
+    //   .then(result => {
+    //     this.timing = result
+    //   })
       
     this.form = this.createForm()
       
@@ -68,7 +68,7 @@ export class UserReviewsComponent implements OnInit {
     return this.fb.group({
       pax: this.fb.control<number>(0),
       timeReserve: this.fb.control<number>(0),
-      dateReserve: this.fb.control<string>('')
+      dateReserve: this.fb.control<string>('', [ Validators.required, ])
     })
   }
 
@@ -90,5 +90,18 @@ export class UserReviewsComponent implements OnInit {
       })
   }
 
+  getAvailableTimings(){
+    const value = this.form.value
+    console.log(value.dateReserve)
+    return this.reservationService.getAvailableTimings(value.dateReserve, this.activatedRoute.snapshot.params["restaurantId"])
+      .then(result => {
+        console.log(result)
+        this.timing = result
+      })
+  }
+
+  futureDateValidator(){
+    
+  }
 
 }
