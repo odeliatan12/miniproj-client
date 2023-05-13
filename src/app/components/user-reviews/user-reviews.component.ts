@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResReviews, reservation, timing } from 'src/app/models/model';
 import { AdminService } from 'src/app/services/admin.service';
@@ -68,7 +68,7 @@ export class UserReviewsComponent implements OnInit {
     return this.fb.group({
       pax: this.fb.control<number>(0),
       timeReserve: this.fb.control<number>(0),
-      dateReserve: this.fb.control<string>('', [ Validators.required, ])
+      dateReserve: this.fb.control<string>('', [ Validators.required, this.futureDateValidator() ])
     })
   }
 
@@ -101,7 +101,16 @@ export class UserReviewsComponent implements OnInit {
   }
 
   futureDateValidator(){
-    
+    return (control: AbstractControl): ValidationErrors | null => {
+      const selectedDate = new Date(control.value);
+      const currentDate = new Date();
+  
+      if (selectedDate < currentDate) {
+        return { futureDate: true };
+      }
+  
+      return null;
+    };
   }
 
 }

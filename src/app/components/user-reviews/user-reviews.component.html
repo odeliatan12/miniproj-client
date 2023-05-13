@@ -45,26 +45,41 @@
           (change)="getAvailableTimings()"
         />
       </div>
-      
+
       <!-- <div *ngif="timing.minLength > 0"> -->
-        <label for="timing" class="form-label">Timing</label>
-        <select
-          formControlName="timeReserve"
-          class="form-select mt-2 buttonWidth"
-          aria-label="Default select example"
-        >
-          <option>Select Timing</option>
-          <!-- Distance timing -->
-          <option *ngFor="let t of timing" value="{{ t.id }}">
-            {{ t.startTiming.slice(0, 5) }} - {{ t.endTiming.slice(0, 5) }}
-          </option>
-        </select>
+      <label for="timing" class="form-label">Timing</label>
+      <select
+        formControlName="timeReserve"
+        class="form-select mt-2 buttonWidth"
+        aria-label="Default select example"
+      >
+        <option>Select Timing</option>
+        <!-- Distance timing -->
+        <option *ngFor="let t of timing" value="{{ t.id }}">
+          {{ t.startTiming.slice(0, 5) }} - {{ t.endTiming.slice(0, 5) }}
+        </option>
+      </select>
+      <div
+        *ngIf="form.get('dateReserve')?.hasError('required')"
+        class="alert alert-danger size"
+        role="alert"
+      >
+        Please enter a date
+      </div>
+      <div
+        *ngIf="form.get('dateReserve')?.errors"
+        class="alert alert-danger size"
+        role="alert"
+      >
+        Please enter a future date
+      </div>
       <!-- </div> -->
 
       <button
         (click)="insertReservation()"
         type="button"
         class="btn reviewBtn mt-3"
+        [disabled]="form.invalid"
       >
         Book Reservation
       </button>
