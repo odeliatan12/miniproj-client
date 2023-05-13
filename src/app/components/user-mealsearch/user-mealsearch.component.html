@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-1"></div>
   <div class="row col-lg-11">
     <form [formGroup]="form">
@@ -12,23 +12,23 @@
                 class="form-select mt-2 buttonWidth"
                 aria-label="Default select example"
               >
-              <option>Select distance</option>
+              <option>Select distance</option> -->
               <!-- Distance dynamic -->
-              <option *ngFor="let m of meals" value="{{ m.name }}">
+              <!-- <option *ngFor="let m of meals" value="{{ m.name }}">
                 {{ m.name }}
               </option>
             </select>
-            </div>
+            </div> -->
 
             <!-- Distance -->
-            <select
+            <!-- <select
               formControlName="distance"
               class="form-select mt-2 buttonWidth"
               aria-label="Default select example"
             >
-              <option>Select distance</option>
+              <option>Select distance</option> -->
               <!-- Distance dynamic -->
-              <option *ngFor="let d of distance" value="{{ d.distance }}">
+              <!-- <option *ngFor="let d of distance" value="{{ d.distance }}">
                 less than {{ d.distance * 0.001 }} km
               </option>
             </select>
@@ -96,10 +96,10 @@
         </div>
       </div>
     </form>
-  </div>
+  </div> -->
 
   <!-- show map when clicked -->
-  <div class="col-md-1"></div>
+  <!-- <div class="col-md-1"></div>
   <div class="col-md-11" *ngIf="showMap">
     <agm-map
       style="height: 300px"
@@ -128,4 +128,4 @@
       </agm-marker>
     </agm-map>
   </div>
-</div>
+</div> -->
