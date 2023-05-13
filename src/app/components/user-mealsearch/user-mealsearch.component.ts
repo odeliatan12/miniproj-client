@@ -112,7 +112,7 @@ export class UserMealsearchComponent implements OnInit {
             this.mapOptions = {
               center: { lat: this.latitude, lng: this.longitude }, // Set the initial map center
               zoom: 12, // Set the initial zoom level
-              mapTypeId: google.maps.MapTypeId.ROADMAP
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
             };
         },
         (error) => {

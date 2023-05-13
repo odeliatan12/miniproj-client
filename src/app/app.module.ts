@@ -82,9 +82,6 @@ import { GoogleMapsModule } from '@angular/google-maps';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }), HttpClientModule, ReactiveFormsModule, RouterModule, FormsModule, MatInputModule, MatAutocompleteModule, BrowserAnimationsModule, GoogleMapsModule, GooglePlaceModule, 
-    // AgmCoreModule.forRoot({  
-    //   apiKey: 'AIzaSyCIr56HQCyEkGEQb847eaN0I91kvG6PPDs'  
-    // }),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [ UserAuthService, UserService, AdminService,
