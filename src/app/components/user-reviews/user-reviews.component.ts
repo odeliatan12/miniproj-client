@@ -54,11 +54,6 @@ export class UserReviewsComponent implements OnInit {
       .then(result => {
         this.number = result
       })
-    
-    // this.reservationService.getTimings(this.activatedRoute.snapshot.params["restaurantId"])
-    //   .then(result => {
-    //     this.timing = result
-    //   })
       
     this.form = this.createForm()
       

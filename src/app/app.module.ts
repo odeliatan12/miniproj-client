@@ -33,17 +33,18 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RestaurantImageuploadComponent } from './components/restaurant-imageupload/restaurant-imageupload.component';
 import { RestaurantMealUploadComponent } from './components/restaurant-meal-upload/restaurant-meal-upload.component';
-import { UserMealsearchComponent } from './components/user-mealsearch/user-mealsearch.component';
+// import { UserMealsearchComponent } from './components/user-mealsearch/user-mealsearch.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterpipePipe } from './pipe/filterpipe.pipe';
-import { AgmCoreModule } from '@agm/core';
+// import { AgmCoreModule } from '@agm/core';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { SearchService } from './services/search.service';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { RestaurantCapacityComponent } from './components/restaurant-capacity/restaurant-capacity.component';
 import { ReservationService } from './services/reservation.service';
+import { UserCalendarComponent } from './components/user-calendar/user-calendar.component';
 
 
 
@@ -69,10 +70,11 @@ import { ReservationService } from './services/reservation.service';
     FooterComponent,
     RestaurantImageuploadComponent,
     RestaurantMealUploadComponent,
-    UserMealsearchComponent,
+    // UserMealsearchComponent,
     FilterpipePipe,
     UserProfileComponent,
-    RestaurantCapacityComponent
+    RestaurantCapacityComponent,
+    UserCalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -82,9 +84,11 @@ import { ReservationService } from './services/reservation.service';
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    }), HttpClientModule, ReactiveFormsModule, RouterModule, FormsModule, MatInputModule, MatAutocompleteModule, BrowserAnimationsModule,AgmCoreModule.forRoot({  
-      apiKey: 'AIzaSyCIr56HQCyEkGEQb847eaN0I91kvG6PPDs'  
-    }), GooglePlaceModule
+    }), HttpClientModule, ReactiveFormsModule, RouterModule, FormsModule, MatInputModule, MatAutocompleteModule, BrowserAnimationsModule,
+    // AgmCoreModule.forRoot({  
+    //   apiKey: 'AIzaSyCIr56HQCyEkGEQb847eaN0I91kvG6PPDs'  
+    // }), 
+    GooglePlaceModule
   ],
   providers: [ UserAuthService, UserService, AdminService,
     AuthInterceptor, AuthGuard, payPalService,

@@ -84,7 +84,7 @@
       <!-- Address -->
       <div class="col-sm-12">
         <label for="address" class="form-label">Address</label>
-        <input
+        <!-- <input
           formControlName="address"
           type="textarea"
           class="form-control"
@@ -92,7 +92,7 @@
           ngx-google-places-autocomplete
           [options]="options"
           (onAddressChange)="AddressChange($event)"
-        />
+        /> -->
         <div
           *ngIf="form.get('address')?.hasError('required')"
           class="alert alert-danger size"
