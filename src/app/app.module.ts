@@ -1,4 +1,4 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -38,13 +38,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterpipePipe } from './pipe/filterpipe.pipe';
-import { AgmCoreModule } from '@agm/core';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { SearchService } from './services/search.service';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { RestaurantCapacityComponent } from './components/restaurant-capacity/restaurant-capacity.component';
 import { ReservationService } from './services/reservation.service';
-
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 @NgModule({
@@ -82,10 +81,12 @@ import { ReservationService } from './services/reservation.service';
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    }), HttpClientModule, ReactiveFormsModule, RouterModule, FormsModule, MatInputModule, MatAutocompleteModule, BrowserAnimationsModule,AgmCoreModule.forRoot({  
-      apiKey: 'AIzaSyCIr56HQCyEkGEQb847eaN0I91kvG6PPDs'  
-    }), GooglePlaceModule
+    }), HttpClientModule, ReactiveFormsModule, RouterModule, FormsModule, MatInputModule, MatAutocompleteModule, BrowserAnimationsModule, GoogleMapsModule, GooglePlaceModule, 
+    // AgmCoreModule.forRoot({  
+    //   apiKey: 'AIzaSyCIr56HQCyEkGEQb847eaN0I91kvG6PPDs'  
+    // }),
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [ UserAuthService, UserService, AdminService,
     AuthInterceptor, AuthGuard, payPalService,
     {

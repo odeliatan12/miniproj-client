@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Restaurant, RestaurantDetails, RestaurantPost, cuisine } from 'src/app/models/model';
 import { AdminService } from 'src/app/services/admin.service';
 import { UserAuthService } from 'src/app/services/user-auth.service';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
 
 @Component({
   selector: 'app-restaurant-details',
@@ -31,6 +32,7 @@ export class RestaurantDetailsComponent implements OnInit {
 
   latitude!: number;
   longitude!: number;
+  selectedAddress!: string;
 
   constructor(private fb: FormBuilder, private adminSvc: AdminService, private userAuthService: UserAuthService, private route: Router){}
 
@@ -42,24 +44,33 @@ export class RestaurantDetailsComponent implements OnInit {
       })
   }
 
+  handleAddressChange(address: Address) {
+    console.log(address.formatted_address)
+    console.log(address.geometry.location.lat())
+    console.log(address.geometry.location.lng())
+    this.selectedAddress = address.formatted_address;
+    this.latitude = address.geometry.location.lat()
+    this.longitude = address.geometry.location.lng()
+  }
+
   public AddressChange(address: any) {
     //setting address from API to local variable
     this.formattedaddress=address.formatted_address
 
-    let geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'address': address.formatted_address }, (results, status) => {
-    if (status === 'OK') {
-      if (results[0]) {
-        this.latitude = results[0].geometry.location.lat();
-        this.longitude = results[0].geometry.location.lng();
-        console.log(this.latitude)
-        console.log(this.longitude)
-      } else {
-        console.log('No results found');
-      }} else {
-        console.log('Geocoder failed due to: ' + status);
-      }
-    });
+    // let geocoder = new google.maps.Geocoder();
+    // geocoder.geocode({ 'address': address.formatted_address }, (results, status) => {
+    // if (status === 'OK') {
+    //   if (results[0]) {
+    //     this.latitude = results[0].geometry.location.lat();
+    //     this.longitude = results[0].geometry.location.lng();
+    //     console.log(this.latitude)
+    //     console.log(this.longitude)
+    //   } else {
+    //     console.log('No results found');
+    //   }} else {
+    //     console.log('Geocoder failed due to: ' + status);
+    //   }
+    // });
   }
   
   createForm(): FormGroup{

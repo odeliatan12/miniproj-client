@@ -1,4 +1,4 @@
-import { AgmInfoWindow, AgmMap, AgmMarker, MapsAPILoader } from '@agm/core';
+// import { AgmInfoWindow, AgmMap, AgmMarker, MapsAPILoader } from '@agm/core';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -6,6 +6,9 @@ import { Observable, Subscription, debounceTime, map, startWith } from 'rxjs';
 import { distance, location, mealNames, mealRest } from 'src/app/models/model';
 import { AdminService } from 'src/app/services/admin.service';
 import { UserService } from 'src/app/services/user.service';
+import { MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { GoogleMap } from '@angular/google-maps';
+
 
 @Component({
   selector: 'app-user-mealsearch',
@@ -14,39 +17,33 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserMealsearchComponent implements OnInit {
 
-
   form!: FormGroup
   meals: mealNames[] = [];
-  mealName = '';
   mealNames: string[] = [];
   mealRest: mealRest[] = []
   markers: location[] = []
-  mycustommarker: string = "my custom marker"
   image!: string 
   selectedMarker!: location
   showMealName!: boolean 
+  mapOptions!: google.maps.MapOptions;
 
-  public agmMap: AgmMap | undefined;
   public showMap: boolean = false;
-  @ViewChild('infoWindow') 
-  infoWindow: AgmInfoWindow | undefined;
 
   zoom: any
   lat: any
   lng: any
-  getAddress: any
+  getAddresses: any
   longitude: any
   latitude: any
   currentLocation: string | undefined;
   distance: distance[] = []
 
-  constructor(private userService: UserService, private fb: FormBuilder, private adminService: AdminService, private route: Router, private apiLoader: MapsAPILoader){ }
+  constructor(private userService: UserService, private fb: FormBuilder, private adminService: AdminService, private route: Router 
+    ){ }
 
   ngOnInit(): void {
     this.getMealNames()
-    this.get()
-    this.agmMap?.triggerResize(true)
-    this.zoom = 16;
+    this.getUserLocation()
     this.userService.getDistance()
       .then(result => {
         this.distance = result;
@@ -86,7 +83,7 @@ export class UserMealsearchComponent implements OnInit {
       .subscribe(data => {
         this.mealRest = data
         this.mealRest.forEach(m => {
-          const distance = this.calculateDistance(this.lat, this.lng, m.latitude, m.longitude)
+          const distance = this.calculateDistance(this.latitude, this.longitude, m.latitude, m.longitude)
 
           if(distance <= d){
             const marker: location = {
@@ -106,57 +103,41 @@ export class UserMealsearchComponent implements OnInit {
     this.route.navigate(['/user/userReview', idx])
   }
 
-
-  get(){
+  getUserLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        if (position) {
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
-        this.getAddress=(this.lat,this.lng)
-        console.log(position)
-  
-        this.apiLoader.load().then(() => {
-          let geocoder = new google.maps.Geocoder;
-          let latlng = {lat: this.lat, lng: this.lng};
-         
-          geocoder.geocode({'location': latlng}, (results) => {
-              if (results[0]) {
-                this.currentLocation = results[0].formatted_address;
-               
-              console.log(this.assgin);
-              } else {
-                console.log('Not found');
-              }
-            });
-          });
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+            this.latitude = position.coords.latitude,
+            this.longitude = position.coords.longitude
+            this.mapOptions = {
+              center: { lat: this.latitude, lng: this.longitude }, // Set the initial map center
+              zoom: 12, // Set the initial zoom level
+            };
+        },
+        (error) => {
+          console.log('Error getting user location:', error.message);
         }
-      })
+      );
+    } else {
+      console.log('Geolocation is not supported by this browser.');
     }
-  
-  }
-  assgin(assgin: any) {
-    throw new Error('Method not implemented.');
   }
 
-  mapClicked($event: google.maps.MapMouseEvent) {
+  getAddress() {
+    const geocoder = new google.maps.Geocoder();
+    const latlng = { lat: this.lat, lng: this.lng };
 
-    this.latitude= $event.latLng.lat(),
-    this.longitude= $event.latLng.lng()
-  
-    
-    this.apiLoader.load().then(() => {
-      let geocoder = new google.maps.Geocoder;
-      let latlng = {lat: this.latitude, lng: this.longitude};
-    
-      geocoder.geocode({'location': latlng}, (results) => {
-          if (results[0]) {
-            this.currentLocation = results[0].formatted_address;
-          console.log(this.currentLocation);
-          } else {
-            console.log('Not found');
-          }
-      });
+    geocoder.geocode({ location: latlng }, (results, status) => {
+      if (status === 'OK') {
+        if (results && results[0]) {
+          this.currentLocation = results[0].formatted_address;
+          console.log('Current location:', this.currentLocation);
+        } else {
+          console.log('No results found');
+        }
+      } else {
+        console.log('Geocoder failed due to: ' + status);
+      }
     });
   }
 
@@ -172,5 +153,62 @@ export class UserMealsearchComponent implements OnInit {
     return distance * 1000; // convert to meters
   }
 
-
 }
+
+  
+
+
+  // get(){
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition((position) => {
+  //       if (position) {
+  //       this.lat = position.coords.latitude;
+  //       this.lng = position.coords.longitude;
+  //       this.getAddress=(this.lat,this.lng)
+  //       console.log(position)
+  
+  //       this.apiLoader.load().then(() => {
+  //         let geocoder = new google.maps.Geocoder;
+  //         let latlng = {lat: this.lat, lng: this.lng};
+         
+  //         geocoder.geocode({'location': latlng}, (results) => {
+  //             if (results[0]) {
+  //               this.currentLocation = results[0].formatted_address;
+               
+  //             console.log(this.assgin);
+  //             } else {
+  //               console.log('Not found');
+  //             }
+  //           });
+  //         });
+  //       }
+  //     })
+  //   }
+  
+  // }
+  // assgin(assgin: any) {
+  //   throw new Error('Method not implemented.');
+  // }
+
+  // mapClicked($event: google.maps.MapMouseEvent) {
+
+  //   this.latitude= $event.latLng.lat(),
+  //   this.longitude= $event.latLng.lng()
+  
+    
+  //   this.apiLoader.load().then(() => {
+  //     let geocoder = new google.maps.Geocoder;
+  //     let latlng = {lat: this.latitude, lng: this.longitude};
+    
+  //     geocoder.geocode({'location': latlng}, (results) => {
+  //         if (results[0]) {
+  //           this.currentLocation = results[0].formatted_address;
+  //         console.log(this.currentLocation);
+  //         } else {
+  //           console.log('Not found');
+  //         }
+  //     });
+  //   });
+  // }
+
+  
