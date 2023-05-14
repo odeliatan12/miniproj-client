@@ -44,6 +44,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { RestaurantCapacityComponent } from './components/restaurant-capacity/restaurant-capacity.component';
 import { ReservationService } from './services/reservation.service';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
+import { GoogleLoginComponent } from './components/google-login/google-login.component';
 
 
 @NgModule({
@@ -71,7 +73,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     UserMealsearchComponent,
     FilterpipePipe,
     UserProfileComponent,
-    RestaurantCapacityComponent
+    RestaurantCapacityComponent,
+    GoogleLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +84,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    }), HttpClientModule, ReactiveFormsModule, RouterModule, FormsModule, MatInputModule, MatAutocompleteModule, BrowserAnimationsModule, GoogleMapsModule, GooglePlaceModule, 
+    }), HttpClientModule, ReactiveFormsModule, RouterModule, FormsModule, MatInputModule, MatAutocompleteModule, BrowserAnimationsModule, GoogleMapsModule, GooglePlaceModule, SocialLoginModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [ UserAuthService, UserService, AdminService,
@@ -90,7 +93,18 @@ import { GoogleMapsModule } from '@angular/google-maps';
       provide: HTTP_INTERCEPTORS,
       useClass:AuthInterceptor,
       multi:true
-    }, DealService, SearchService, ReservationService
+    }, DealService, SearchService, ReservationService, {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('833064911004-809r50phgjvm0p084vsbhk60un9dbc5j.apps.googleusercontent.com'),
+          },
+        ],
+      } as SocialAuthServiceConfig
+    },
   ],
   bootstrap: [AppComponent]
 })
