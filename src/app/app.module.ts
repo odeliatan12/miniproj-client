@@ -100,9 +100,14 @@ import { GoogleLoginComponent } from './components/google-login/google-login.com
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider('833064911004-809r50phgjvm0p084vsbhk60un9dbc5j.apps.googleusercontent.com'),
+            provider: new GoogleLoginProvider(
+              '833064911004-809r50phgjvm0p084vsbhk60un9dbc5j.apps.googleusercontent.com'
+            )
           },
         ],
+        onError: (err) => {
+          console.error(err);
+        }
       } as SocialAuthServiceConfig
     },
   ],
