@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, firstValueFrom } from "rxjs";
-import { Login, ResReviews, Restaurant, RestaurantDetails, UpdateUser, User, distance, image, mealRest, postReviews } from "../models/model";
+import { Login, ResReviews, Restaurant, RestaurantDetails, UpdateUser, User, distance, googleLogin, image, mealRest, postReviews } from "../models/model";
 import { UserAuthService } from "./user-auth.service";
 
 @Injectable()
@@ -26,6 +26,16 @@ export class UserService{
             .set( 'No-Auth', 'True' );
         return firstValueFrom(
             this.http.post<string>("/api/auth/login", JSON.stringify(loginData), {headers: headers})
+        )
+    }
+
+    // google register
+    public googleRegister(credentials: string): Promise<googleLogin>{
+        const headers = new HttpHeaders()
+            .set('Content-Type', 'application/json; charset=utf-8')
+            .set( 'No-Auth', 'True' );
+        return firstValueFrom(
+            this.http.post<googleLogin>("/api/auth/googleLogin", credentials, {headers: headers})
         )
     }
 

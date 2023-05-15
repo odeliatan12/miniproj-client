@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         console.log(response.role)
 
         // set username
-        this.userAuthService.setUserId(response.id)
+        this.userAuthService.setUserId(response)
 
         // to get roles of the person logging in
         this.userAuthService.setRoles(response.role);
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
         }
       }).catch((error: any) => {
         console.log(error);
-        this.route.navigate(["/home"])
+        this.route.navigate(["/login"])
       })
 
   }

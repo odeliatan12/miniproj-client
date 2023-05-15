@@ -6,6 +6,12 @@ export interface Login{
     roleId: number
 }
 
+export interface googleLogin{
+    id: number
+    token: string
+    role: string
+}
+
 export interface User{
     id: number
     userName: string
