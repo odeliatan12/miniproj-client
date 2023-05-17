@@ -82,9 +82,11 @@
         <label for="address" class="form-label">Address</label>
         <input
           formControlName="address"
-          type="textarea"
           class="form-control"
-          id="lastName"
+          ngx-google-places-autocomplete
+          [(ngModel)]="selectedAddress"
+          [options]="options"
+          (onAddressChange)="handleAddressChange($event)"
           placeholder="{{ restDetails.address }}"
         />
         <div

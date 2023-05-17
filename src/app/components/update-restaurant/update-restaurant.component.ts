@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { Restaurant, RestaurantDetails, cuisine } from 'src/app/models/model';
 import { AdminService } from 'src/app/services/admin.service';
 
@@ -16,6 +17,24 @@ export class UpdateRestaurantComponent implements OnInit {
   restDetails!: RestaurantDetails
   cuisine!: string
   cuisines: cuisine[] = []
+
+  latitude!: number;
+  longitude!: number;
+  selectedAddress!: string;
+
+  options = {
+    bounds: new google.maps.LatLngBounds(
+      new google.maps.LatLng(-33.8902, 151.1759),
+      new google.maps.LatLng(-33.8474, 151.2631)
+    ),
+    componentRestrictions:{
+      country:"SG"
+    },
+    fields: [],
+    origin: new google.maps.LatLng(0, 0),
+    strictBounds: false,
+    types: []
+  }
 
   constructor(private fb: FormBuilder, private adminSvc: AdminService, private activatedRoute: ActivatedRoute, private route: Router){ }
 
@@ -76,6 +95,15 @@ export class UpdateRestaurantComponent implements OnInit {
         console.log(error)
         this.route.navigate(["/admin/restaurantList"])
       })
+  }
+
+  handleAddressChange(address: Address) {
+    console.log(address.formatted_address)
+    console.log(address.geometry.location.lat())
+    console.log(address.geometry.location.lng())
+    this.selectedAddress = address.formatted_address;
+    this.latitude = address.geometry.location.lat()
+    this.longitude = address.geometry.location.lng()
   }
 
   createForm(): FormGroup{

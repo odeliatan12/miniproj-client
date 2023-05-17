@@ -25,12 +25,6 @@ export class GoogleLoginComponent implements OnInit {
       password: ['', Validators.required],
     });
 
-    this.socialAuthService.authState.subscribe((user) => {
-      this.socialUser = user;
-      this.isLoggedin = user != null;
-      console.log(this.socialUser);
-    });
-
     google.accounts.id.initialize({
       client_id: '833064911004-809r50phgjvm0p084vsbhk60un9dbc5j.apps.googleusercontent.com',
       context: "signin",
@@ -44,19 +38,11 @@ export class GoogleLoginComponent implements OnInit {
     google.accounts.id.renderButton(
       // @ts-ignore
       document.getElementById("googleBtn"),
-      { theme: "filled_blue", text: "signup_with", shape: "rectangular" }
+      { theme: "outline", text: "signup_with", shape: "pill", style: "width: 100%" }
     )
     // @ts-ignore
     google.accounts.id.prompt((notification: PromptMomentNotification) => { })
-  }
-  
 
-  loginWithGoogle(): void {
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
-
-  logOut(): void {
-    this.socialAuthService.signOut();
   }
 
   public googleRegister(response: CredentialResponse){
