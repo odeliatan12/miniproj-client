@@ -47,6 +47,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { GoogleLoginComponent } from './components/google-login/google-login.component';
 import { UserProfileDropdownsComponent } from './components/user-profile-dropdowns/user-profile-dropdowns.component';
+import { UserProfileGooglecalanderComponent } from './components/user-profile-googlecalander/user-profile-googlecalander.component';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { UserProfileDropdownsComponent } from './components/user-profile-dropdow
     UserProfileComponent,
     RestaurantCapacityComponent,
     GoogleLoginComponent,
-    UserProfileDropdownsComponent
+    UserProfileDropdownsComponent,
+    UserProfileGooglecalanderComponent
   ],
   imports: [
     BrowserModule,

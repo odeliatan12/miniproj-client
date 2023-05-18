@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { firstValueFrom } from "rxjs";
-import { reservation, reservationDetails, timing } from "../models/model";
+import { GoogleCalendar, reservation, reservationDetails, timing } from "../models/model";
 import { UserAuthService } from "./user-auth.service";
 
 @Injectable()
@@ -37,6 +37,21 @@ export class ReservationService{
         const userId = this.userAuthService.getUserId()
         return firstValueFrom(
             this.http.get<reservationDetails[]>("/getReservation/" + userId)
+        )
+    }
+
+    public getReservation(idx: number): Promise<reservationDetails>{
+        return firstValueFrom(
+            this.http.get<reservationDetails>("/getReservationbyId/" + idx)
+        )
+    }
+
+    public googleEvent(event: GoogleCalendar): Promise<any>{
+        const userId = this.userAuthService.getUserId()
+        const params = new HttpParams()
+            .set("userId", `${userId}`);
+        return firstValueFrom(
+            this.http.post<any>("/createGoogleEvent", event, { params: params })
         )
     }
 

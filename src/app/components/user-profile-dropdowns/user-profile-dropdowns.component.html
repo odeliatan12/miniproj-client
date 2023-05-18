@@ -29,8 +29,28 @@
 <div class="collapse" id="collapseExample2" *ngFor="let r of resDetails">
   <div class="card card-body">
     <h3 class="card-title">{{ r.name }}</h3>
-    <h4 class="card-subtitle mb-2 text-body-secondary">{{r.startTiming.slice(0,6)}} - {{ r.endTiming.slice(0,5) }}</h4>
+    <h4 class="card-subtitle mb-2 text-body-secondary">
+      {{ r.startTiming.slice(0, 6) }} - {{ r.endTiming.slice(0, 5) }}
+    </h4>
+    <h4>{{ r.dateReserve }}</h4>
     <p class="card-text">{{ r.pax }}</p>
-    <a href="#" class="card-link">Add this to your calendar</a>
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      Add this to your calendar
+    </button>
+    <app-user-profile-googlecalander
+      [idx]="r.id"
+      [location] = "r.address"
+      [date] = "r.dateReserve"
+      [startTiming] = "r.startTiming.slice(0,5)"
+      [endTiming] = "r.endTiming.slice(0,5)"
+      [contact] = "r.contact"
+    ></app-user-profile-googlecalander>
   </div>
 </div>
+
+<app-user-profile-googlecalander></app-user-profile-googlecalander>

@@ -259,4 +259,26 @@ export interface reservationDetails{
     endTiming: string
     name: string
     contact: string
+    address: string
+}
+
+export class GoogleCalendar{
+    id: number
+    summary: string
+    location: string
+    description: string
+    date: string
+    startDateTime: string
+    endDateTime: string
+
+    constructor(id: number, summary: string, location: string, description: string, date: string, startDateTime: string, endDateTime: string){
+        this.id = id
+        this.summary = summary
+        this.location = location
+        this.description = description
+        this.date = date
+        this.startDateTime = startDateTime
+        this.endDateTime = endDateTime
+    }
+
 }
