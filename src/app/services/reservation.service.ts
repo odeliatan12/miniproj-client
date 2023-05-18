@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { firstValueFrom } from "rxjs";
-import { reservation, timing } from "../models/model";
+import { reservation, reservationDetails, timing } from "../models/model";
 import { UserAuthService } from "./user-auth.service";
 
 @Injectable()
@@ -30,6 +30,13 @@ export class ReservationService{
             .set("userId", `${userId}`);
         return firstValueFrom(
             this.http.post<string>("/postReservation", reservation, { params: params })
+        )
+    }
+
+    public getReservationbyId(): Promise<reservationDetails[]>{
+        const userId = this.userAuthService.getUserId()
+        return firstValueFrom(
+            this.http.get<reservationDetails[]>("/getReservation/" + userId)
         )
     }
 

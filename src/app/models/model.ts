@@ -248,3 +248,15 @@ export interface reservation{
     timeReserve: number
     dateReserve: string
 }
+
+export interface reservationDetails{
+    id: number
+    restaurantId: number
+    dateReserve: string
+    pax: number
+    capacityId: number
+    startTiming: string
+    endTiming: string
+    name: string
+    contact: string
+}

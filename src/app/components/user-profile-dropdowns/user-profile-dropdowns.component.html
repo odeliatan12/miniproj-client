@@ -1,0 +1,36 @@
+<p>
+  <a
+    class="btn btn-primary"
+    data-bs-toggle="collapse"
+    href="#collapseExample"
+    role="button"
+    aria-expanded="false"
+    aria-controls="collapseExample"
+  >
+    Deals bought
+  </a>
+  <a
+    class="btn btn-primary"
+    data-bs-toggle="collapse"
+    href="#collapseExample2"
+    role="button"
+    aria-expanded="false"
+    aria-controls="collapseExample2"
+  >
+    Reservations
+  </a>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    Some placeholder content for the collapse component. This panel is hidden by
+    default but revealed when the user activates the relevant trigger.
+  </div>
+</div>
+<div class="collapse" id="collapseExample2" *ngFor="let r of resDetails">
+  <div class="card card-body">
+    <h3 class="card-title">{{ r.name }}</h3>
+    <h4 class="card-subtitle mb-2 text-body-secondary">{{r.startTiming.slice(0,6)}} - {{ r.endTiming.slice(0,5) }}</h4>
+    <p class="card-text">{{ r.pax }}</p>
+    <a href="#" class="card-link">Add this to your calendar</a>
+  </div>
+</div>

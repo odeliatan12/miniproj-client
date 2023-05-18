@@ -46,6 +46,7 @@ import { ReservationService } from './services/reservation.service';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { GoogleLoginComponent } from './components/google-login/google-login.component';
+import { UserProfileDropdownsComponent } from './components/user-profile-dropdowns/user-profile-dropdowns.component';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import { GoogleLoginComponent } from './components/google-login/google-login.com
     FilterpipePipe,
     UserProfileComponent,
     RestaurantCapacityComponent,
-    GoogleLoginComponent
+    GoogleLoginComponent,
+    UserProfileDropdownsComponent
   ],
   imports: [
     BrowserModule,
