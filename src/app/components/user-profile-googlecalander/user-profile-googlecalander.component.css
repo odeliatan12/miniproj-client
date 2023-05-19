@@ -1,0 +1,17 @@
+.header{
+    color: #103560;
+    font-weight: 800;
+    font-size: 100px;
+}
+
+.subtitle{
+    font-weight: 800;
+    color: #103560;
+    font-size: 15px;
+}
+
+.subtitle p{
+    font-weight: 400;
+    color: black;
+    font-size: 13px;
+}

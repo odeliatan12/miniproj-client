@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { GoogleCalendar, reservationDetails } from 'src/app/models/model';
 import { ReservationService } from 'src/app/services/reservation.service';
+import 'add-to-calendar-button';
 
 @Component({
   selector: 'app-user-profile-googlecalander',
@@ -12,6 +13,8 @@ export class UserProfileGooglecalanderComponent implements OnInit {
 
   form!: FormGroup
 
+  @Input()
+  nameofRestaurant!: string
   @Input()
   idx!: number
   @Input()

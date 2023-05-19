@@ -8,7 +8,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5 header" id="exampleModalLabel">{{ nameofRestaurant }}</h1>
         <button
           type="button"
           class="btn-close"
@@ -20,11 +20,31 @@
         <div class="modal-body">
           <!-- <h4 class="card-title">{{ idx }}</h4> -->
           <h2 class="card-title">Details of your reservation</h2>
-          <h4 class="card-title">{{ location }}</h4>
-          <h4 class="card-title">{{ contact }}</h4>
-          <h4 class="card-title">{{ date }}</h4>
-          <h4 class="card-title">{{ startTiming }} - {{ endTiming }}</h4>
-          <input
+          <h4 class="card-title subtitle dt">
+            Address: 
+            <p>
+              {{ location }}
+            </p>
+          </h4>
+          <h4 class="card-title subtitle">
+            Phone Number:
+            <p>
+              +65 {{ contact }}
+            </p>
+          </h4>
+          <h4 class="card-title subtitle">
+            Date Reserved:
+            <p>
+              {{ date }}
+            </p>
+          </h4>
+          <h4 class="card-title subtitle">
+            Time Reserved:
+            <p>
+              {{ startTiming }} - {{ endTiming }}
+            </p>
+          </h4>
+          <!-- <input
             formControlName="description"
             type="text"
             class="form-control"
@@ -39,7 +59,7 @@
             id="lastName"
             placeholder="Summary"
             required=""
-          />
+          /> -->
         </div>
         <div class="modal-footer">
           <button
@@ -49,7 +69,23 @@
           >
             Close
           </button>
-          <button type="button" (click)="createGoogleEvent()" class="btn btn-primary">Add this to Calendar</button>
+          <add-to-calendar-button
+            [attr.name]="nameofRestaurant"
+            options="'Apple','Google', 'iCal'"
+            [attr.location]="location"
+            [attr.startDate]="date"
+            [attr.endDate]="date"
+            [attr.startTime]="startTiming"
+            [attr.endTime]="endTiming"
+            timeZone="Asia/Singapore"
+          ></add-to-calendar-button>
+          <!-- <button
+            type="button"
+            (click)="createGoogleEvent()"
+            class="btn btn-primary"
+          >
+            Add this to Calendar
+          </button> -->
         </div>
       </form>
     </div>

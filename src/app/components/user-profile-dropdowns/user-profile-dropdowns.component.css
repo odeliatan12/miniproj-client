@@ -1,0 +1,28 @@
+.outline{
+    border: 1px solid hsla(0, 0%, 0%, 0.100);
+}
+.headerTitle{
+    font-size: 30px;
+    font-weight: 500;
+    color: #103560;
+    font-family: 'Poppins', sans-serif;
+}
+
+.edit{
+    width: 30%;
+    margin: 10px;
+    font-size: 15px;
+    background-color: #103560;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    border: #103560;
+}
+.edit:hover{
+    background: #103560dc;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(103, 103, 103, 0.1);
+    backdrop-filter: blur(4.7px);
+    -webkit-backdrop-filter: blur(4.7px);
+    transition: ease-in-out 0.5s;
+}

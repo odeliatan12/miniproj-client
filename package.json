@@ -26,6 +26,7 @@
     "@syncfusion/ej2-angular-notifications": "^21.1.37",
     "@types/google-one-tap": "^1.2.2",
     "@types/google.maps": "^3.53.1",
+    "add-to-calendar-button": "^2.2.9",
     "bootstrap": "^5.3.0-alpha3",
     "bootstrap-icons": "^1.10.5",
     "creditcardpayments": "^1.0.3",
