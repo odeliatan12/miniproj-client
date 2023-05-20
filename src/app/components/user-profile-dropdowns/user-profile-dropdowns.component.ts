@@ -22,6 +22,15 @@ export class UserProfileDropdownsComponent implements OnInit {
       })
   }
 
+  deleteReservation(idx: number){
+    this.reservationService.deleteEvent(idx)
+      .then(result => {
+        console.log(result)
+      }).catch(result => {
+        this.route.navigate(['user/profile'])
+        window.location.reload()
+      })
+  }
 
   
 

@@ -10,7 +10,7 @@
     Deals bought
   </a>
   <a
-    class="btn btn-primary"
+    class="btn btn-primary m-2"
     data-bs-toggle="collapse"
     href="#collapseExample2"
     role="button"
@@ -22,8 +22,17 @@
 </p>
 <div class="collapse" id="collapseExample">
   <div class="card card-body">
-    Some placeholder content for the collapse component. This panel is hidden by
-    default but revealed when the user activates the relevant trigger.
+    <h4 class="card-title headerTitle">Currently, there are no deals bought</h4>
+  </div>
+</div>
+
+<div
+  class="collapse mt-2 rounded-3 outline"
+  id="collapseExample2"
+  *ngIf="resDetails.length <= 0"
+>
+  <div class="card card-body">
+    <h4 class="card-title headerTitle">Currently, there are no reservations</h4>
   </div>
 </div>
 
@@ -48,7 +57,7 @@
       >
         Add this to your calendar
       </button>
-      <button type="button" class="btn btn-primary edit col-lg-3 col-sm-12">Delete</button>
+      <button (click)="deleteReservation(r.id)" type="button" class="btn btn-primary edit col-lg-3 col-sm-12">Delete</button>
     </div>
 
     <app-user-profile-googlecalander
@@ -63,4 +72,3 @@
   </div>
 </div>
 
-<!-- <app-user-profile-googlecalander></app-user-profile-googlecalander> -->

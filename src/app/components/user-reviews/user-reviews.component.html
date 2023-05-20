@@ -21,16 +21,26 @@
     </button>
     <h2 class="review display-5 fw-bold mt-5">Reservation</h2>
     <form [formGroup]="form">
-      <label for="pax" class="form-label">Pax</label>
-      <input
-        formControlName="pax"
-        type="number"
-        class="form-control"
-        id="firstName"
-        placeholder=""
-        value=""
-        required=""
-      />
+      <div>
+        <label for="pax" class="form-label">Pax</label>
+        <input
+          formControlName="pax"
+          type="number"
+          class="form-control"
+          id="firstName"
+          placeholder=""
+          value=""
+          required=""
+        />
+        <div
+        *ngIf="form.get('pax')?.hasError('required')"
+        class="alert alert-danger size"
+        role="alert"
+        >
+          Please enter the number of pax reserved
+        </div>
+      </div>
+      
 
       <div>
         <label for="date" class="form-label">Date</label>
@@ -44,6 +54,20 @@
           required=""
           (change)="getAvailableTimings()"
         />
+        <div
+        *ngIf="form.get('dateReserve')?.hasError('required')"
+        class="alert alert-danger size"
+        role="alert"
+        >
+          Please enter a date
+        </div>
+        <div
+        *ngIf="form.get('dateReserve')?.errors"
+        class="alert alert-danger size"
+        role="alert"
+        >
+          Please enter a future date
+        </div>
       </div>
       
       <!-- <div *ngif="timing.minLength > 0"> -->
