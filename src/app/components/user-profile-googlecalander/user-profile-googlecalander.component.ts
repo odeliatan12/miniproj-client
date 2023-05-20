@@ -1,15 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { GoogleCalendar, reservationDetails } from 'src/app/models/model';
 import { ReservationService } from 'src/app/services/reservation.service';
 import 'add-to-calendar-button';
+import { atcb_action, atcb_init } from 'add-to-calendar-button';
+// import 'add-to-calendar-button/assets/css/atcb.css';
 
 @Component({
   selector: 'app-user-profile-googlecalander',
   templateUrl: './user-profile-googlecalander.component.html',
   styleUrls: ['./user-profile-googlecalander.component.css']
 })
-export class UserProfileGooglecalanderComponent implements OnInit {
+export class UserProfileGooglecalanderComponent implements OnInit, AfterViewInit {
 
   form!: FormGroup
 
@@ -32,6 +34,10 @@ export class UserProfileGooglecalanderComponent implements OnInit {
   reservation!: reservationDetails
 
   constructor(private fb: FormBuilder, private reservationService: ReservationService){ }
+
+  ngAfterViewInit(): void {
+      atcb_init
+  }
 
   ngOnInit(): void {
 

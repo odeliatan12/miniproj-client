@@ -69,6 +69,7 @@
           >
             Close
           </button>
+
           <add-to-calendar-button
             [attr.name]="nameofRestaurant"
             options="'Apple','Google', 'iCal'"
@@ -86,6 +87,21 @@
           >
             Add this to Calendar
           </button> -->
+          <div class="atcb" style="display:none;">
+            {{
+              {
+                "name": "{{ nameofRestaurant }}",
+                "location": "{{ location }}",
+                "startDate": "{{ date }}",
+                "endDate": "{{ date }}",
+                "options": [
+                  "Apple",
+                  "Google"
+                ],
+                "timeZone": "Asia/Singapore"
+              }
+            }}
+          </div>
         </div>
       </form>
     </div>
