@@ -1,0 +1,10 @@
+:root{
+
+    /* Color */
+    --bluecolor: #103560;
+
+    /* Fonts */
+    --oswaldFont: 'Oswald', sans-serif;
+    --rubikFonts: 'Rubik', sans-serif;
+    --poppinsFonts: 'Poppins', sans-serif;
+}

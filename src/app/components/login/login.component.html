@@ -1,7 +1,7 @@
 <div class="text-center p-5 mt-5">
   <main class="form-signin w-100 m-auto h3 p-5">
     <form [formGroup]="form" (ngSubmit)="submitLoginForm()">
-      <h3 class="h3 mb-2 fw-normal">Please sign in</h3>
+      <h3 class="h3 mb-2 fw-normal loginHeader">Login</h3>
 
       <div class="row g-3">
         <!-- name -->
@@ -9,7 +9,7 @@
           <input
             formControlName="username"
             type="text"
-            class="form-control"
+            class="form-control p-2"
             id="firstName"
             placeholder="username"
           />
@@ -29,8 +29,8 @@
 
       <app-google-login></app-google-login>
       
-      <button class="w-100 btn btn-lg btn-primary" type="submit">
-        Sign in
+      <button class="w-100 btn btn-lg btn-primary loginBtn" type="submit">
+        Login
       </button>
     </form>
   </main>

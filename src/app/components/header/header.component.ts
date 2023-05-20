@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, UrlTree } from '@angular/router';
 import { Subject } from 'rxjs';
 import { SearchService } from 'src/app/services/search.service';
 import { UserAuthService } from 'src/app/services/user-auth.service';
@@ -41,5 +41,9 @@ export class HeaderComponent implements OnInit {
     this.userAuthService.clear();
     this.router.navigate(['/login']);
   }
+
+  // isActiveRoute(route: string | UrlTree): boolean {
+  //   return this.router.IsActiveMatchOptions(route, true);
+  // }
 
 }

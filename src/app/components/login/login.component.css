@@ -1,0 +1,23 @@
+.loginHeader{
+    color: #103560;
+    font-size: 30px;
+    font-family: 'Rubik', sans-serif;
+}
+.loginBtn{
+    margin-top: 5vh;
+    width: 70%;
+    height: 8vh;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+    background-color: hsla(213, 24%, 38%, 0.7);
+    border: none;
+    -webkit-box-shadow:0px 0px 20px 7px hsla(212, 71%, 22%, 0.2);
+    -moz-box-shadow: 0px 0px 20px 7px hsla(212, 71%, 22%, 0.2);
+    box-shadow: 0px 0px 20px 7px hsla(212, 71%, 22%, 0.2);
+}
+
+.loginBtn:hover{
+    background-color: hsl(212, 70%, 21%);
+    color: rgb(255, 255, 255);
+}

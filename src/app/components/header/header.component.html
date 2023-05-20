@@ -24,68 +24,75 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="navbar-collapse collapse show" id="navbarCollapse" style="">
+    <div class="navbar-collapse collapse show" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
           <a
             *ngIf="!isLoggedIn()"
-            class="nav-link active"
+            class="nav-link nav-link-grow-up"
             aria-current="page"
             routerLink="login"
+            routerLinkActive="active2"
             >Login</a
           >
         </li>
         <li class="nav-item">
           <a
             *ngIf="isLoggedIn()"
-            class="nav-link active"
+            class="nav-link nav-link-grow-up"
             aria-current="page"
             (click)="logout()"
+            routerLinkActive="active2"
             >Logout</a
           >
         </li>
         <li class="nav-item">
           <a
             *ngIf="!isLoggedIn()"
-            class="nav-link active"
+            class="nav-link nav-link-grow-up"
             aria-current="page"
             routerLink="register"
+            routerLinkActive="active2"
             >Register</a
           >
         </li>
         <li class="nav-item">
           <a
             *ngIf="isLoggedIn() && userService.roleMatch('ADMIN')"
-            class="nav-link active"
+            class="nav-link nav-link-grow-up"
             aria-current="page"
             routerLink="admin/restaurantdetails"
+            routerLinkActive="active2"
             >New Restaurant</a
           >
         </li>
         <li class="nav-item">
           <a
             *ngIf="isLoggedIn() && userService.roleMatch('USER')"
-            class="nav-link active"
+            class="nav-link nav-link-grow-up"
             aria-current="page"
             routerLink="user/allDeals"
+            routerLinkActive="active2"
             >Deals</a
           >
         </li>
         <li class="nav-item">
           <a
             *ngIf="isLoggedIn() && userService.roleMatch('USER')"
-            class="nav-link active"
+            class="nav-link nav-link-grow-up"
             aria-current="page"
             routerLink="user/search"
+            routerLinkActive="active2"
             >Search for food</a
           >
         </li>
         <li class="nav-item">
           <a
             *ngIf="isLoggedIn() && userService.roleMatch('USER')"
-            class="nav-link active"
+            class="nav-link nav-link-grow-up"
             aria-current="page"
             routerLink="user/profile"
+            routerLinkActive="active2"
             >Account Profile</a
           >
         </li>
@@ -110,3 +117,4 @@
     </div>
   </div>
 </nav>
+

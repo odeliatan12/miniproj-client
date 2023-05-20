@@ -1,3 +1,7 @@
+
+.navbar-toggler-icon{
+    color: #103560;
+}
 .navbar-brand, .nav-item a{
     color: #103560;
     cursor: pointer;
@@ -19,3 +23,29 @@ button{
     border-color: #103560;
     color: #103560;
 }
+.active2{
+    border-bottom: 3px solid #103560;
+}
+.nav-link:hover {
+    opacity: 1;
+    border-bottom: 3px solid #103560;
+    transition: 200ms ease-in-out;
+}
+
+/* .nav-link::before {
+    transition: 300ms;
+    height: 5px;
+    content: "";
+    position: absolute;
+    background-color: #031D44;
+}
+.nav-link-grow-up::before {
+    width: 100%;
+    bottom: 5px;
+    opacity: 0;
+}
+  
+.nav-link-grow-up:hover::before {
+    bottom: 10px;
+    opacity: 1;
+} */
