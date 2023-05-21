@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
 
   form!: FormGroup
   token!: token
+  error!: string
+  show: boolean = false
 
   constructor( private fb: FormBuilder, private userSvc: UserService, private userAuthService: UserAuthService, private route: Router){} 
 
@@ -54,7 +56,9 @@ export class LoginComponent implements OnInit {
         }
       }).catch((error: any) => {
         console.log(error);
-        this.route.navigate(["/login"])
+        this.show = true
+        this.error = "Incorrect name or password"
+        // this.route.navigate(["/login"])
       })
 
   }
