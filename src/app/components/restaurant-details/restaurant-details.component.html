@@ -93,14 +93,14 @@
           [options]="options"
           (onAddressChange)="AddressChange($event)"
         /> -->
-        <input
+        <!-- <input
           formControlName="address"
           class="form-control"
           ngx-google-places-autocomplete
           [(ngModel)]="selectedAddress"
           [options]="options"
           (onAddressChange)="handleAddressChange($event)"
-        />
+        /> -->
         <div
           *ngIf="form.get('address')?.hasError('required')"
           class="alert alert-danger size"
