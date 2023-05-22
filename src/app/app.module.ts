@@ -88,7 +88,7 @@ import { UserProfileGooglecalanderComponent } from './components/user-profile-go
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    }), HttpClientModule, ReactiveFormsModule, RouterModule, FormsModule, MatInputModule, MatAutocompleteModule, BrowserAnimationsModule, GoogleMapsModule, GooglePlaceModule, SocialLoginModule
+    }), HttpClientModule, ReactiveFormsModule, RouterModule, FormsModule, MatInputModule, MatAutocompleteModule, BrowserAnimationsModule, GoogleMapsModule, SocialLoginModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [ UserAuthService, UserService, AdminService,
