@@ -16,24 +16,14 @@
         </div>
         
         <!-- Password -->
-        <div class="col-sm-12 input-group">
+        <div class="col-sm-12">
           <input
             formControlName="password"
             type="password"
             class="form-control mb-2"
             id="firstName"
             placeholder="password"
-            [type]="fieldTextType ? 'text' : 'password'"
           />
-          <span class="input-group-text mb-2">
-            <i 
-              class="fa"
-              [ngClass]="{
-                'fa-eye-slash': !fieldTextType,
-                'fa-eye': fieldTextType
-              }"
-              (click)="toggleFieldTextType()"></i>
-          </span>
         </div>
       </div>
 
