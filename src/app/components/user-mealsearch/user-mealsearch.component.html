@@ -117,32 +117,6 @@
   <!-- show map when clicked -->
   <div class="col-md-1"></div>
   <div class="col-md-11" *ngIf="showMap">
-    <!-- <agm-map
-      style="height: 300px"
-      [latitude]="lat"
-      [longitude]="lng"
-      [zoom]="zoom"
-      (mapClick)="mapClicked($event)"
-    >
-      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-      <agm-marker
-        *ngFor="let marker of markers"
-        [latitude]="marker.latitude"
-        [longitude]="marker.longitude"
-        [label]="marker.restaurant_name"
-        (mouseOver)="infoWindow?.open()"
-        (mouseOut)="infoWindow?.close()"
-      >
-        <agm-info-window
-          #infoWindow
-          *ngIf="selectedMarker === marker"
-          [latitude]="selectedMarker.latitude"
-          [longitude]="selectedMarker.longitude"
-        >
-          {{ selectedMarker.restaurant_name }}
-        </agm-info-window>
-      </agm-marker>
-    </agm-map> -->
     <google-map [options]="mapOptions">
       <map-marker
         [position]="{ lat: this.latitude, lng: this.longitude }"

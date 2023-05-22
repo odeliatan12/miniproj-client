@@ -36,13 +36,28 @@
         id="floatingInput"
       />
 
-      <label for="name" class="labels form-label fw-normal">Password: </label>
-      <input
-        formControlName="password"
-        type="password"
-        class="form-control mb-2"
-        id="floatingPassword"
-      />
+      <label for="name" class="labels form-label fw-normal"
+        >Password:
+      </label>
+      <div class="col-sm-12 input-group">
+        <input
+          formControlName="password"
+          type="password"
+          class="form-control mb-2 input-group"
+          id="floatingPassword"
+          [type]="fieldTextType ? 'text' : 'password'"
+        />
+        <span class="input-group-text mb-2">
+          <i
+            class="fa"
+            [ngClass]="{
+              'fa-eye-slash': !fieldTextType,
+              'fa-eye': fieldTextType
+            }"
+            (click)="toggleFieldTextType()"
+          ></i>
+        </span>
+      </div>
 
       <label for="name" class="labels form-label fw-normal"
         >Select Role:
@@ -63,7 +78,7 @@
 
       <app-google-login></app-google-login>
 
-      <button class="w-100 btn btn-lg btn-primary" type="submit">
+      <button class="w-100 btn btn-lg btn-primary registerBtn" type="submit">
         Register
       </button>
     </form>
