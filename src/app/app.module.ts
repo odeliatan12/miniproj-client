@@ -48,6 +48,8 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
 import { GoogleLoginComponent } from './components/google-login/google-login.component';
 import { UserProfileDropdownsComponent } from './components/user-profile-dropdowns/user-profile-dropdowns.component';
 import { UserProfileGooglecalanderComponent } from './components/user-profile-googlecalander/user-profile-googlecalander.component';
+import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
+import { LoginForgotPasswordComponent } from './components/login-forgot-password/login-forgot-password.component';
 
 
 @NgModule({
@@ -78,7 +80,8 @@ import { UserProfileGooglecalanderComponent } from './components/user-profile-go
     RestaurantCapacityComponent,
     GoogleLoginComponent,
     UserProfileDropdownsComponent,
-    UserProfileGooglecalanderComponent
+    UserProfileGooglecalanderComponent,
+    LoginForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +91,7 @@ import { UserProfileGooglecalanderComponent } from './components/user-profile-go
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    }), HttpClientModule, ReactiveFormsModule, RouterModule, FormsModule, MatInputModule, MatAutocompleteModule, BrowserAnimationsModule, GoogleMapsModule, GooglePlaceModule, SocialLoginModule
+    }), HttpClientModule, ReactiveFormsModule, RouterModule, FormsModule, MatInputModule, MatAutocompleteModule, BrowserAnimationsModule, GoogleMapsModule, GooglePlaceModule, SocialLoginModule, PasswordStrengthMeterModule.forRoot()
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [ UserAuthService, UserService, AdminService,

@@ -14,7 +14,7 @@
             placeholder="username"
           />
         </div>
-        
+
         <!-- Password -->
         <div class="col-sm-12 input-group">
           <input
@@ -26,19 +26,37 @@
             [type]="fieldTextType ? 'text' : 'password'"
           />
           <span class="input-group-text mb-2">
-            <i 
+            <i
               class="fa"
               [ngClass]="{
                 'fa-eye-slash': !fieldTextType,
                 'fa-eye': fieldTextType
               }"
-              (click)="toggleFieldTextType()"></i>
+              (click)="toggleFieldTextType()"
+            ></i>
           </span>
         </div>
       </div>
 
       <app-google-login></app-google-login>
-      
+
+      <div class="row">
+        <div class="col-lg-6">
+          <a
+            aria-current="page"
+            (click)="gotoRegister()"
+            >Register</a
+          >
+        </div>
+        <div class="col-lg-6">
+          <a
+            aria-current="page"
+            (click)="gotoForgetPassword()"
+            >Forget password</a
+          >
+        </div>
+      </div>
+
       <button class="w-100 btn btn-lg btn-primary loginBtn" type="submit">
         Login
       </button>
