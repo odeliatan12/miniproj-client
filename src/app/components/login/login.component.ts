@@ -63,6 +63,14 @@ export class LoginComponent implements OnInit {
       })
   }
 
+  gotoRegister(){
+    this.route.navigateByUrl('/register')
+  }
+
+  gotoForgetPassword(){
+    this.route.navigateByUrl('forgetPassword')
+  }
+
   toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
   }

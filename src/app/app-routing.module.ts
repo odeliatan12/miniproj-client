@@ -21,11 +21,13 @@ import { RestaurantMealUploadComponent } from './components/restaurant-meal-uplo
 import { UserMealsearchComponent } from './components/user-mealsearch/user-mealsearch.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { RestaurantCapacityComponent } from './components/restaurant-capacity/restaurant-capacity.component';
+import { LoginForgotPasswordComponent } from './components/login-forgot-password/login-forgot-password.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent  },
+  { path: 'forgetPassword', component: LoginForgotPasswordComponent },
   { path: 'admin', component: AdminComponent, 
       children: [
         { path: 'restaurantList', component: RestaurantListComponent},
