@@ -7,7 +7,6 @@ import { distance, location, mealNames, mealRest } from 'src/app/models/model';
 import { AdminService } from 'src/app/services/admin.service';
 import { UserService } from 'src/app/services/user.service';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
-import { GoogleMap } from '@angular/google-maps';
 
 
 @Component({

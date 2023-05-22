@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   token!: token
   error!: string
   show: boolean = false
-  fieldTextType!: boolean;
 
   constructor( private fb: FormBuilder, private userSvc: UserService, private userAuthService: UserAuthService, private route: Router){} 
 
@@ -61,9 +60,6 @@ export class LoginComponent implements OnInit {
         this.error = "Incorrect name or password"
         // this.route.navigate(["/login"])
       })
-  }
 
-  toggleFieldTextType() {
-    this.fieldTextType = !this.fieldTextType;
   }
 }
