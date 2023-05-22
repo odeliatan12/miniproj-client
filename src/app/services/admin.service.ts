@@ -22,8 +22,11 @@ export class AdminService{
     public getRestaurants(id: string): Promise<Restaurant[]>{
         const params = new HttpParams()
             .set('userId', id);
+        const headers = new HttpHeaders()
+            .set('authorization', `Bearer ${this.userAuth.getToken()}`)
+            .set( 'No-Auth', 'True' );
         return firstValueFrom(
-            this.http.get<Restaurant[]>("/admin", { params: params })
+            this.http.get<Restaurant[]>("/admin", { params: params, headers: headers })
         )
     }
 

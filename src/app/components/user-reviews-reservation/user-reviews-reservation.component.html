@@ -1,0 +1,101 @@
+<div
+  class="modal2 fade"
+  id="reservation"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form">
+          <div>
+            <label for="pax" class="form-label">Pax</label>
+            <input
+              formControlName="pax"
+              type="number"
+              class="form-control"
+              id="firstName"
+              placeholder=""
+              value=""
+              required=""
+            />
+            <div
+              *ngIf="form.get('pax')?.hasError('required')"
+              class="alert alert-danger size"
+              role="alert"
+            >
+              Please enter the number of pax reserved
+            </div>
+          </div>
+
+          <div>
+            <label for="date" class="form-label">Date</label>
+            <input
+              formControlName="dateReserve"
+              type="date"
+              class="form-control"
+              id="firstName"
+              placeholder=""
+              value=""
+              required=""
+              (change)="getAvailableTimings()"
+            />
+            <div
+              *ngIf="form.get('dateReserve')?.hasError('required')"
+              class="alert alert-danger size"
+              role="alert"
+            >
+              Please enter a date
+            </div>
+            <div
+              *ngIf="form.get('dateReserve')?.errors"
+              class="alert alert-danger size"
+              role="alert"
+            >
+              Please enter a future date
+            </div>
+          </div>
+
+          <!-- <div *ngif="timing.minLength > 0"> -->
+          <label for="timing" class="form-label">Timing</label>
+          <select
+            formControlName="timeReserve"
+            class="form-select mt-2 buttonWidth"
+            aria-label="Default select example"
+          >
+            <option>Select Timing</option>
+            <!-- Distance timing -->
+            <option *ngFor="let t of timing" value="{{ t.id }}">
+              {{ t.startTiming.slice(0, 5) }} - {{ t.endTiming.slice(0, 5) }}
+            </option>
+          </select>
+          <!-- </div> -->
+
+          <button
+            (click)="insertReservation()"
+            type="button"
+            class="btn reviewBtn mt-3"
+          >
+            Book Reservation
+          </button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

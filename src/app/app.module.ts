@@ -48,6 +48,7 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
 import { GoogleLoginComponent } from './components/google-login/google-login.component';
 import { UserProfileDropdownsComponent } from './components/user-profile-dropdowns/user-profile-dropdowns.component';
 import { UserProfileGooglecalanderComponent } from './components/user-profile-googlecalander/user-profile-googlecalander.component';
+import { UserReviewsReservationComponent } from './components/user-reviews-reservation/user-reviews-reservation.component';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { UserProfileGooglecalanderComponent } from './components/user-profile-go
     RestaurantCapacityComponent,
     GoogleLoginComponent,
     UserProfileDropdownsComponent,
-    UserProfileGooglecalanderComponent
+    UserProfileGooglecalanderComponent,
+    UserReviewsReservationComponent
   ],
   imports: [
     BrowserModule,
