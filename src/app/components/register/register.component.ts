@@ -15,6 +15,7 @@ import { UserService } from 'src/app/services/user.service';
 export class RegisterComponent implements OnInit{
 
   form!: FormGroup
+  fieldTextType!: boolean;
 
 
   constructor(private fb: FormBuilder, private userService: UserService, private route: Router, private userAuthService: UserAuthService){ }
@@ -41,6 +42,10 @@ export class RegisterComponent implements OnInit{
     console.log(value.roleId)
     this.userService.register(value)
     this.route.navigate(["/register"])
+  }
+
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
   }
 
 }
