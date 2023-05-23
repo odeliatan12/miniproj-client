@@ -14,18 +14,32 @@ section{
 }
 
 .headers-restaurant h4{
-    font-size: 25px;
-    font-weight: 600;
+    font-size: 30px;
+    font-weight: 800;
+    font-family: 'Noto Sans', sans-serif;
+    margin-bottom: 10px;
+    color: #10024a;
 }
 
 .header-restaurant h5{
-    font-size: 20px;
     font-weight: 500;
+    color: #10024a;
+    font-family: 'Noto Sans', sans-serif;
+    margin-bottom: 10px;
 }
 .title-restaurant{
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 700;
+    font-family: 'Noto Sans', sans-serif;
+    line-height: 24px;
+    overflow: hidden;
     margin: 2px 0;
+}
+.address-restaurant{
+    color: #6c6f95;
+    font-size: 12px;
+    height: 24px;
+    overflow: hidden;
 }
 .find-out{
     font-size: 15px;

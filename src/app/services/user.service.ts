@@ -64,6 +64,13 @@ export class UserService{
         )
     }
 
+    // GetRestaurantbyCuisine
+    public getRestaurantbyCuisine(cuisineId: number): Promise<RestaurantDetails[]>{
+        return firstValueFrom(
+            this.http.get<RestaurantDetails[]>("/restaurant/" + cuisineId)
+        )
+    }
+
     public getRestaurantbyId(restaurantId: number): Promise<ResReviews>{
         return firstValueFrom(
             this.http.get<ResReviews>("/restaurant/" + restaurantId)
