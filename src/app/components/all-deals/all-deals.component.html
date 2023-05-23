@@ -67,8 +67,11 @@
   </div>
 
   <div class="headers-restaurant mb-5">
-    <h4>Deals</h4>
-    <h5>List of deals to browse from</h5>
+    <div>
+      <h4>Deals</h4>
+      <h5>List of deals to browse from</h5>
+    </div>
+    
 
     <!-- Carousel -->
     <div
@@ -80,7 +83,7 @@
         <div class="carousel-inner">
           <div
             class="carousel-item"
-            *ngFor="let chunk of carouselCardsChunks; let i = index"
+            *ngFor="let chunk of carouselChunks; let i = index"
             [class.active]="i === 0"
           >
             <div class="row">
