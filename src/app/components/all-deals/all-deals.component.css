@@ -6,6 +6,12 @@ section{
     height: 30vh;
 }
 
+.custom-icon {
+  width: 40px;
+  height: 40px;
+  color: #f15623;
+}
+
 a {
     text-decoration: none;
   }
@@ -104,4 +110,44 @@ a {
     color: #103560;
     text-align: left;
     font-weight: 600;
+}
+.title-restaurant{
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Noto Sans', sans-serif;
+  line-height: 24px;
+  overflow: hidden;
+  margin: 2px 0;
+  color: #10024a;
+}
+
+.headers-restaurant h4{
+  font-size: 30px;
+  font-weight: 800;
+  font-family: 'Noto Sans', sans-serif;
+  color: #10024a;
+}
+.custom-icon {
+  width: 40px;
+  height: 40px;
+  color: #f15623;
+}
+.discount{
+  height: 80px;
+  width: 80px;
+  justify-content: center;
+  text-align: center;
+  padding-top: 30px;
+}
+.address-restaurant{
+  color: #6c6f95;
+  font-size: 12px;
+  height: 30px;
+  overflow: hidden;
+}
+.newAmount{
+  font-size: 25px;
+  font-family: 'Noto Sans', sans-serif;
+  color: #10024a;
+  font-weight: 600;
 }

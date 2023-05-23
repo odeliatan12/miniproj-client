@@ -4,7 +4,7 @@
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="foodreview">Chope</h1>
         <p class="lead text-body-secondary">
-          With Chope, life will never be easier
+          Food Review
         </p>
       </div>
     </div>
@@ -15,89 +15,112 @@
     <h5>List of restaurants to browse from</h5>
 
     <div
-    id="carouselExampleInterval"
-    class="carousel slide"
-    data-bs-ride="carousel"
-  >
-    <button
-      class="carousel-control-prev"
-      type="button"
-      data-bs-target="#carouselExampleInterval"
-      data-bs-slide="prev"
+      id="carouselExampleInterval"
+      class="carousel slide"
+      data-bs-ride="carousel"
     >
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <button class="btn btn-primary">Previous</button>
-    </button>
-    <button
-      class="carousel-control-next"
-      type="button"
-      data-bs-target="#carouselExampleInterval"
-      data-bs-slide="next"
-    >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <button class="btn btn-primary">Next</button>
-    </button>
-    <div class="carousel-inner">
-      <div
-        class="carousel-item"
-        *ngFor="let chunk of carouselCardsChunks; let i = index"
-        [class.active]="i === 0"
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleInterval"
+        data-bs-slide="prev"
       >
-        <div class="row">
-          <div class="col-4" *ngFor="let card of chunk">
-            <div class="card shadow-sm">
-              <img
-                height="200px"
-                width="100px"
-                src="{{ card.restaurantLink }}"
-                class="card-img-top"
-              />
-              <div class="card-body">
-                <p class="card-text title-restaurant">
-                  {{ card.name.slice(0,16) }}...
-                </p>
-                <p class="card-text address-restaurant">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-geo-alt"
-                    viewBox="0 0 16 16"
+        <!-- <span class="carousel-control-prev-icon icon" aria-hidden="true"></span> -->
+        <button class="btn icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-arrow-left-square-fill custom-icon"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"
+            />
+          </svg>
+        </button>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleInterval"
+        data-bs-slide="next"
+      >
+        <!-- <span class="carousel-control-next-icon icon" aria-hidden="true"></span> -->
+        <button class="btn icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-arrow-right-square-fill custom-icon"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"
+            />
+          </svg>
+        </button>
+      </button>
+      <div class="carousel-inner">
+        <div
+          class="carousel-item"
+          *ngFor="let chunk of carouselCardsChunks; let i = index"
+          [class.active]="i === 0"
+        >
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 mb-4" *ngFor="let card of chunk">
+              <div class="card shadow-sm">
+                <img
+                  height="200px"
+                  width="100px"
+                  src="{{ card.restaurantLink }}"
+                  class="card-img-top"
+                />
+                <div class="card-body">
+                  <p class="card-text title-restaurant">
+                    {{ card.name.slice(0, 16) }}...
+                  </p>
+                  <p class="card-text address-restaurant mt-3">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-geo-alt"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"
+                      />
+                      <path
+                        d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+                      />
+                    </svg>
+                    {{ card.address }}
+                  </p>
+                  <p class="card-text description">{{ card.about.slice(0, 50) }} ...</p>
+                  <button
+                    (click)="restaurantPage(card.id)"
+                    type="button"
+                    class="btn find-out col-5"
                   >
-                    <path
-                      d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"
-                    />
-                    <path
-                      d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-                    />
-                  </svg>
-                  {{ card.address }}
-                </p>
-                <p class="card-text">{{ card.about.slice(0, 30) }} ...</p>
-                <button
-                  (click)="restaurantPage(card.id)"
-                  type="button"
-                  class="btn find-out col-12"
-                >
-                  Find out more
-                </button>
+                    Find out more
+                  </button>
+                </div>
               </div>
-            </div>
-            <!-- <div class="card">
+              <!-- <div class="card">
             <img [src]="card.image" class="card-img-top" alt="Card Image">
             <div class="card-body">
               <h5 class="card-title">{{ card.name }}</h5>
               <p class="card-text">{{ card.address }}</p>
             </div>
           </div> -->
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  </div>
-
-
-  
 </main>

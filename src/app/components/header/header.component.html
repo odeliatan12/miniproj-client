@@ -31,26 +31,6 @@
             *ngIf="!isLoggedIn()"
             class="nav-link nav-link-grow-up"
             aria-current="page"
-            routerLink="login"
-            routerLinkActive="active2"
-            >Login</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            *ngIf="isLoggedIn()"
-            class="nav-link nav-link-grow-up"
-            aria-current="page"
-            (click)="logout()"
-            routerLinkActive="active2"
-            >Logout</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            *ngIf="!isLoggedIn()"
-            class="nav-link nav-link-grow-up"
-            aria-current="page"
             routerLink="register"
             routerLinkActive="active2"
             >Register</a
@@ -97,14 +77,14 @@
           >
         </li>
       </ul>
-      <form class="d-flex" role="search">
+      <!-- <form class="d-flex" role="search">
         <input
           class="form-control me-2 search-bar"
           (keyup)="searchTerm$.next($any($event.target).value)"
           placeholder="Search"
           aria-label="Search"
         />
-        <!-- Pass search terms as we type -->
+
         <ul *ngIf="results">
           <li *ngFor="let result of results">
             <a href="{{ result.id }}" target="_blank">
@@ -113,7 +93,29 @@
           </li>
         </ul>
         <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      </form> -->
+      <ul class="navbar-nav mb-2 mb-md-0">
+        <li class="nav-item">
+          <a
+            *ngIf="!isLoggedIn()"
+            class="nav-link nav-link-grow-up"
+            aria-current="page"
+            routerLink="login"
+            routerLinkActive="active2"
+            >Login</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            *ngIf="isLoggedIn()"
+            class="nav-link nav-link-grow-up"
+            aria-current="page"
+            (click)="logout()"
+            routerLinkActive="active2"
+            >Logout</a
+          >
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

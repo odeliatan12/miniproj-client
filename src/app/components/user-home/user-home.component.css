@@ -2,6 +2,10 @@
     margin-top: 15%;
 }
 
+.icon{
+    color: black;
+}
+
 section{
     height: 70vh;
 }
@@ -12,7 +16,11 @@ section{
     font-size: 40px;
     font-weight: 800;
 }
-
+.custom-icon {
+    width: 40px;
+    height: 40px;
+    color: #f15623;
+}
 .headers-restaurant h4{
     font-size: 30px;
     font-weight: 800;
@@ -43,5 +51,14 @@ section{
 }
 .find-out{
     font-size: 15px;
-    padding: 25px;
+    padding: 25px 25px 25px 0;
+    left: 0;
+    color: #10024a;
+    font-weight: 800;
+    font-family: 'Noto Sans', sans-serif;
+}
+.description{
+    color: #10024a;
+    font-size: 12px;
+    font-family: 'Noto Sans', sans-serif;
 }

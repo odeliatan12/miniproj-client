@@ -13,6 +13,7 @@ import { AdminComponent } from '../admin/admin.component';
 export class AllDealsComponent implements OnInit {
 
   allDeals: allDeals[] = []
+  chunkSize: number = 3;
 
   constructor(private dealService: DealService, private route: Router, private userService: UserService){ }
 
@@ -33,6 +34,14 @@ export class AllDealsComponent implements OnInit {
 
   goToDealPage(idx: string){
     this.route.navigate(["user/deals", idx])
+  }
+
+  get carouselCardsChunks(): any[] {
+    const chunks = [];
+    for (let i = 0; i < this.allDeals.length; i += this.chunkSize) {
+      chunks.push(this.allDeals.slice(i, i + this.chunkSize));
+    }
+    return chunks;
   }
 
 }
