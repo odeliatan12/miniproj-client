@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { reservation, timing } from 'src/app/models/model';
 import { ReservationService } from 'src/app/services/reservation.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-user-reviews-reservation',
@@ -27,8 +28,12 @@ export class UserReviewsReservationComponent implements OnInit {
     const value = this.form.value as reservation
     this.reservationService.insertReservation(this.activatedRoute.snapshot.params["restaurantId"], value)
       .then(result => {
+        swal(
+          'Good job!',
+          'You clicked the button!',
+          'success'
+        )
         console.log(result)
-        // this.activateToast()
       })
   }
 
