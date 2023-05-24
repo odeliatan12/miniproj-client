@@ -8,7 +8,7 @@ agm-info-window {
     border-radius: 5px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
     font-size: 16px;
-  }
+}
 .main{
     text-align: center;
 }
@@ -30,7 +30,6 @@ agm-info-window {
     width: 100%;
     background-color: white;
     color: #103560;
-    border: #103560 1px solid;
 }
 ul{
     width: 100%;
@@ -61,3 +60,44 @@ ul{
     transition: ease-in-out 0.2s;
     cursor: pointer;
 }
+.inputMeal{
+    font-size: 20px;
+    line-height: 36px;
+    padding: 0;
+    display: inline;
+    color: #101125;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 800;
+}
+
+.searchBtn{
+    font-weight: 500;
+    color: white;
+    background-color: #10024a;
+    font-family: 'Noto Sans', sans-serif;
+    margin-bottom: 10px;
+    border: none;
+}
+.searchIcon{
+    font-weight: 500;
+    color: white;
+}
+ map-info-window {
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+  }
+  
+map-info-window h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+map-info-window div {
+    margin-top: 5px;
+}
+  

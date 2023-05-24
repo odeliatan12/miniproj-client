@@ -1,5 +1,5 @@
 // import { AgmInfoWindow, AgmMap, AgmMarker, MapsAPILoader } from '@agm/core';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription, debounceTime, map, startWith } from 'rxjs';
@@ -7,6 +7,7 @@ import { distance, location, mealNames, mealRest } from 'src/app/models/model';
 import { AdminService } from 'src/app/services/admin.service';
 import { UserService } from 'src/app/services/user.service';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { DecimalPipe } from '@angular/common';
 
 
 @Component({
@@ -25,6 +26,15 @@ export class UserMealsearchComponent implements OnInit {
   selectedMarker!: location
   showMealName!: boolean 
   mapOptions!: google.maps.MapOptions;
+  markerOptions!: google.maps.MarkerOptions;
+  infoWindow!: google.maps.InfoWindow;
+  markerSelect!: location
+  
+  @ViewChild('mapElement', { static: true }) 
+  mapElement!: ElementRef;
+
+  @ViewChildren(MapInfoWindow) 
+  infoWindowsView!: QueryList<MapInfoWindow>;
 
   public showMap: boolean = false;
 
@@ -36,6 +46,7 @@ export class UserMealsearchComponent implements OnInit {
   latitude: any
   currentLocation: string | undefined;
   distance: distance[] = []
+  mealamount: { name: string, amount: number, restaurantId: number, restaurantName: string, distance: number}[] = []
 
   constructor(private userService: UserService, private fb: FormBuilder, private adminService: AdminService, private route: Router 
     ){ }
@@ -66,7 +77,7 @@ export class UserMealsearchComponent implements OnInit {
     return this.fb.group({
       meal: this.fb.control<string>(''),
       distance: this.fb.control<number>(0),
-      // price: this.fb.control<number>(0)
+      price: this.fb.control<number>(0)
     })
   }
 
@@ -74,28 +85,80 @@ export class UserMealsearchComponent implements OnInit {
     const value = this.form.value
     console.log(value.meal)
     console.log(value.distance)
-    this.getInformation(value.meal, value.distance)
+    console.log(value.price)
+    this.getInformation(value.meal, value.distance, value.price)
   }
 
-  getInformation(request: string, d: number){
+  getInformation(request: string, d: number, price: number){
     this.userService.getMealRestInfo(request)
       .subscribe(data => {
+        this.showMap = true;
         this.mealRest = data
         this.mealRest.forEach(m => {
+
           const distance = this.calculateDistance(this.latitude, this.longitude, m.latitude, m.longitude)
 
-          if(distance <= d){
+          if(distance <= d && m.amount <= price){
             const marker: location = {
               latitude: m.latitude,
               longitude: m.longitude,
-              restaurant_name: m.restaurant_name
+              restaurant_name: m.restaurant_name,
+              distance: distance
             };
+            const mealAmount = {
+              name: m.name,
+              amount: m.amount,
+              restaurantId: m.restaurant_id,
+              restaurantName: m.restaurant_name,
+              distance: Math.round(distance)
+            }
             this.markers.push(marker);
+            this.mealamount.push(mealAmount);
+            const infoWindow = new google.maps.InfoWindow();
+            this.markers.forEach(mark => {
+        
+              const markerObj = new google.maps.Marker({
+                position: { lat: mark.latitude, lng: mark.longitude },
+                map: this.mapElement.nativeElement,
+                animation: google.maps.Animation.DROP,
+              });
+
+              markerObj.addListener('click', () => {
+                const content = `<div><strong>${mark.restaurant_name}</strong></div>`;
+                infoWindow.setContent(content);
+                infoWindow.open(this.mapElement.nativeElement, markerObj);
+              });
+
+              markerObj.addListener('mouseover', () => {
+                markerObj.setIcon('path_to_hover_icon');
+              });
+
+              markerObj.addListener('mouseout', () => {
+                markerObj.setIcon('path_to_default_icon');
+              });
+
+              return markerObj
+            })
           }
         });
-        console.log(this.markers)
-        this.showMap = true;
       })
+  }
+
+  selectMarker(marker: location) {
+    this.markerSelect = marker;
+  }
+
+  openInfoWindow(marker: MapMarker, windowIndex: number) {
+    /// stores the current index in forEach
+    let curIdx = 0;
+    this.infoWindowsView.forEach((window: MapInfoWindow) => {
+      if (windowIndex === curIdx) {
+        window.open(marker);
+        curIdx++;
+      } else {
+        curIdx++;
+      }
+    });
   }
 
   redirectToRestaurant(idx: number){

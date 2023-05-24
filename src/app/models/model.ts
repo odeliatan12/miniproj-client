@@ -214,6 +214,7 @@ export interface location{
     longitude: number
     latitude: number
     restaurant_name: string
+    distance: number
 }
 
 export interface distance{

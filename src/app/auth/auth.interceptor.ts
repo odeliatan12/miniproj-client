@@ -20,7 +20,6 @@ export class AuthInterceptor implements HttpInterceptor{
         console.log(token);
         if (token !== null) {
             req = this.addToken(req, token);
-            console.log(req)
         }
 
         return next.handle(req).pipe(

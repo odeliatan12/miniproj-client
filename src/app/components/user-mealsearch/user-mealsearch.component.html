@@ -7,59 +7,64 @@
           <div class="h-100 p-2 bg-body-tertiary border rounded-3">
             <h3 class="border rounded-3">Find a meal</h3>
             <div class="dropdown">
+              <div class="mt-5">
+                <h4 class="inputMeal">Meal type</h4>
+                <select
+                  formControlName="meal"
+                  class="form-select mt-2 buttonWidth"
+                  aria-label="Default select example"
+                >
+                  <option>Select distance</option>
+                  <!-- Distance dynamic -->
+                  <option *ngFor="let m of meals" value="{{ m.name }}">
+                    {{ m.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mt-2">
+              <!-- Distance -->
+              <h4 class="inputMeal">Distance</h4>
               <select
-                formControlName="meal"
+                formControlName="distance"
                 class="form-select mt-2 buttonWidth"
                 aria-label="Default select example"
               >
                 <option>Select distance</option>
                 <!-- Distance dynamic -->
-                <option *ngFor="let m of meals" value="{{ m.name }}">
-                  {{ m.name }}
+                <option *ngFor="let d of distance" value="{{ d.distance }}">
+                  less than {{ d.distance * 0.001 }} km
                 </option>
               </select>
             </div>
-            <!-- <input
-            type="text"
-            class="form-control"
-            placeholder="Find a meal dish"
-            [(ngModel)]="mealName"
-            (keydown)="showMealName = true"
-          />
-          <div *ngIf="showMealName">
-            <div
-              *ngFor="let ml of mealNames | filterpipe : mealName"
-            >
-              <button class="btn" (click)="getInformation(ml)">
-                {{ ml }}
-              </button>
-            </div>
-          </div> -->
 
-            <!-- Distance -->
-            <select
-              formControlName="distance"
-              class="form-select mt-2 buttonWidth"
-              aria-label="Default select example"
-            >
-              <option>Select distance</option>
-              <!-- Distance dynamic -->
-              <option *ngFor="let d of distance" value="{{ d.distance }}">
-                less than {{ d.distance * 0.001 }} km
-              </option>
-            </select>
+            <div class="mt-2">
+              <h4 class="inputMeal">Price</h4>
+              <select
+                formControlName="price"
+                class="form-select mt-2 buttonWidth"
+                aria-label="Default select example"
+              >
+                <option>Select distance</option>
+                <!-- Distance dynamic -->
+                <option value="5">$</option>
+                <option value="15">$$</option>
+                <option value="30">$$$</option>
+              </select>
+            </div>
 
             <button
               type="button"
-              class="btn btn-secondary mt-2"
               (click)="findMeal()"
+              class="w-100 btn btn-lg btn-primary searchBtn mt-5 mb-4"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"
                 fill="currentColor"
-                class="bi bi-search"
+                class="bi bi-search searchIcon"
                 viewBox="0 0 16 16"
               >
                 <path
@@ -70,62 +75,56 @@
           </div>
         </form>
       </div>
-
-      <div class="mb-2 filter">
-        <div class="h-100 p-2 bg-body-tertiary border rounded-3">
-          <h3 class="border rounded-3">Filter</h3>
-          <h4>Price</h4>
-          <div class="form-check checkbox">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value="10"
-              id="flexCheckDefault"
-            />
-            <label class="form-check-label" for="flexCheckDefault"> $ </label>
-          </div>
-          <div class="form-check checkbox">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value="20"
-              id="flexCheckDefault"
-            />
-            <label class="form-check-label" for="flexCheckDefault"> $$ </label>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="col-md-12">
       <div
-        *ngFor="let m of mealRest"
-        class="h-100 p-2 bg-body-tertiary border rounded-3"
+        *ngFor="let m of mealamount"
+        class="p-2 bg-body-tertiary border rounded-3 mt-2"
       >
         <h4 class="mealName">
           {{ m.name }} - ${{ m.amount }}
+          <span>{{ m.distance }}m away from where you are</span>
           <a
             class="border rounded-3"
-            (click)="redirectToRestaurant(m.restaurant_id)"
-            >{{ m.restaurant_name }}</a
+            (click)="redirectToRestaurant(m.restaurantId)"
+            >{{ m.restaurantName }}</a
           >
         </h4>
+      </div>
+      <div
+        class="col-md-11 mt-5"
+        *ngIf="showMap"
+        style="width: 100%; height: 500px"
+        
+      >
+        <google-map [options]="mapOptions" width="100%" height="100%" #mapElement>
+          <map-marker
+            [position]="{ lat: this.latitude, lng: this.longitude }"
+          ></map-marker>
+          <map-marker
+            #marker="mapMarker"
+            *ngFor="let place of markers; let i = index"
+            [position]="{ lat: place.latitude, lng: place.longitude }"
+            [label]="place.restaurant_name"
+            (mapClick)="openInfoWindow(marker, i)"
+            
+          >
+            
+          </map-marker>
+        </google-map>
       </div>
     </div>
   </div>
 
-  <!-- show map when clicked -->
   <div class="col-md-1"></div>
-  <div class="col-md-11" *ngIf="showMap">
-    <google-map [options]="mapOptions">
-      <map-marker
-        [position]="{ lat: this.latitude, lng: this.longitude }"
-      ></map-marker>
-      <map-marker
-        *ngFor="let marker of markers"
-        [position]="{ lat: marker.latitude, lng: marker.longitude }"
-      >
-      </map-marker>
-    </google-map>
-  </div>
 </div>
+
+<!-- <map-info-window
+              *ngIf="selectedMarker"
+              [position]="{ lat: place.latitude, lng: place.longitude }"
+            >
+              <div>
+                <h3>{{ place.restaurant_name }}</h3>
+              </div>
+            </map-info-window> -->
