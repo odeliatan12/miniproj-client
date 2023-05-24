@@ -282,3 +282,7 @@ export class GoogleCalendar{
     }
 
 }
+
+export interface cuisineType{
+    type: string
+}

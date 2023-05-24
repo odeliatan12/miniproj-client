@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, first, firstValueFrom } from "rxjs";
-import { Restaurant, RestaurantDetails, RestaurantPost, capacity, cuisine, image, mealNames, meals } from "../models/model";
+import { Restaurant, RestaurantDetails, RestaurantPost, capacity, cuisine, cuisineType, image, mealNames, meals } from "../models/model";
 import { UserAuthService } from "./user-auth.service";
 
 @Injectable()
@@ -62,8 +62,23 @@ export class AdminService{
 
     public getCuisinebyId(id: number): Promise<string>{
         const params = new HttpParams().set("cuisineId", id)
+        const headers = new HttpHeaders()
+            .set('Content-Type', 'application/json; charset=utf-8')
+            .set('authorization', `Bearer ${this.userAuth.getToken()}`)
+            .set( 'No-Auth', 'True' );
         return firstValueFrom(
-            this.http.get<string>("/admin/cuisineType", { params: params })
+            this.http.get<string>("/admin/cuisineType", { params: params, headers: headers })
+        )
+    }
+
+    public getCuisineString(id: number): Promise<cuisineType>{
+        const params = new HttpParams().set("cuisineId", id)
+        const headers = new HttpHeaders()
+            .set('Content-Type', 'application/json; charset=utf-8')
+            .set('authorization', `Bearer ${this.userAuth.getToken()}`)
+            .set( 'No-Auth', 'True' );
+        return firstValueFrom(
+            this.http.get<cuisineType>("/admin/cuisineString", { params: params, headers: headers })
         )
     }
 

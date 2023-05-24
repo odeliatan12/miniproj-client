@@ -31,7 +31,7 @@ export class UserInsertreviewComponent implements OnInit {
   createForm(): FormGroup{
     return this.fb.group({
       ratings: this.fb.control<number>(1, [ Validators.min(1), Validators.max(5) ]),
-      description: this.fb.control<string>('', [ Validators.minLength(10), Validators.maxLength(100) ]),
+      description: this.fb.control<string>('', [ Validators.minLength(10), Validators.maxLength(200) ]),
       image: this.fb.control('')
     })
   }
@@ -48,5 +48,7 @@ export class UserInsertreviewComponent implements OnInit {
       this.route.navigate(['user/userReview/', restaurantId])
     })
   }
+
+   
 
 }

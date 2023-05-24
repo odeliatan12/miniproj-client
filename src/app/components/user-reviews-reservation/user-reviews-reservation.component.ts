@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { reservation, timing } from 'src/app/models/model';
@@ -13,6 +13,9 @@ export class UserReviewsReservationComponent implements OnInit {
 
   form!: FormGroup
   timing: timing[] = []
+  
+  @ViewChild('liveToast', { static: false }) 
+  toastElement!: ElementRef;
 
   constructor(private reservationService: ReservationService, private activatedRoute: ActivatedRoute){ }
 
@@ -25,6 +28,7 @@ export class UserReviewsReservationComponent implements OnInit {
     this.reservationService.insertReservation(this.activatedRoute.snapshot.params["restaurantId"], value)
       .then(result => {
         console.log(result)
+        // this.activateToast()
       })
   }
 
@@ -38,4 +42,8 @@ export class UserReviewsReservationComponent implements OnInit {
       })
   }
 
+  // activateToast() {
+  //   const toastBootstrap = new bootstrap.Toast(this.toastElement.nativeElement);
+  //   toastBootstrap.show();
+  // } 
 }

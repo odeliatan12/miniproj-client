@@ -45,6 +45,14 @@ export class UserService{
         )
     }
 
+    public getUserName(userId: any): Promise<string>{
+        return firstValueFrom(
+            this.http.get<User>("/user/" + userId)
+        ).then(result => {
+            return result.userName
+        })
+    }
+
     // Matching of role 
     public roleMatch(allowedRoles: string): boolean{
         let isMatch = false;

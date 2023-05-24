@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ResReviews, reservation, timing } from 'src/app/models/model';
+import { ResReviews, cuisine, cuisineType, reservation, timing } from 'src/app/models/model';
 import { AdminService } from 'src/app/services/admin.service';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { UserService } from 'src/app/services/user.service';
@@ -18,8 +18,9 @@ export class UserReviewsComponent implements OnInit {
   image!: string
   number!: number
   timing: timing[] = []
+  cuisine!: cuisineType
   
-  constructor(private activatedRoute: ActivatedRoute, private route: Router, private userSvc: UserService, private adminSvc: AdminService, private fb: FormBuilder, private reservationService: ReservationService){ }
+  constructor(private activatedRoute: ActivatedRoute, private route: Router, public userSvc: UserService, private adminSvc: AdminService, private fb: FormBuilder, private reservationService: ReservationService){ }
 
   ngOnInit(): void {
 
@@ -40,7 +41,11 @@ export class UserReviewsComponent implements OnInit {
         this.resReviews.restaurant.saturdayClosing = (result.restaurant.saturdayClosing).slice(0,5),
         this.resReviews.restaurant.sundayOpening = (result.restaurant.sundayOpening).slice(0,5),
         this.resReviews.restaurant.sundayClosing = (result.restaurant.sundayClosing).slice(0,5)
-
+        for(const r of this.resReviews.reviews){
+          r.timestamp = this.formatDate(r.timestamp.slice(0,10))
+        }
+      }).then(result => {
+        this.getCuisine()
       }).catch(error => {
         this.route.navigate(["/user/home"])
       })
@@ -77,6 +82,15 @@ export class UserReviewsComponent implements OnInit {
     return this.userSvc.getRestaurantbyId(restaurantId)
   }
 
+  getCuisine(){
+    const cuisineId = this.resReviews.restaurant.cuisine_id
+    this.adminSvc.getCuisineString(cuisineId)
+      .then(result => {
+        console.log(result)
+        this.cuisine = result
+      })
+  }
+
   insertReview(){
     const restaurantId = this.activatedRoute.snapshot.params["restaurantId"]
     this.route.navigate(["/user/insertReview", restaurantId])
@@ -111,6 +125,23 @@ export class UserReviewsComponent implements OnInit {
 
       return null;
     };
+  }
+
+  formatDate(dateString: string){
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const monthIndex = date.getMonth();
+    const year = date.getFullYear();
+    const monthNames = [
+      'January', 'February', 'March', 'April',
+      'May', 'June', 'July', 'August',
+      'September', 'October', 'November', 'December'
+    ];
+    return `${day} ${monthNames[monthIndex]} ${year}`
+  }
+
+  range(max: number): number[] {
+    return Array.from({ length: max }, (_, index) => index);
   }
 
 }
