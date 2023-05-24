@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { reservationDetails } from 'src/app/models/model';
 import { ReservationService } from 'src/app/services/reservation.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-user-profile-dropdowns',
   templateUrl: './user-profile-dropdowns.component.html',
@@ -28,7 +28,16 @@ export class UserProfileDropdownsComponent implements OnInit {
         console.log(result)
       }).catch(result => {
         this.route.navigate(['user/profile'])
-        window.location.reload()
+        Swal.fire({
+          title: 'Reservation has been deleted',
+          icon: 'success',
+          timer: 3000
+        }
+          
+        )
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000); 
       })
   }
 

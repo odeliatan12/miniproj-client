@@ -1,9 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { reservation, timing } from 'src/app/models/model';
 import { ReservationService } from 'src/app/services/reservation.service';
 import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-reviews-reservation',
@@ -18,7 +19,7 @@ export class UserReviewsReservationComponent implements OnInit {
   @ViewChild('liveToast', { static: false }) 
   toastElement!: ElementRef;
 
-  constructor(private reservationService: ReservationService, private activatedRoute: ActivatedRoute){ }
+  constructor(private reservationService: ReservationService, private activatedRoute: ActivatedRoute, private route: Router){ }
 
   ngOnInit(): void {
       
@@ -28,12 +29,10 @@ export class UserReviewsReservationComponent implements OnInit {
     const value = this.form.value as reservation
     this.reservationService.insertReservation(this.activatedRoute.snapshot.params["restaurantId"], value)
       .then(result => {
-        swal(
-          'Good job!',
-          'You clicked the button!',
-          'success'
-        )
         console.log(result)
+      }).catch(result => {
+        console.log(result)
+        window.location.reload()
       })
   }
 
@@ -47,8 +46,17 @@ export class UserReviewsReservationComponent implements OnInit {
       })
   }
 
-  // activateToast() {
-  //   const toastBootstrap = new bootstrap.Toast(this.toastElement.nativeElement);
-  //   toastBootstrap.show();
-  // } 
+  Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  
+  
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { postReviews } from 'src/app/models/model';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-insertreview',
@@ -39,16 +40,17 @@ export class UserInsertreviewComponent implements OnInit {
   submitReview(){
     const value = this.form.value as postReviews; 
     const restaurantId = this.activatedRoute.snapshot.params["restaurantId"]
-    
     this.userSvc.postReview(value, restaurantId)
     .then(result => {
       console.log(result)
-    }).catch(error => {
-      console.log(error)
+    }).catch(result => {
+      Swal.fire(
+        'Review has been added',
+        'success'
+      )
+      console.log(result)
       this.route.navigate(['user/userReview/', restaurantId])
     })
   }
-
-   
 
 }

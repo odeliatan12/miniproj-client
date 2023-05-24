@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UpdateUser, User } from 'src/app/models/model';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-profile',
@@ -41,7 +42,22 @@ export class UserProfileComponent implements OnInit {
   updateChanges(){
     const value = this.form.value as UpdateUser
     const id = this.userAuthSvc.getUserId()
-    this.userService.updateUser(value, id);
+    this.userService.updateUser(value, id)
+    .then(result => {
+      console.log(result)
+    }).catch(result => {
+      this.route.navigate(['user/profile'])
+      Swal.fire({
+        title: 'Reservation has been deleted',
+        icon: 'success',
+        timer: 3000
+      }
+        
+      )
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000); 
+    })
     this.route.navigate(['user/profile'])
   }
 
