@@ -7,6 +7,8 @@ import { UserAuthService } from "./user-auth.service";
 @Injectable()
 export class UserService{
 
+    RAILWAY_URL: string = "https://food-review-production.up.railway.app"
+
     constructor(private http: HttpClient, private userAuthService: UserAuthService){ }
 
     public register(registerData: Login): Promise<string>{
@@ -14,7 +16,7 @@ export class UserService{
             .set('Content-Type', 'application/json; charset=utf-8')
             .set( 'No-Auth', 'True' );
         return firstValueFrom(
-            this.http.post<string>("/api/auth/register", JSON.stringify(registerData), { headers: headers })
+            this.http.post<string>(`${this.RAILWAY_URL}/api/auth/register`, JSON.stringify(registerData), { headers: headers })
         )
     }
 
@@ -25,7 +27,7 @@ export class UserService{
             .set('Content-Type', 'application/json; charset=utf-8')
             .set( 'No-Auth', 'True' );
         return firstValueFrom(
-            this.http.post<string>("/api/auth/login", JSON.stringify(loginData), {headers: headers})
+            this.http.post<string>(`${this.RAILWAY_URL}/api/auth/login`, JSON.stringify(loginData), {headers: headers})
         )
     }
 
