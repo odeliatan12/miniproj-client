@@ -178,6 +178,14 @@ export class voucher{
     }
 }
 
+export interface vouchers{
+    id: string
+    dealId: string
+    amount: number
+    restaurantId: number
+    userId: number
+}
+
 export interface cuisine{
     id: number
     type: string

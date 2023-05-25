@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { allDeals, categories, deals } from "../models/model";
+import { allDeals, categories, deals, vouchers } from "../models/model";
 import { firstValueFrom } from "rxjs";
+import { UserAuthService } from "./user-auth.service";
 
 @Injectable()
 export class DealService{
 
-    constructor(private http: HttpClient){ }
+    constructor(private http: HttpClient, private userAuth: UserAuthService){ }
 
     public getAllCategories(): Promise<categories[]>{
         return firstValueFrom(
@@ -41,6 +42,23 @@ export class DealService{
             .set( 'No-Auth', 'True' );
         return firstValueFrom(
             this.http.get<allDeals[]>("/getDealbyCategory", { params: params, headers: headers})
+        )
+    }
+
+    public getVouchersbyId(): Promise<vouchers[]>{
+        const userId = this.userAuth.getUserId()
+        const params = new HttpParams()
+            .set("id", `${userId}`)
+        return firstValueFrom(
+            this.http.get<vouchers[]>("/deals/getDealbyId", { params })
+        )   
+    }
+
+    public getDealInfobyId(idx: string): Promise<allDeals>{
+        const params = new HttpParams()
+            .set("id", idx)
+        return firstValueFrom(
+            this.http.get<allDeals>("/deals/getDealbydealId", { params })
         )
     }
 
