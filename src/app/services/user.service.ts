@@ -29,7 +29,7 @@ export class UserService{
             .set('Content-Type', 'application/json; charset=utf-8')
             .set( 'No-Auth', 'True' )
         return firstValueFrom(
-            this.http.post<string>(`${this.RAILWAY_URL}/api/auth/login`, JSON.stringify(loginData), {headers: headers})
+            this.http.post<string>(`${this.RAILWAY_URL}/api/auth/login`, loginData, {headers: headers})
         )
     }
 
