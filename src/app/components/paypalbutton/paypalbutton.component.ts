@@ -1,9 +1,10 @@
 import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { order } from 'src/app/models/model';
+import { order, voucher } from 'src/app/models/model';
 import { payPalService } from 'src/app/services/paypal.service';
 import { render } from 'creditcardpayments/creditCardPayments';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-paypalbutton',
@@ -23,7 +24,20 @@ export class PaypalbuttonComponent implements AfterContentInit {
           currency: "SGD",
           value: this.activatedRoute.snapshot.params["amount"],
           onApprove: (details) => {
-            alert("payment success")
+            console.log(details)
+            const amount = this.activatedRoute.snapshot.params["amount"]
+            console.log(amount)
+            const dealId = this.activatedRoute.snapshot.params["dealId"]
+            console.log(dealId)
+            const restaurantId = this.activatedRoute.snapshot.params["restaurantId"]
+            const vouchers = new voucher(dealId, amount)
+            this.payPalSvc.insertVoucher(vouchers, restaurantId)
+            Swal.fire({
+              title: 'Payment success',
+              icon: 'success',
+              timer: 3000
+            })
+            this.route.navigate(['user/home/'])
           }
         }
       );

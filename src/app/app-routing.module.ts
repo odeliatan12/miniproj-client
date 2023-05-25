@@ -44,7 +44,7 @@ const routes: Routes = [
         { path: 'insertReview/:restaurantId', component: UserInsertreviewComponent },
         { path: 'allDeals', component: AllDealsComponent },
         { path: 'deals/:dealId', component: DealPagedetailsComponent },
-        { path: 'payNow/:dealId/:amount', component: PaypalbuttonComponent },
+        { path: 'payNow/:dealId/:amount/:restaurantId', component: PaypalbuttonComponent },
         { path: 'search', component: UserMealsearchComponent },
         { path: 'profile', component: UserProfileComponent},
         { path: '', redirectTo: 'user/home', pathMatch: 'full' }

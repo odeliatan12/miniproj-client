@@ -168,6 +168,16 @@ export interface order{
     description: string
 }
 
+export class voucher{
+    dealId: string
+    newAmount: number
+
+    constructor(dealId: string, newAmount: number){
+        this.dealId = dealId;
+        this.newAmount = newAmount;
+    }
+}
+
 export interface cuisine{
     id: number
     type: string

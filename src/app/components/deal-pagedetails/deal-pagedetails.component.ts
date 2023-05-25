@@ -43,9 +43,8 @@ export class DealPagedetailsComponent implements OnInit {
     return this.userService.getRestaurantbyId(idx)
   }
 
-  payNow(dealId: string, amount: number){
-    console.log(amount)
-    this.route.navigate(["user/payNow" , dealId, amount])
+  payNow(dealId: string, amount: number, restaurantId: number){
+    this.route.navigate(["user/payNow" , dealId, amount, restaurantId])
   }
 
 }

@@ -23,6 +23,14 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
     this.form = this.createLoginForm()
+    const role = this.userAuthService.getRoles()
+    if(role === "ADMIN" && this.userAuthService.getToken() != null){
+      this.route.navigate(["/admin/restaurantList"])
+    } else if( role === "USER" && this.userAuthService.getToken() != null ) {
+      this.route.navigate(["/user/home"])
+    } else {
+      this.route.navigate(["/login"])
+    }
       
   }
 

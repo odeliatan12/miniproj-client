@@ -60,6 +60,12 @@ ul{
     transition: ease-in-out 0.2s;
     cursor: pointer;
 }
+.distance{
+    color: #103560;
+    font-size: 10px;
+    font-weight: 400;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 .inputMeal{
     font-size: 20px;
     line-height: 36px;

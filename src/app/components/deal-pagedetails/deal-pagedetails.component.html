@@ -98,7 +98,7 @@
             <h5 class="card-title dealName">{{ d.name }}</h5>
             <p class="card-text dealAmount">${{ d.newAmount }} cash voucher</p>
             <button
-              (click)="payNow(d.id, d.newAmount)"
+              (click)="payNow(d.id, d.newAmount, d.restaurantId)"
               type="button"
               class="btn dealBtn"
             >

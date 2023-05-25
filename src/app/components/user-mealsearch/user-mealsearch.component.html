@@ -84,7 +84,7 @@
       >
         <h4 class="mealName">
           {{ m.name }} - ${{ m.amount }}
-          <span>{{ m.distance }}m away from where you are</span>
+          <span class="distance">{{ m.distance * 0.001 }}km away from where you are</span>
           <a
             class="border rounded-3"
             (click)="redirectToRestaurant(m.restaurantId)"
