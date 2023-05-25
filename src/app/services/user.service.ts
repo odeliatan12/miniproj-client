@@ -43,19 +43,19 @@ export class UserService{
             .set('Content-Type', 'application/json; charset=utf-8')
             .set( 'No-Auth', 'True' );
         return firstValueFrom(
-            this.http.post<googleLogin>("/api/auth/googleLogin", credentials, {headers: headers})
+            this.http.post<googleLogin>(`${this.RAILWAY_URL}/api/auth/googleLogin`, credentials, {headers: headers})
         )
     }
 
     public getUserInfo(userId: any): Promise<User>{
         return firstValueFrom(
-            this.http.get<User>("/user/" + userId)
+            this.http.get<User>(`${this.RAILWAY_URL}/user/` + userId)
         )
     }
 
     public getUserName(userId: any): Promise<string>{
         return firstValueFrom(
-            this.http.get<User>("/user/" + userId)
+            this.http.get<User>(`${this.RAILWAY_URL}/user/` + userId)
         ).then(result => {
             return result.userName
         })
@@ -76,20 +76,20 @@ export class UserService{
     // Get all Restaurants
     public getAllRestaurants(): Promise<RestaurantDetails[]>{
         return firstValueFrom(
-            this.http.get<RestaurantDetails[]>("/allRestaurants")
+            this.http.get<RestaurantDetails[]>(`${this.RAILWAY_URL}/allRestaurants`)
         )
     }
 
     // GetRestaurantbyCuisine
     public getRestaurantbyCuisine(cuisineId: number): Promise<RestaurantDetails[]>{
         return firstValueFrom(
-            this.http.get<RestaurantDetails[]>("/restaurant/" + cuisineId)
+            this.http.get<RestaurantDetails[]>(`${this.RAILWAY_URL}/restaurant/` + cuisineId)
         )
     }
 
     public getRestaurantbyId(restaurantId: number): Promise<ResReviews>{
         return firstValueFrom(
-            this.http.get<ResReviews>("/restaurant/" + restaurantId)
+            this.http.get<ResReviews>(`${this.RAILWAY_URL}/restaurant/` + restaurantId)
         )
     }
 
@@ -98,36 +98,36 @@ export class UserService{
         const params = new HttpParams()
             .set("restaurantId", restaurantId)
         return firstValueFrom(
-            this.http.post<string>("/user/insertReview/" + id, reviews, { params: params })
+            this.http.post<string>(`${this.RAILWAY_URL}/user/insertReview/` + id, reviews, { params: params })
         )
     }
 
     public getReviewCount(restaurantId: number): Promise<number>{
         return firstValueFrom(
-            this.http.get<number>("/user/" + restaurantId + "/getReviewCount")
+            this.http.get<number>(`${this.RAILWAY_URL}/user/` + restaurantId + "/getReviewCount")
         )
     }
 
     public getMealRestInfo(request: string): Observable<mealRest[]>{
         const params = new HttpParams().set("meals", request)
-        return this.http.get<mealRest[]>("meal/search", { params: params})
+        return this.http.get<mealRest[]>(`${this.RAILWAY_URL}meal/search`, { params: params})
     }
 
     public getDistance(): Promise<distance[]>{
         return firstValueFrom(
-            this.http.get<distance[]>("meal/getDistance")
+            this.http.get<distance[]>(`${this.RAILWAY_URL}meal/getDistance`)
         )
     }
 
     public updateUser(form: UpdateUser, id: string | null): Promise<string>{
         return firstValueFrom(
-            this.http.put<string>("/user/updateUser/" + id, form)
+            this.http.put<string>(`${this.RAILWAY_URL}/user/updateUser/` + id, form)
         )
     }
 
     public getImage(id: number): Promise<any>{
         return firstValueFrom(
-            this.http.get<image>("/image/" + id)
+            this.http.get<image>(`${this.RAILWAY_URL}/image/` + id)
         ).then(result => {
             console.log(result.picture)
             const image = new Image()

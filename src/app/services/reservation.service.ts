@@ -7,11 +7,13 @@ import { UserAuthService } from "./user-auth.service";
 @Injectable()
 export class ReservationService{
 
+    RAILWAY_URL: string = "https://food-review-production.up.railway.app/"
+
     constructor(private http: HttpClient, private userAuthService: UserAuthService){ }
 
     public getTimings(id: number): Promise<timing[]>{
         return firstValueFrom(
-            this.http.get<timing[]>("/reservations/" + id)
+            this.http.get<timing[]>(`${this.RAILWAY_URL}/reservations/` + id)
         )
     }
 
@@ -19,7 +21,7 @@ export class ReservationService{
         const params = new HttpParams()
             .set("date", date)
         return firstValueFrom(
-            this.http.get<timing[]>("/getAvailabletimings/" + restaurantId, { params: params })
+            this.http.get<timing[]>(`${this.RAILWAY_URL}/getAvailabletimings/` + restaurantId, { params: params })
         )
     }
 
@@ -29,20 +31,20 @@ export class ReservationService{
             .set("restaurantId", restaurantId)
             .set("userId", `${userId}`);
         return firstValueFrom(
-            this.http.post<string>("/postReservation", reservation, { params: params })
+            this.http.post<string>(`${this.RAILWAY_URL}/postReservation`, reservation, { params: params })
         )
     }
 
     public getReservationbyId(): Promise<reservationDetails[]>{
         const userId = this.userAuthService.getUserId()
         return firstValueFrom(
-            this.http.get<reservationDetails[]>("/getReservation/" + userId)
+            this.http.get<reservationDetails[]>(`${this.RAILWAY_URL}/getReservation/` + userId)
         )
     }
 
     public getReservation(idx: number): Promise<reservationDetails>{
         return firstValueFrom(
-            this.http.get<reservationDetails>("/getReservationbyId/" + idx)
+            this.http.get<reservationDetails>(`${this.RAILWAY_URL}/getReservationbyId/` + idx)
         )
     }
 
@@ -51,7 +53,7 @@ export class ReservationService{
         const params = new HttpParams()
             .set("userId", `${userId}`);
         return firstValueFrom(
-            this.http.post<any>("/createGoogleEvent", event, { params: params })
+            this.http.post<any>(`${this.RAILWAY_URL}/createGoogleEvent`, event, { params: params })
         )
     }
 
