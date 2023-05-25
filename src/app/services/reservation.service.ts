@@ -7,7 +7,7 @@ import { UserAuthService } from "./user-auth.service";
 @Injectable()
 export class ReservationService{
 
-    RAILWAY_URL: string = "https://food-review-production.up.railway.app/"
+    RAILWAY_URL: string = "https://food-review-production.up.railway.app"
 
     constructor(private http: HttpClient, private userAuthService: UserAuthService){ }
 
