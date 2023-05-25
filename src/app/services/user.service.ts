@@ -15,6 +15,8 @@ export class UserService{
         const headers = new HttpHeaders()
             .set('Content-Type', 'application/json; charset=utf-8')
             .set( 'No-Auth', 'True' )
+            .set('Access-Control-Allow-Origin', `${this.RAILWAY_URL}`)
+            .set('Access-Control-Allow-Credentials', 'true')
             .set('authorization', `Bearer ${this.userAuthService.getToken()}`)
         return firstValueFrom(
             this.http.post<string>(`${this.RAILWAY_URL}/api/auth/register`, JSON.stringify(registerData), { headers: headers })
@@ -27,6 +29,8 @@ export class UserService{
         const headers = new HttpHeaders()
             .set('Content-Type', 'application/json; charset=utf-8')
             .set( 'No-Auth', 'True' )
+            .set('Access-Control-Allow-Origin', `${this.RAILWAY_URL}`)
+            .set('Access-Control-Allow-Credentials', 'true')
             .set('authorization', `Bearer ${this.userAuthService.getToken()}`)
         return firstValueFrom(
             this.http.post<string>(`${this.RAILWAY_URL}/api/auth/login`, JSON.stringify(loginData), {headers: headers})
