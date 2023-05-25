@@ -9,25 +9,25 @@ export class UserService{
 
     RAILWAY_URL: string = "https://food-review-production.up.railway.app"
 
+    // https://food-review-production.up.railway.app/api/auth/register
+    // ${this.RAILWAY_URL}/api/auth/register
+
     constructor(private http: HttpClient, private userAuthService: UserAuthService){ }
 
     public register(registerData: Login): Promise<string>{
         const headers = new HttpHeaders()
             .set('Content-Type', 'application/json; charset=utf-8')
             .set( 'No-Auth', 'True' )
-            // .set('authorization', `Bearer ${this.userAuthService.getToken()}`)
         return firstValueFrom(
-            this.http.post<string>(`${this.RAILWAY_URL}/api/auth/register`, JSON.stringify(registerData), { headers: headers })
+            this.http.post<string>("https://food-review-production.up.railway.app/api/auth/register", registerData, { headers: headers })
         )
     }
 
     // obtain both the jwttoken and the role
     public login(loginData: Login): Promise<string> {
-        // const headers = new HttpHeaders({ 'Authorization': 'True' });
         const headers = new HttpHeaders()
             .set('Content-Type', 'application/json; charset=utf-8')
             .set( 'No-Auth', 'True' )
-            // .set('authorization', `Bearer ${this.userAuthService.getToken()}`)
         return firstValueFrom(
             this.http.post<string>(`${this.RAILWAY_URL}/api/auth/login`, JSON.stringify(loginData), {headers: headers})
         )
