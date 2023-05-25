@@ -58,7 +58,7 @@ export class AdminService{
 
     public getCuisine(): Promise<cuisine[]>{
         return firstValueFrom(
-            this.http.get<cuisine[]>(`${this.RAILWAY_URL}admin/cuisine`)
+            this.http.get<cuisine[]>(`${this.RAILWAY_URL}/admin/cuisine`)
         )
     }
 
