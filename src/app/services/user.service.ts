@@ -14,7 +14,8 @@ export class UserService{
     public register(registerData: Login): Promise<string>{
         const headers = new HttpHeaders()
             .set('Content-Type', 'application/json; charset=utf-8')
-            .set( 'No-Auth', 'True' );
+            .set( 'No-Auth', 'True' )
+            .set('authorization', `Bearer ${this.userAuthService.getToken()}`)
         return firstValueFrom(
             this.http.post<string>(`${this.RAILWAY_URL}/api/auth/register`, JSON.stringify(registerData), { headers: headers })
         )
@@ -25,7 +26,8 @@ export class UserService{
         // const headers = new HttpHeaders({ 'Authorization': 'True' });
         const headers = new HttpHeaders()
             .set('Content-Type', 'application/json; charset=utf-8')
-            .set( 'No-Auth', 'True' );
+            .set( 'No-Auth', 'True' )
+            .set('authorization', `Bearer ${this.userAuthService.getToken()}`)
         return firstValueFrom(
             this.http.post<string>(`${this.RAILWAY_URL}/api/auth/login`, JSON.stringify(loginData), {headers: headers})
         )
