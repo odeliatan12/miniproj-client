@@ -7,30 +7,32 @@ import { UserAuthService } from "./user-auth.service";
 @Injectable()
 export class DealService{
 
+    RAILWAY_URL: string = "https://food-review-production.up.railway.app"
+
     constructor(private http: HttpClient, private userAuth: UserAuthService){ }
 
     public getAllCategories(): Promise<categories[]>{
         return firstValueFrom(
-            this.http.get<categories[]>("/deals/getCategories")
+            this.http.get<categories[]>(`${this.RAILWAY_URL}/deals/getCategories`)
         )
     }
 
     public insertNewDeal(deals: deals, restaurantId: number): Promise<string>{
         return firstValueFrom(
-            this.http.post<string>("/deals/newDeals/" + restaurantId, deals)
+            this.http.post<string>(`${this.RAILWAY_URL}/deals/newDeals/` + restaurantId, deals)
         )
     }
 
     public getAllDeals(): Promise<allDeals[]>{
         return firstValueFrom(
-            this.http.get<allDeals[]>("/deals/getAllDeals")
+            this.http.get<allDeals[]>(`${this.RAILWAY_URL}/deals/getAllDeals`)
         )
     }
 
     public getDeal(idx: string): Promise<allDeals[]>{
         const params = new HttpParams().set("id", idx)
         return firstValueFrom(
-            this.http.get<allDeals[]>("/deals/getDeal", { params: params })
+            this.http.get<allDeals[]>(`${this.RAILWAY_URL}/deals/getDeal`, { params: params })
         )
     }
 
@@ -41,7 +43,7 @@ export class DealService{
             .set('Content-Type', 'application/json; charset=utf-8')
             .set( 'No-Auth', 'True' );
         return firstValueFrom(
-            this.http.get<allDeals[]>("/getDealbyCategory", { params: params, headers: headers})
+            this.http.get<allDeals[]>(`${this.RAILWAY_URL}/getDealbyCategory`, { params: params, headers: headers})
         )
     }
 
@@ -50,7 +52,7 @@ export class DealService{
         const params = new HttpParams()
             .set("id", `${userId}`)
         return firstValueFrom(
-            this.http.get<vouchers[]>("/deals/getDealbyId", { params })
+            this.http.get<vouchers[]>(`${this.RAILWAY_URL}/deals/getDealbyId`, { params })
         )   
     }
 
@@ -58,7 +60,7 @@ export class DealService{
         const params = new HttpParams()
             .set("id", idx)
         return firstValueFrom(
-            this.http.get<allDeals>("/deals/getDealbydealId", { params })
+            this.http.get<allDeals>(`${this.RAILWAY_URL}/deals/getDealbydealId`, { params })
         )
     }
 

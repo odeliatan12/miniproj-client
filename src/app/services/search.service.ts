@@ -5,6 +5,8 @@ import { Observable, debounceTime, distinctUntilChanged, of, switchMap } from "r
 @Injectable()
 export class SearchService{
 
+    RAILWAY_URL: string = "https://food-review-production.up.railway.app"
+
     constructor(private http: HttpClient){ }
 
     search(terms: Observable<string>): any{
@@ -22,13 +24,14 @@ export class SearchService{
         )
     }
 
+
     searchEntries(term: string): Observable<object[]>{
 
         console.log(term)
         if (term === '') {
             return of([]);
         };
-        return this.http.get<object[]>("/restaurantName/" + term);
+        return this.http.get<object[]>(`${this.RAILWAY_URL}/restaurantName/` + term);
     }
 
 }

@@ -7,11 +7,13 @@ import { UserAuthService } from "./user-auth.service";
 @Injectable()
 export class payPalService{
 
+    RAILWAY_URL: string = "https://food-review-production.up.railway.app"
+
     constructor(private http: HttpClient, private userAuth: UserAuthService){ }
 
     public payNow(order: order): Promise<string>{
         return firstValueFrom(
-            this.http.post<string>("/paypal/pay", order)
+            this.http.post<string>(`${this.RAILWAY_URL}/paypal/pay`, order)
         )
     }
 
@@ -25,7 +27,7 @@ export class payPalService{
             .set( 'No-Auth', 'True' );
 
         return firstValueFrom(
-            this.http.post<string>("/deals/vouchers", voucher,{ params: params, headers: headers })
+            this.http.post<string>(`${this.RAILWAY_URL}/deals/vouchers`, voucher,{ params: params, headers: headers })
         )
     }
 }

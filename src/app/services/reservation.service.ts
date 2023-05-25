@@ -59,7 +59,7 @@ export class ReservationService{
 
     public deleteEvent(idx: number): Promise<string>{
         return firstValueFrom(
-            this.http.delete<string>("/deleteReservation/" + idx)
+            this.http.delete<string>(`${this.RAILWAY_URL}/deleteReservation/` + idx)
         )
     }
 

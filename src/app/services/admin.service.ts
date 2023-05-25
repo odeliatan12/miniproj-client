@@ -7,6 +7,8 @@ import { UserAuthService } from "./user-auth.service";
 @Injectable()
 export class AdminService{
 
+    RAILWAY_URL: string = "https://food-review-production.up.railway.app"
+
     constructor(private http: HttpClient, private userAuth: UserAuthService){ }
 
     public saveRestaurant(form: RestaurantPost): Promise<string>{
@@ -15,7 +17,7 @@ export class AdminService{
         //     .set( 'No-Auth', 'True' );
         const id = this.userAuth.getUserId()
         return firstValueFrom(
-            this.http.post<string>("/admin/insertRestaurant/" + id, form)
+            this.http.post<string>(`${this.RAILWAY_URL}/admin/insertRestaurant/` + id, form)
         )
     }
 
@@ -26,13 +28,13 @@ export class AdminService{
             .set('authorization', `Bearer ${this.userAuth.getToken()}`)
             .set( 'No-Auth', 'True' );
         return firstValueFrom(
-            this.http.get<Restaurant[]>("/admin", { params: params, headers: headers })
+            this.http.get<Restaurant[]>(`${this.RAILWAY_URL}/admin`, { params: params, headers: headers })
         )
     }
 
     public getRestaurantDetails(id: number): Promise<RestaurantDetails>{
         return firstValueFrom(
-            this.http.get<RestaurantDetails>("/admin/updateRestaurant/" + id)
+            this.http.get<RestaurantDetails>(`${this.RAILWAY_URL}/admin/updateRestaurant/` + id)
         )
     }
 
@@ -41,7 +43,7 @@ export class AdminService{
             .set("restaurantId", restaurantId)
             .set("userId", `${this.userAuth.getUserId()}`);
         return firstValueFrom(
-            this.http.post<string>("/admin/updateRestaurant", form, { params: params})
+            this.http.post<string>(`${this.RAILWAY_URL}/admin/updateRestaurant`, form, { params: params})
         )
     }
 
@@ -50,13 +52,13 @@ export class AdminService{
         .set('authorization', `Bearer ${this.userAuth.getToken()}`)
         .set( 'No-Auth', 'True' );
         return firstValueFrom(
-            this.http.delete<string>("admin/delete/" + restaurantId, { headers: headers})
+            this.http.delete<string>(`${this.RAILWAY_URL}admin/delete/` + restaurantId, { headers: headers})
         )
     }
 
     public getCuisine(): Promise<cuisine[]>{
         return firstValueFrom(
-            this.http.get<cuisine[]>("admin/cuisine")
+            this.http.get<cuisine[]>(`${this.RAILWAY_URL}admin/cuisine`)
         )
     }
 
@@ -67,7 +69,7 @@ export class AdminService{
             .set('authorization', `Bearer ${this.userAuth.getToken()}`)
             .set( 'No-Auth', 'True' );
         return firstValueFrom(
-            this.http.get<string>("/admin/cuisineType", { params: params, headers: headers })
+            this.http.get<string>(`${this.RAILWAY_URL}/admin/cuisineType`, { params: params, headers: headers })
         )
     }
 
@@ -78,7 +80,7 @@ export class AdminService{
             .set('authorization', `Bearer ${this.userAuth.getToken()}`)
             .set( 'No-Auth', 'True' );
         return firstValueFrom(
-            this.http.get<cuisineType>("/admin/cuisineString", { params: params, headers: headers })
+            this.http.get<cuisineType>(`${this.RAILWAY_URL}/admin/cuisineString`, { params: params, headers: headers })
         )
     }
 
@@ -87,13 +89,13 @@ export class AdminService{
         const formData = new FormData()
         formData.append("imgFile", file, fileName)
         return firstValueFrom(
-            this.http.post<string>("/admin/insertImages/" + id, formData)
+            this.http.post<string>(`${this.RAILWAY_URL}/admin/insertImages/` + id, formData)
         )
     }
 
     public getImage(id: number): Promise<any>{
         return firstValueFrom(
-            this.http.get<image>("/image/" + id)
+            this.http.get<image>(`${this.RAILWAY_URL}/image/` + id)
         ).then(result => {
             console.log(result.picture)
             const image = new Image()
@@ -104,29 +106,29 @@ export class AdminService{
 
     public getAllMeals(): Promise<mealNames[]>{
         return firstValueFrom(
-            this.http.get<mealNames[]>("/meal/allNames")
+            this.http.get<mealNames[]>(`${this.RAILWAY_URL}/meal/allNames`)
         )
     }
 
     public getAllCategories(): Promise<mealNames[]>{
         return firstValueFrom(
-            this.http.get<mealNames[]>("/meal/allCategories")
+            this.http.get<mealNames[]>(`${this.RAILWAY_URL}/meal/allCategories`)
         )
     }
 
     public postListofDishes(meals: meals[]): Promise<string>{
         return firstValueFrom(
-            this.http.post<string>("meal/insertMeals", meals)
+            this.http.post<string>(`${this.RAILWAY_URL}meal/insertMeals`, meals)
         )
     }
 
     public getMeals(): Observable<mealNames[]>{
-        return this.http.get<mealNames[]>("/meal/allNames")
+        return this.http.get<mealNames[]>(`${this.RAILWAY_URL}/meal/allNames`)
     }
 
     public postCapacity(capacity: capacity[]): Promise<string>{
         return firstValueFrom(
-            this.http.post<string>("/capacity/insertCapacity", capacity)
+            this.http.post<string>(`${this.RAILWAY_URL}/capacity/insertCapacity`, capacity)
         )
     }
 }
