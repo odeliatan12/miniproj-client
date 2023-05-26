@@ -184,12 +184,12 @@
             aria-label="Default select example"
           >
             <option>Select Timing</option>
-            <!-- Distance timing -->
+      <!-- Distance timing -->
             <option *ngFor="let t of timing" value="{{ t.id }}">
               {{ t.startTiming.slice(0, 5) }} - {{ t.endTiming.slice(0, 5) }}
             </option>
           </select>
-          <!-- </div> -->
+      <!-- </div> -->
 
           <button
             (click)="insertReservation()"
@@ -205,9 +205,9 @@
           Close
         </button>
         <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      </div> 
     </div>
   </div>
-</div>
+</div> 
 
 

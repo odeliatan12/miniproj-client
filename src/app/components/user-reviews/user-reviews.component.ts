@@ -5,6 +5,7 @@ import { ResReviews, cuisine, cuisineType, reservation, timing } from 'src/app/m
 import { AdminService } from 'src/app/services/admin.service';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-reviews',
@@ -144,4 +145,9 @@ export class UserReviewsComponent implements OnInit {
     return Array.from({ length: max }, (_, index) => index);
   }
 
+  fireSweetAlert(){
+    Swal.fire({
+      template: '#my-template'
+    })
+  }
 }

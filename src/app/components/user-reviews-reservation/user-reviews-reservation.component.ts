@@ -32,7 +32,8 @@ export class UserReviewsReservationComponent implements OnInit {
         console.log(result)
       }).catch(result => {
         console.log(result)
-        window.location.reload()
+        this.route.navigate(["/user/userReview", this.activatedRoute.snapshot.params["restaurantId"]])
+        this.Toast
       })
   }
 
@@ -57,6 +58,12 @@ export class UserReviewsReservationComponent implements OnInit {
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
   })
-  
+
+  fireSweetAlert(){
+    this.Toast.fire({
+      icon: 'success',
+      title: 'Signed in successfully'
+    })
+  }
   
 }
