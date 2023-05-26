@@ -16,6 +16,8 @@ export class UtilsService{
             reload
           }, timing); 
     }
+
+    
 }
 
 // this.utilService.basicSweetAlert("Restaurant details is now updated", 3000, "success", this.route.navigate(["/admin/restaurantList"]))

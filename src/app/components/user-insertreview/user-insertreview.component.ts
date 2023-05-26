@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { postReviews } from 'src/app/models/model';
 import { UserService } from 'src/app/services/user.service';
+import { UtilsService } from 'src/app/services/utils.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -19,7 +20,7 @@ export class UserInsertreviewComponent implements OnInit {
   
   form!: FormGroup
 
-  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private userSvc: UserService, private route: Router){ }
+  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private userSvc: UserService, private route: Router, private utilService: UtilsService){ }
 
   ngOnInit(): void {
       this.form = this.createForm()
@@ -44,12 +45,7 @@ export class UserInsertreviewComponent implements OnInit {
     .then(result => {
       console.log(result)
     }).catch(result => {
-      Swal.fire(
-        'Review has been added',
-        'success'
-      )
-      console.log(result)
-      this.route.navigate(['user/userReview/', restaurantId])
+      this.utilService.basicSweetAlert("Review is now added", 3000, "success", this.route.navigate(['user/userReview/', restaurantId]))
     })
   }
 

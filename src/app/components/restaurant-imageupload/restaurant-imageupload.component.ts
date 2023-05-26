@@ -35,12 +35,15 @@ export class RestaurantImageuploadComponent implements OnInit {
     const restaurantId = this.activatedRoute.snapshot.params["restaurantId"]
     this.adminSvc.postImages(restaurantId, value)
       .then(
-        (response) => { console.debug(response) }
+        (response) => { 
+          console.debug(response) 
+          this.utilService.basicSweetAlert("Image is uploaded", 3000, "success", this.route.navigate(["/admin/restaurantList"]))
+        }
       )
       .catch(
         (error) => { 
           console.warn(error)  
-          this.utilService.basicSweetAlert("Image is uploaded", 3000, "success", this.route.navigate(["/admin/restaurantList"]))
+          
         }
       );
   }

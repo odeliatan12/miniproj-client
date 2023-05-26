@@ -44,12 +44,30 @@ export class UserProfileComponent implements OnInit {
   updateChanges(){
     const value = this.form.value as UpdateUser
     const id = this.userAuthSvc.getUserId()
-    this.userService.updateUser(value, id)
-    .then(result => {
-      console.log(result)
-    }).catch(result => {
-      this.utilService.basicSweetAlert("User profile has been updated", 3000, "success", this.route.navigate(['user/profile'])) 
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, update it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.updateUser(value, id)
+        Swal.fire(
+          'Updated!',
+          'Your details has been updated.',
+          'success'
+        )
+      }
     })
+    // this.userService.updateUser(value, id)
+    // .then(result => {
+    //   console.log(result)
+    // }).catch(result => {
+    //   this.utilService.basicSweetAlert("User profile has been updated", 3000, "success", this.route.navigate(['user/profile'])) 
+    // })
   }
 
   
