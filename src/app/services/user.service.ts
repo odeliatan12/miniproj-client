@@ -111,7 +111,7 @@ export class UserService{
 
     public getDistance(): Promise<distance[]>{
         return firstValueFrom(
-            this.http.get<distance[]>(`${this.RAILWAY_URL}meal/getDistance`)
+            this.http.get<distance[]>(`${this.RAILWAY_URL}/meal/getDistance`)
         )
     }
 

@@ -9,17 +9,15 @@
             <div class="dropdown">
               <div class="mt-5">
                 <h4 class="inputMeal">Meal type</h4>
-                <select
-                  formControlName="meal"
-                  class="form-select mt-2 buttonWidth"
-                  aria-label="Default select example"
-                >
-                  <option>Select distance</option>
-                  <!-- Distance dynamic -->
-                  <option *ngFor="let m of meals" value="{{ m.name }}">
-                    {{ m.name }}
-                  </option>
-                </select>
+                <div>
+                  <input list="browsers" name="browser" id="browser" formControlName="meal"/>
+                  <datalist id="browsers" >
+                    <!-- Distance dynamic -->
+                    <option *ngFor="let m of meals" value="{{ m.name }}">
+                      {{ m.name }}
+                    </option>
+                  </datalist>
+                </div>
               </div>
             </div>
 
@@ -84,7 +82,9 @@
       >
         <h4 class="mealName">
           {{ m.name }} - ${{ m.amount }}
-          <span class="distance">{{ m.distance * 0.001 }}km away from where you are</span>
+          <span class="distance"
+            >{{ m.distance * 0.001 }}km away from where you are</span
+          >
           <a
             class="border rounded-3"
             (click)="redirectToRestaurant(m.restaurantId)"
@@ -96,9 +96,13 @@
         class="col-md-11 mt-5"
         *ngIf="showMap"
         style="width: 100%; height: 500px"
-        
       >
-        <google-map [options]="mapOptions" width="100%" height="100%" #mapElement>
+        <google-map
+          [options]="mapOptions"
+          width="100%"
+          height="100%"
+          #mapElement
+        >
           <map-marker
             [position]="{ lat: this.latitude, lng: this.longitude }"
           ></map-marker>
@@ -108,9 +112,7 @@
             [position]="{ lat: place.latitude, lng: place.longitude }"
             [label]="place.restaurant_name"
             (mapClick)="openInfoWindow(marker, i)"
-            
           >
-            
           </map-marker>
         </google-map>
       </div>
