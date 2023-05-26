@@ -106,7 +106,7 @@ export class UserService{
 
     public getMealRestInfo(request: string): Observable<mealRest[]>{
         const params = new HttpParams().set("meals", request)
-        return this.http.get<mealRest[]>(`${this.RAILWAY_URL}meal/search`, { params: params})
+        return this.http.get<mealRest[]>(`${this.RAILWAY_URL}/meal/search`, { params: params})
     }
 
     public getDistance(): Promise<distance[]>{
