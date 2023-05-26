@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResReviews, RestaurantDetails, allDeals } from 'src/app/models/model';
 import { DealService } from 'src/app/services/deals.service';
+import { UserAuthService } from 'src/app/services/user-auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -15,9 +16,10 @@ export class DealPagedetailsComponent implements OnInit {
   restaurantDetails!: ResReviews
   image!: string
 
-  constructor(private activatedRoute: ActivatedRoute, private dealService: DealService, private route: Router, private userService: UserService){ }
+  constructor(private activatedRoute: ActivatedRoute, private dealService: DealService, private route: Router, private userService: UserService, private userAuth: UserAuthService){ }
 
   ngOnInit(): void {
+
     this.getDealbyRestaurantId()
       .then(result => {
         this.deal = result

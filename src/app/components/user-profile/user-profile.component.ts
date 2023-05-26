@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UpdateUser, User } from 'src/app/models/model';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { UtilsService } from 'src/app/services/utils.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,9 +17,10 @@ export class UserProfileComponent implements OnInit {
   form!: FormGroup
   user!: User
 
-  constructor(private userAuthSvc: UserAuthService, private userService: UserService, private fb: FormBuilder, private route: Router){ }
+  constructor(private userAuthSvc: UserAuthService, private userService: UserService, private fb: FormBuilder, private route: Router, private utilService: UtilsService){ }
 
   ngOnInit(): void {
+    
     this.form = this.createForm()
     this.userService.getUserInfo(this.userAuthSvc.getUserId())
       .then(result => {
@@ -46,19 +48,8 @@ export class UserProfileComponent implements OnInit {
     .then(result => {
       console.log(result)
     }).catch(result => {
-      this.route.navigate(['user/profile'])
-      Swal.fire({
-        title: 'Reservation has been deleted',
-        icon: 'success',
-        timer: 3000
-      }
-        
-      )
-      setTimeout(() => {
-        window.location.reload();
-      }, 3000); 
+      this.utilService.basicSweetAlert("User profile has been updated", 3000, "success", this.route.navigate(['user/profile'])) 
     })
-    this.route.navigate(['user/profile'])
   }
 
   

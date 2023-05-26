@@ -4,6 +4,7 @@ import { allDeals, categories } from 'src/app/models/model';
 import { DealService } from 'src/app/services/deals.service';
 import { UserService } from 'src/app/services/user.service';
 import { AdminComponent } from '../admin/admin.component';
+import { UserAuthService } from 'src/app/services/user-auth.service';
 
 @Component({
   selector: 'app-all-deals',
@@ -17,21 +18,10 @@ export class AllDealsComponent implements OnInit {
   categories: categories[] = []
   carouselChunks: any[] = []
 
-  constructor(private dealService: DealService, private route: Router, private userService: UserService){ }
+  constructor(private dealService: DealService, private route: Router, private userService: UserService, private userAuth: UserAuthService){ }
 
   ngOnInit(): void {
 
-      // this.dealService.getAllDeals()
-      //   .then(result => {
-      //     this.allDeals = result
-          
-      //     for(const r of this.allDeals){
-      //       const imagePromises = this.userService.getImage(r.restaurantId)
-      //       .then(imageData => {
-      //         return r.saturdayFrom = imageData
-      //       })
-      //     }
-      //   })
     this.dealService.getAllDeals()
       .then(result => {
         this.allDeals = result

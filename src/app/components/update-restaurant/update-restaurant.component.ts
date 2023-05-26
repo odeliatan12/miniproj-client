@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { Restaurant, RestaurantDetails, cuisine } from 'src/app/models/model';
 import { AdminService } from 'src/app/services/admin.service';
+import { UserAuthService } from 'src/app/services/user-auth.service';
+import { UtilsService } from 'src/app/services/utils.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-restaurant',
@@ -36,9 +39,12 @@ export class UpdateRestaurantComponent implements OnInit {
     types: []
   }
 
-  constructor(private fb: FormBuilder, private adminSvc: AdminService, private activatedRoute: ActivatedRoute, private route: Router){ }
+  constructor(private fb: FormBuilder, private adminSvc: AdminService, private activatedRoute: ActivatedRoute, private route: Router, private userAuth: UserAuthService, private utilService: UtilsService){ }
 
   ngOnInit(): void {
+
+    // this.userAuth.getAuthentication()
+
     this.getRestaurantDetails()
       .then( result => {
         this.restDetails = result
@@ -93,7 +99,9 @@ export class UpdateRestaurantComponent implements OnInit {
         console.log(result)
       }).catch(error => {
         console.log(error)
-        this.route.navigate(["/admin/restaurantList"])
+
+        this.utilService.basicSweetAlert("Restaurant details is now updated", 3000, "success", this.route.navigate(["/admin/restaurantList"]))
+        
       })
   }
 

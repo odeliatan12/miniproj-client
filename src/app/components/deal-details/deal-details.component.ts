@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { categories, deals } from 'src/app/models/model';
 import { DealService } from 'src/app/services/deals.service';
+import { UserAuthService } from 'src/app/services/user-auth.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-deal-details',
@@ -14,9 +16,10 @@ export class DealDetailsComponent implements OnInit {
   form!: FormGroup
   categories: categories[] = []
 
-  constructor(private fb: FormBuilder, private dealsService: DealService, private activatedRoute: ActivatedRoute, private route: Router){ }
+  constructor(private fb: FormBuilder, private dealsService: DealService, private activatedRoute: ActivatedRoute, private route: Router, private userAuth: UserAuthService, private utilService: UtilsService){ }
 
   ngOnInit(): void {
+
       this.form = this.createForm()
       this.getAllCategories()
         .then(result => {
@@ -62,7 +65,7 @@ export class DealDetailsComponent implements OnInit {
         console.log(result)
       }).catch(error => {
         console.log(error)
-        this.route.navigate(["/admin/restaurantList"])
+        this.utilService.basicSweetAlert("Deals is now uploaded", 3000, "success", this.route.navigate(["/admin/restaurantList"]))
       })
   }
 

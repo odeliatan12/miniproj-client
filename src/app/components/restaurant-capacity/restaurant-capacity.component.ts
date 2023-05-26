@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { capacity } from 'src/app/models/model';
 import { AdminService } from 'src/app/services/admin.service';
+import { UserAuthService } from 'src/app/services/user-auth.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-restaurant-capacity',
@@ -14,7 +16,7 @@ export class RestaurantCapacityComponent implements OnInit {
   form!: FormGroup
   capacities: capacity[] = []
 
-  constructor(private fb: FormBuilder, private adminService: AdminService, private activatedRoute: ActivatedRoute, private route: Router){ }
+  constructor(private fb: FormBuilder, private adminService: AdminService, private activatedRoute: ActivatedRoute, private route: Router, private userAuth: UserAuthService, private utilsService: UtilsService){ }
 
   ngOnInit(): void {
 
@@ -42,7 +44,7 @@ export class RestaurantCapacityComponent implements OnInit {
       .then(result => {
         console.log(result)
       }).catch(result => {
-        this.route.navigate(["/admin/restaurantList"])
+        this.utilsService.basicSweetAlert("Details are now updated", 3000, "success", this.route.navigate(["/admin/restaurantList"]))
       })
   }
 

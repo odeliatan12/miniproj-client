@@ -3,6 +3,8 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { mealNames, meals } from 'src/app/models/model';
 import { AdminService } from 'src/app/services/admin.service';
+import { UserAuthService } from 'src/app/services/user-auth.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-restaurant-meal-upload',
@@ -16,9 +18,12 @@ export class RestaurantMealUploadComponent implements OnInit {
   mealCategories: mealNames[] = []
   meals: meals[] = []
 
-  constructor(private adminService: AdminService, private fb: FormBuilder, private activatedRoute: ActivatedRoute, private route: Router ){ }
+  constructor(private adminService: AdminService, private fb: FormBuilder, private activatedRoute: ActivatedRoute, private route: Router, private userAuth: UserAuthService, private utilService: UtilsService ){ }
 
   ngOnInit(): void {
+
+    // this.userAuth.getAuthentication()
+
     this.adminService.getAllMeals()
       .then(result => {
         console.log(result)
@@ -51,7 +56,7 @@ export class RestaurantMealUploadComponent implements OnInit {
       .then(result => {
         console.log(result)
       }).catch(error => {
-        this.route.navigate(["/admin/restaurantList"])
+        this.utilService.basicSweetAlert("Meals has been uploaded", 3000, "success", this.route.navigate(["/admin/restaurantList"]))
       })
   }
 

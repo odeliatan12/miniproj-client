@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class UserAuthService{
 
-    constructor(){ }
+    constructor(private route: Router){ }
 
     public setRoles(roles: string) {
         localStorage.setItem('roles', JSON.stringify(roles));
@@ -46,4 +47,14 @@ export class UserAuthService{
         return this.getRoles() && this.getToken();
     }
 
+    public getAuthentication(){
+        const role = this.getRoles()
+        if(role === "ADMIN" && this.getToken() != null){
+            this.route.navigate(["/admin/restaurantList"])
+        } else if( role === "USER" && this.getToken() != null ) {
+            this.route.navigate(["/user/home"])
+        } else {
+            this.route.navigate(["/login"])
+        }   
+    }
 }

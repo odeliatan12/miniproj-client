@@ -5,6 +5,8 @@ import { Restaurant, RestaurantDetails, RestaurantPost, cuisine } from 'src/app/
 import { AdminService } from 'src/app/services/admin.service';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import Swal from 'sweetalert2';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-restaurant-details',
@@ -34,9 +36,12 @@ export class RestaurantDetailsComponent implements OnInit {
   longitude!: number;
   selectedAddress!: string;
 
-  constructor(private fb: FormBuilder, private adminSvc: AdminService, private userAuthService: UserAuthService, private route: Router){}
+  constructor(private fb: FormBuilder, private adminSvc: AdminService, private userAuthService: UserAuthService, private route: Router, private utilsService: UtilsService){}
 
   ngOnInit(): void {
+
+    // this.userAuthService.getAuthentication()
+
     this.form = this.createForm()
     this.adminSvc.getCuisine()
       .then(result => {
@@ -90,7 +95,9 @@ export class RestaurantDetailsComponent implements OnInit {
         console.log(result)
       ).catch( error => {
         console.log(error)
-        this.route.navigate(["/admin/restaurantList"])
+
+        this.utilsService.basicSweetAlert("Restaurant details is now uploaded", 3000, "success", this.route.navigate(["/admin/restaurantList"]))
+        
       })
   }
 

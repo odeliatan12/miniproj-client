@@ -6,6 +6,8 @@ import { Login } from 'src/app/models/model';
 import { AdminService } from 'src/app/services/admin.service';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { UtilsService } from 'src/app/services/utils.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +19,7 @@ export class RegisterComponent implements OnInit{
   form!: FormGroup
   fieldTextType!: boolean;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private route: Router, private userAuthService: UserAuthService){ }
+  constructor(private fb: FormBuilder, private userService: UserService, private route: Router, private userAuthService: UserAuthService, private utilsService: UtilsService){ }
 
   ngOnInit(): void {
 
@@ -48,7 +50,7 @@ export class RegisterComponent implements OnInit{
     console.log(value.username)
     console.log(value.roleId)
     this.userService.register(value)
-    this.route.navigate(["/register"])
+    this.utilsService.basicSweetAlert("User is registered", 3000, "success", this.route.navigate(["/login"]))
   }
 
   toggleFieldTextType() {

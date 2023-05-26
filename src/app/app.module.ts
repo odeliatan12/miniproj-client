@@ -49,6 +49,7 @@ import { GoogleLoginComponent } from './components/google-login/google-login.com
 import { UserProfileDropdownsComponent } from './components/user-profile-dropdowns/user-profile-dropdowns.component';
 import { UserProfileGooglecalanderComponent } from './components/user-profile-googlecalander/user-profile-googlecalander.component';
 import { UserReviewsReservationComponent } from './components/user-reviews-reservation/user-reviews-reservation.component';
+import { UtilsService } from './services/utils.service';
 
 
 @NgModule({
@@ -95,7 +96,7 @@ import { UserReviewsReservationComponent } from './components/user-reviews-reser
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [ UserAuthService, UserService, AdminService,
-    AuthInterceptor, AuthGuard, payPalService,
+    AuthInterceptor, AuthGuard, payPalService, UtilsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass:AuthInterceptor,

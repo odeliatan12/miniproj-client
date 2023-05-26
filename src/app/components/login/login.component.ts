@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
         console.log(error);
         this.show = true
         this.error = "Incorrect name or password"
-        // this.route.navigate(["/login"])
+        
       })
 
   }

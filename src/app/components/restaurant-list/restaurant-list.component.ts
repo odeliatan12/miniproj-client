@@ -16,6 +16,8 @@ export class RestaurantListComponent implements OnInit {
   constructor(private adminSvc: AdminService, public userAuthSvc: UserAuthService, private route: Router){ }
 
   ngOnInit(): void {
+
+    this.userAuthSvc.getAuthentication()
     
     this.getRestaurant()
       .then( result => {

@@ -22,6 +22,8 @@ export class UserHomeComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.authService.getAuthentication()
+
     this.userSvc.getAllRestaurants()
       .then(result => {
         this.restaurant = result
