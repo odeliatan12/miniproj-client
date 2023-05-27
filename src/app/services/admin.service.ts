@@ -7,6 +7,7 @@ import { UserAuthService } from "./user-auth.service";
 @Injectable()
 export class AdminService{
 
+    // 
     // https://food-review-production.up.railway.app/admin/cuisine
     RAILWAY_URL: string = "https://food-review-production.up.railway.app"
 
@@ -120,7 +121,7 @@ export class AdminService{
     // https://food-review-production.up.railway.app/meal/insertMeals
     public postListofDishes(meals: meals[]): Promise<string>{
         return firstValueFrom(
-            this.http.post<string>("https://food-review-production.up.railway.app/meal/insertMeals", meals)
+            this.http.post<string>(`${this.RAILWAY_URL}/meal/insertMeals`, meals)
         )
     }
 

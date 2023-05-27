@@ -104,9 +104,13 @@ export class UserService{
         )
     }
 
+    // https://food-review-production.up.railway.app/meal/search?meals=egg%20roll
     public getMealRestInfo(request: string): Observable<mealRest[]>{
+        const headers = new HttpHeaders()
+            .set('Content-Type', 'application/json; charset=utf-8')
+            .set( 'No-Auth', 'True' );
         const params = new HttpParams().set("meals", request)
-        return this.http.get<mealRest[]>(`${this.RAILWAY_URL}/meal/search`, { params: params})
+        return this.http.get<mealRest[]>(`${this.RAILWAY_URL}/meal/search`, { params: params, headers: headers})
     }
 
     public getDistance(): Promise<distance[]>{

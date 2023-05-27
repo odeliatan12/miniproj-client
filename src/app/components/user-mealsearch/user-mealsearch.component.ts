@@ -93,6 +93,7 @@ export class UserMealsearchComponent implements OnInit {
     this.userService.getMealRestInfo(request)
       .subscribe(data => {
         this.showMap = true;
+        console.log(data)
         this.mealRest = data
         this.mealRest.forEach(m => {
 
@@ -112,6 +113,7 @@ export class UserMealsearchComponent implements OnInit {
               restaurantName: m.restaurant_name,
               distance: Math.round(distance)
             }
+            
             this.markers.push(marker);
             this.mealamount.push(mealAmount);
             const infoWindow = new google.maps.InfoWindow();
