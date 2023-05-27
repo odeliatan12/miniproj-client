@@ -10,7 +10,7 @@
               <div class="mt-5">
                 <h4 class="inputMeal">Meal type</h4>
                 <div>
-                  <input list="browsers" name="browser" id="browser" formControlName="meal"/>
+                  <input list="browsers" name="browser" id="browser" formControlName="meal" class="inputMealName"/>
                   <datalist id="browsers" >
                     <!-- Distance dynamic -->
                     <option *ngFor="let m of meals" value="{{ m.name }}">
