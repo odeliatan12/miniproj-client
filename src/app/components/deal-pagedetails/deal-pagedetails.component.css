@@ -16,7 +16,32 @@
     margin-top: 20px;
 }
 .jumbotron{
-    height: 150vh;
+    height: 110vh;
+}
+@media (max-width: 1500px) {
+    .jumbotron {
+      height: 180vh;
+    }
+}
+@media (max-width: 1200px) {
+    .jumbotron {
+      height: 200vh;
+    }
+}
+@media (max-width: 800px) {
+    .jumbotron {
+      height: 130vh;
+    }
+}
+@media (max-width: 550px) {
+    .jumbotron {
+      height: 130vh;
+    }
+}
+@media (max-width: 1000px) {
+    .jumbotron {
+      height: 100vh;
+    }
 }
 
 .dealName{
@@ -52,7 +77,7 @@
     font-size: 30px;
     font-weight: 600;
     color: #103560;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 .bi{
     font-size: 50px;
@@ -60,13 +85,26 @@
     color: #103560;
 }
 .aboutSection{
-    height: 100px;
-    vertical-align: middle;
+    /* height: 100px; */
+    /* vertical-align: middle; */
+    display: block;
+    justify-content: left;
+    text-align: left;
+    padding-top: 10%;
 }
 .aboutSection span{
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 400;
     color: #103560;
+}
+.aboutSection h5{
+    font-size: 15px;
+}
+.aboutSection p{
+    font-size: 20px;
+}
+.openingTimes{
+    margin-bottom: 15px;
 }
 
 

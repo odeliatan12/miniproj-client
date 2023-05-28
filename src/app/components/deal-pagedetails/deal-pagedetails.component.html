@@ -2,7 +2,7 @@
   <div class="container py-4">
     <div class="container-fluid py-5">
       <img src="{{ image }}" class="images card-img resImage" alt="..." />
-      <h1 class="display-5 fw-bold mt-5 headlines">
+      <h1 class="display-5 fw-bold mt-3 headlines">
         {{ d.name }} by {{ restaurantDetails.restaurant.name }}
         <p>
           {{ restaurantDetails.restaurant.about }}
@@ -12,7 +12,7 @@
 
     <div class="row align-items-md-stretch">
       <div class="col-md-9">
-        <div class="jumbotron p-5 text-bg-light rounded-3">
+        <div class="jumbotron p-5 text-bg-light rounded-3 mb-5">
           <h1 class="about">About</h1>
           <div class="aboutSection">
             <svg
@@ -52,38 +52,39 @@
             </p>
           </div>
           <div class="aboutSection">
-            <h4>Opening times</h4>
-            <h5 class="mb-0">Monday</h5>
+            <span class="mb-5 openingTimes">Opening times</span>
+            <h5></h5>
+            <h5 class="mb-2">Monday</h5>
             <p>
               {{ restaurantDetails.restaurant.mondayOpening.slice(0, 5) }} -
               {{ restaurantDetails.restaurant.mondayClosing.slice(0, 5) }}
             </p>
-            <h5 class="mb-0">Tuesday</h5>
+            <h5 class="mb-2">Tuesday</h5>
             <p>
               {{ restaurantDetails.restaurant.tuesdayOpening.slice(0, 5) }} -
               {{ restaurantDetails.restaurant.tuesdayClosing.slice(0, 5) }}
             </p>
-            <h5 class="mb-0">Wednesday</h5>
+            <h5 class="mb-2">Wednesday</h5>
             <p>
               {{ restaurantDetails.restaurant.wednesdayOpening.slice(0, 5) }} -
               {{ restaurantDetails.restaurant.wednesdayClosing.slice(0, 5) }}
             </p>
-            <h5 class="mb-0">Thursday</h5>
+            <h5 class="mb-2">Thursday</h5>
             <p>
               {{ restaurantDetails.restaurant.thursdayOpening.slice(0, 5) }} -
               {{ restaurantDetails.restaurant.thursdayClosing.slice(0, 5) }}
             </p>
-            <h5 class="mb-0">Friday</h5>
+            <h5 class="mb-2">Friday</h5>
             <p>
               {{ restaurantDetails.restaurant.fridayOpening.slice(0, 5) }} -
               {{ restaurantDetails.restaurant.fridayClosing.slice(0, 5) }}
             </p>
-            <h5 class="mb-0">Saturday</h5>
+            <h5 class="mb-2">Saturday</h5>
             <p>
               {{ restaurantDetails.restaurant.saturdayOpening.slice(0, 5) }} -
               {{ restaurantDetails.restaurant.saturdayClosing.slice(0, 5) }}
             </p>
-            <h5 class="mb-0">Sunday</h5>
+            <h5 class="mb-2">Sunday</h5>
             <p>
               {{ restaurantDetails.restaurant.sundayOpening.slice(0, 5) }} -
               {{ restaurantDetails.restaurant.sundayClosing.slice(0, 5) }}
