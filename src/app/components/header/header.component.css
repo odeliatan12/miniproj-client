@@ -31,21 +31,14 @@ button{
     border-bottom: 3px solid #103560;
     transition: 200ms ease-in-out;
 }
-
-/* .nav-link::before {
-    transition: 300ms;
-    height: 5px;
-    content: "";
-    position: absolute;
-    background-color: #031D44;
+.searchIcon{
+    background-color: #103560;
+    border-radius: 5px;
+    margin-right: 10px;
 }
-.nav-link-grow-up::before {
-    width: 100%;
-    bottom: 5px;
-    opacity: 0;
+.searchIcon svg{
+    color: white;
 }
-  
-.nav-link-grow-up:hover::before {
-    bottom: 10px;
-    opacity: 1;
-} */
+.show{
+    display: none;
+}
