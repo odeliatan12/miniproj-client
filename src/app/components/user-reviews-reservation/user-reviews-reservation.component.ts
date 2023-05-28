@@ -33,7 +33,6 @@ export class UserReviewsReservationComponent implements OnInit {
       }).catch(result => {
         console.log(result)
         this.route.navigate(["/user/userReview", this.activatedRoute.snapshot.params["restaurantId"]])
-        this.Toast
       })
   }
 
@@ -47,23 +46,5 @@ export class UserReviewsReservationComponent implements OnInit {
       })
   }
 
-  Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-  })
-
-  fireSweetAlert(){
-    this.Toast.fire({
-      icon: 'success',
-      title: 'Signed in successfully'
-    })
-  }
   
 }

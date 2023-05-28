@@ -146,6 +146,13 @@
             >
               Please enter the number of pax reserved
             </div>
+            <div
+              *ngIf="form.get('pax')?.hasError('min') && form.get('pax')?.touched"
+              class="alert alert-danger size"
+              role="alert"
+            >
+              Please enter minimum of 1 pax
+            </div>
           </div>
 
           <div>
