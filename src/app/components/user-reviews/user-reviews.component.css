@@ -59,7 +59,7 @@
     background-color: white;
     color: black;
     font-weight: 800;
-    outline: 2px solid #10356055;
+    /* outline: 2px solid #10356055; */
     font-size: 20px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;

@@ -47,11 +47,8 @@ export class GoogleLoginComponent implements OnInit {
 
   public googleRegister(response: CredentialResponse){
 
-    console.log(response)
-    console.log(response.credential)
     this.userService.googleRegister(response.credential)
       .then(response => {
-        console.log(response)
 
         // set username
         this.userAuthService.setUserId(response.id)
@@ -72,7 +69,6 @@ export class GoogleLoginComponent implements OnInit {
           })
         }
       }).catch(result => {
-        console.log(result)
         this.ngZone.run(() => {
           this.route.navigate(["/user/home"]) // send user to whatever page after logged in
         })

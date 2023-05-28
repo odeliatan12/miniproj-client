@@ -5,6 +5,7 @@ import { ResReviews, cuisine, cuisineType, reservation, timing } from 'src/app/m
 import { AdminService } from 'src/app/services/admin.service';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { UserService } from 'src/app/services/user.service';
+import { UtilsService } from 'src/app/services/utils.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -21,7 +22,7 @@ export class UserReviewsComponent implements OnInit {
   timing: timing[] = []
   cuisine!: cuisineType
   
-  constructor(private activatedRoute: ActivatedRoute, private route: Router, public userSvc: UserService, private adminSvc: AdminService, private fb: FormBuilder, private reservationService: ReservationService){ }
+  constructor(private activatedRoute: ActivatedRoute, private route: Router, public userSvc: UserService, private adminSvc: AdminService, private fb: FormBuilder, private reservationService: ReservationService, private utilService: UtilsService){ }
 
   ngOnInit(): void {
 
@@ -69,7 +70,7 @@ export class UserReviewsComponent implements OnInit {
     return this.fb.group({
       pax: this.fb.control<number>(0, [ Validators.required, Validators.min(1)]),
       timeReserve: this.fb.control<string>('', Validators.pattern(/^([01]\d|2[0-3]):([0-5]\d)$/)),
-      dateReserve: this.fb.control<string>('', [ Validators.required, this.futureDateValidator() ])
+      dateReserve: this.fb.control<string>('', [ Validators.required, this.futureDateValidator(), this.NotAboveYear2200() ])
     })
   }
 
@@ -94,9 +95,13 @@ export class UserReviewsComponent implements OnInit {
 
   insertReservation(){
     const value = this.form.value as reservation
+    const restaurantId = this.activatedRoute.snapshot.params["restaurantId"]
     this.reservationService.insertReservation(this.activatedRoute.snapshot.params["restaurantId"], value)
       .then(result => {
-        console.log(result)
+        // this.route.navigate(["/user/insertReview", restaurantId])
+      }).catch(result => {
+        this.utilService.basicSweetAlert("Restaurant details is now updated", 3000, "success", this.route.navigate(["/user/profile"]))
+        window.location.reload
       })
   }
 
@@ -110,7 +115,7 @@ export class UserReviewsComponent implements OnInit {
       })
   }
 
-  futureDateValidator(){
+  futureDateValidator(): any | null{
     return (control: AbstractControl): ValidationErrors | null => {
       const selectedDate = new Date(control.value);
       const currentDate = new Date();
@@ -134,6 +139,20 @@ export class UserReviewsComponent implements OnInit {
       'September', 'October', 'November', 'December'
     ];
     return `${day} ${monthNames[monthIndex]} ${year}`
+  }
+
+  NotAboveYear2200(): any | null {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const selectedDate = new Date(control.value);
+      const currentDate = new Date();
+      const maxYear = 2200;
+  
+      if (selectedDate < currentDate || selectedDate.getFullYear() > maxYear) {
+        return { NotAboveYear2200: true };
+      }
+  
+      return null;
+    };
   }
 
   range(max: number): number[] {

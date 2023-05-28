@@ -48,26 +48,33 @@ export class RegisterComponent implements OnInit{
   registerUser(){
     const value = this.form.value as Login
     this.userService.register(value)
-      .catch(result => {
-        this.utilsService.sweetAlert("Thank you for registering", 1000, "success")
+    .catch(result => {
+      if(result.status === 400){
+        this.utilsService.sweetAlert("Username is taken", 1000, "error")
+      } else if(result.status === 200){
         this.userService.login(value)
-        .then((response: any) => {
-          // set username
-          this.userAuthService.setUserId(response.id)
+          .then((response: any) => {
+            // set username
+            this.userAuthService.setUserId(response.id)
 
-          // to get roles of the person logging in
-          this.userAuthService.setRoles(response.role);
+            // to get roles of the person logging in
+            this.userAuthService.setRoles(response.role);
 
-          // obtain the token and set it into localstorage
-          this.userAuthService.setToken(response.token);
+            // obtain the token and set it into localstorage
+            this.userAuthService.setToken(response.token);
 
-          const role = response.role;
-          if(role === "ADMIN" && this.userAuthService.getToken() != null){
-            this.route.navigate(["/admin/restaurantList"])
-          } else {
-            this.route.navigate(["/user/home"])
+            const role = result.role;
+            if(role === "ADMIN" && this.userAuthService.getToken() != null){
+              this.utilsService.sweetAlert("Thank you for registering", 1000, "success")
+              this.route.navigate(["/admin/restaurantList"])
+            } else {
+              this.utilsService.sweetAlert("Thank you for registering", 1000, "success")
+              this.route.navigate(["/user/home"])
+            }
+
           }
-      })
+        )
+      }
     })
     
   }

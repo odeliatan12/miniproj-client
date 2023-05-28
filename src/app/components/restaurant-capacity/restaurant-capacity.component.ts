@@ -39,7 +39,6 @@ export class RestaurantCapacityComponent implements OnInit {
   }
 
   saveForm(){
-    console.log(this.capacities)
     this.adminService.postCapacity(this.capacities)
       .then(result => {
         console.log(result)

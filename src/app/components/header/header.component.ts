@@ -16,17 +16,8 @@ export class HeaderComponent implements OnInit {
   searchTerm$ = new Subject<string>();
 
   constructor( private userAuthService: UserAuthService,
-    private router: Router, public userService: UserService, 
-    private searchService: SearchService){
-    this.searchTerm$.subscribe(inputData => {
-      console.log('=> searchTerm$ inputData: ', inputData);
-    });
-    this.searchService.search(this.searchTerm$)
-      .subscribe((data: { results: object; }) => {
-        console.log(data)
-        this.results = data.results;
-        console.log('=> results: ', this.results);
-  });
+    private router: Router, public userService: UserService){
+    
   }
   
   ngOnInit(): void {
@@ -42,8 +33,5 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  // isActiveRoute(route: string | UrlTree): boolean {
-  //   return this.router.IsActiveMatchOptions(route, true);
-  // }
 
 }

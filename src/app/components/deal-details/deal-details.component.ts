@@ -58,13 +58,10 @@ export class DealDetailsComponent implements OnInit {
   postDeal(){
     const restaurantId = this.activatedRoute.snapshot.params["restaurantId"]
     const value = this.form.value as deals
-    console.log(value.mondayFrom)
-    console.log(value.mondayTo)
     this.dealsService.insertNewDeal(value, restaurantId)
       .then(result => {
-        console.log(result)
+        
       }).catch(error => {
-        console.log(error)
         this.utilService.basicSweetAlert("Deals is now uploaded", 3000, "success", this.route.navigate(["/admin/restaurantList"]))
       })
   }

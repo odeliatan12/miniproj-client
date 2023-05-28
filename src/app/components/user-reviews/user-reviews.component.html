@@ -11,7 +11,12 @@
   <div class="col-1"></div>
 
   <div class="p-2 rounded-3 col-3">
-    <button (click)="insertReview()" type="button" class="btn btn review mt-5">
+    <button
+      (click)="insertReview()"
+      type="button"
+      class="btn btn review mt-5"
+      style="outline: 2px solid #10356055"
+    >
       Add a Review
     </button>
 
@@ -19,6 +24,7 @@
     <button
       type="button"
       class="btn btn review mt-2"
+      style="outline: 2px solid #10356055"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal1"
     >
@@ -86,7 +92,10 @@
 </div>
 <div class="p-5 mb-4 bg-body-tertiary rounded-3 row">
   <h2 class="col-12 display-5 fw-bold about py-5 m-3">Reviews</h2>
-  <div class="container-fluid reviewsAbout" *ngFor="let r of resReviews.reviews">
+  <div
+    class="container-fluid reviewsAbout"
+    *ngFor="let r of resReviews.reviews"
+  >
     <h4>{{ r.timestamp }}</h4>
     <div class="rating mb-5">
       <svg
@@ -103,7 +112,7 @@
       <span class="ratingsStars">{{ r.ratings }} stars</span>
     </div>
     <h4>{{ r.description }}</h4>
-    <hr>
+    <hr />
   </div>
 </div>
 
@@ -126,8 +135,8 @@
           aria-label="Close"
         ></button>
       </div>
-      <div class="modal-body">
-        <form [formGroup]="form">
+      <form [formGroup]="form">
+        <div class="modal-body">
           <div>
             <label for="pax" class="form-label">Pax</label>
             <input
@@ -140,14 +149,19 @@
               required=""
             />
             <div
-              *ngIf="form.get('pax')?.hasError('required') && form.get('pax')?.touched"
+              *ngIf="
+                form.get('pax')?.hasError('required') &&
+                form.get('pax')?.touched
+              "
               class="alert alert-danger size"
               role="alert"
             >
               Please enter the number of pax reserved
             </div>
             <div
-              *ngIf="form.get('pax')?.hasError('min') && form.get('pax')?.touched"
+              *ngIf="
+                form.get('pax')?.hasError('min') && form.get('pax')?.touched
+              "
               class="alert alert-danger size"
               role="alert"
             >
@@ -168,18 +182,31 @@
               (change)="getAvailableTimings()"
             />
             <div
-              *ngIf="form.get('dateReserve')?.hasError('required') && form.get('dateReserve')?.touched"
+              *ngIf="
+                form.get('dateReserve')?.hasError('required') &&
+                form.get('dateReserve')?.touched
+              "
               class="alert alert-danger size"
               role="alert"
             >
               Please enter a date
             </div>
             <div
-              *ngIf="form.get('dateReserve')?.errors && form.get('dateReserve')?.touched"
+              *ngIf="
+                form.get('dateReserve')?.errors &&
+                form.get('dateReserve')?.touched
+              "
               class="alert alert-danger size"
               role="alert"
             >
               Please enter a future date
+            </div>
+            <div
+              *ngIf="form.get('dateReserve')?.errors?.[ this.NotAboveYear2200() ] && form.get('dateReserve')?.touched"
+              class="alert alert-danger size"
+              role="alert"
+            >
+              Please enter a date below 2200
             </div>
           </div>
 
@@ -191,30 +218,32 @@
             aria-label="Default select example"
           >
             <option>Select Timing</option>
-      <!-- Distance timing -->
+            <!-- Distance timing -->
             <option *ngFor="let t of timing" value="{{ t.id }}">
               {{ t.startTiming.slice(0, 5) }} - {{ t.endTiming.slice(0, 5) }}
             </option>
           </select>
-      <!-- </div> -->
+          <!-- </div> -->
 
-          <button
+          <!-- <button
             (click)="insertReservation()"
             type="button"
             class="btn reviewBtn mt-3"
           >
             Book Reservation
+          </button> -->
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
           </button>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> 
+          <button data-bs-dismiss="modal" type="button" (click)="insertReservation()" class="btn btn-primary">Book Reservation</button>
+        </div>
+      </form>
     </div>
   </div>
-</div> 
-
-
+</div>

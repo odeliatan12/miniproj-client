@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Login, token } from 'src/app/models/model';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   show: boolean = false
   fieldTextType!: boolean;
 
-  constructor( private fb: FormBuilder, private userSvc: UserService, private userAuthService: UserAuthService, private route: Router){} 
+  constructor( private fb: FormBuilder, private userSvc: UserService, private userAuthService: UserAuthService, private route: Router, private utilService: UtilsService){} 
 
   ngOnInit(): void {
 
@@ -57,12 +58,13 @@ export class LoginComponent implements OnInit {
 
         const role = response.role;
         if(role === "ADMIN" && this.userAuthService.getToken() != null){
+          this.utilService.sweetAlert("Loggin in", 1000, "success")
           this.route.navigate(["/admin/restaurantList"])
         } else {
+          this.utilService.sweetAlert("Logging in", 1000, "success")
           this.route.navigate(["/user/home"])
         }
       }).catch((error: any) => {
-        console.log(error);
         this.show = true
         this.error = "Incorrect name or password"
         

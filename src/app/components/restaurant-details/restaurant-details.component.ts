@@ -88,9 +88,7 @@ export class RestaurantDetailsComponent implements OnInit {
     value.latitude = this.latitude
 
     this.adminSvc.saveRestaurant(value)
-      .then( result => 
-        console.log(result)
-      ).catch( error => {
+      .catch( error => {
         console.log(error)
         this.utilsService.basicSweetAlert("Restaurant details is now uploaded", 3000, "success", this.route.navigate(["/admin/restaurantList"]))
       })

@@ -101,7 +101,6 @@ export class UserMealsearchComponent implements OnInit, OnDestroy {
     this.queryParam$ = this.userService.getMealRestInfo(request)
       .subscribe(data => {
         this.showMap = true;
-        console.log(data)
         this.mealRest = data
         this.mealRest.forEach(m => {
 
@@ -124,31 +123,6 @@ export class UserMealsearchComponent implements OnInit, OnDestroy {
 
             this.markers.push(marker);
             this.mealamount.push(mealAmount);
-            const infoWindow = new google.maps.InfoWindow();
-            this.markers.forEach(mark => {
-        
-              const markerObj = new google.maps.Marker({
-                position: { lat: mark.latitude, lng: mark.longitude },
-                map: this.mapElement.nativeElement,
-                animation: google.maps.Animation.DROP,
-              });
-
-              markerObj.addListener('click', () => {
-                const content = `<div><strong>${mark.restaurant_name}</strong></div>`;
-                infoWindow.setContent(content);
-                infoWindow.open(this.mapElement.nativeElement, markerObj);
-              });
-
-              markerObj.addListener('mouseover', () => {
-                markerObj.setIcon('path_to_hover_icon');
-              });
-
-              markerObj.addListener('mouseout', () => {
-                markerObj.setIcon('path_to_default_icon');
-              });
-
-              return markerObj
-            })
           }
         });
       })
