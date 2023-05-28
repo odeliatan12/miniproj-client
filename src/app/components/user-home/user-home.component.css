@@ -62,3 +62,7 @@ section{
     font-size: 12px;
     font-family: 'Noto Sans', sans-serif;
 }
+.buttonSlide{
+    border: none;
+    background-color: white;
+}

@@ -3,66 +3,68 @@
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="foodreview">Chope</h1>
-        <p class="lead text-body-secondary">
-          Food Review
-        </p>
+        <p class="lead text-body-secondary">Food Review</p>
       </div>
     </div>
   </section>
 
   <div class="headers-restaurant mb-5">
-    <h4>Restaurants to Choose from</h4>
-    <h5>List of restaurants to browse from</h5>
+    <div class="row mb-5">
+      <div class="col-lg-10">
+        <h4>Restaurants to Choose from</h4>
+        <h5>List of restaurants to browse from</h5>
+      </div>
+      <div class="col-lg-2">
+        <button
+          class="buttonSlide"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="prev"
+        >
+          <button class="btn icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-arrow-left-square-fill custom-icon"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"
+              />
+            </svg>
+          </button>
+        </button>
+        <button
+          class="buttonSlide"
+          type="button"
+          data-bs-target="#carouselExampleInterval"
+          data-bs-slide="next"
+        >
+          <button class="btn icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-arrow-right-square-fill custom-icon"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"
+              />
+            </svg>
+          </button>
+        </button>
+      </div>
+    </div>
 
     <div
       id="carouselExampleInterval"
       class="carousel slide"
       data-bs-ride="carousel"
     >
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#carouselExampleInterval"
-        data-bs-slide="prev"
-      >
-        <!-- <span class="carousel-control-prev-icon icon" aria-hidden="true"></span> -->
-        <button class="btn icon">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-arrow-left-square-fill custom-icon"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"
-            />
-          </svg>
-        </button>
-      </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#carouselExampleInterval"
-        data-bs-slide="next"
-      >
-        <!-- <span class="carousel-control-next-icon icon" aria-hidden="true"></span> -->
-        <button class="btn icon">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-arrow-right-square-fill custom-icon"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"
-            />
-          </svg>
-        </button>
-      </button>
       <div class="carousel-inner">
         <div
           class="carousel-item"
@@ -70,7 +72,10 @@
           [class.active]="i === 0"
         >
           <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12 mb-4" *ngFor="let card of chunk">
+            <div
+              class="col-lg-4 col-md-4 col-sm-12 mb-4"
+              *ngFor="let card of chunk"
+            >
               <div class="card shadow-sm">
                 <img
                   height="200px"
@@ -100,7 +105,9 @@
                     </svg>
                     {{ card.address }}
                   </p>
-                  <p class="card-text description">{{ card.about.slice(0, 50) }} ...</p>
+                  <p class="card-text description">
+                    {{ card.about.slice(0, 50) }} ...
+                  </p>
                   <button
                     (click)="restaurantPage(card.id)"
                     type="button"
@@ -110,13 +117,6 @@
                   </button>
                 </div>
               </div>
-              <!-- <div class="card">
-            <img [src]="card.image" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h5 class="card-title">{{ card.name }}</h5>
-              <p class="card-text">{{ card.address }}</p>
-            </div>
-          </div> -->
             </div>
           </div>
         </div>
