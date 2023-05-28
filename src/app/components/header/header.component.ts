@@ -33,5 +33,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  public routerUrl(link: string){
+    window.location.reload()
+    return this.router.navigate([link]);
+  }
+
 
 }

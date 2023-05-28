@@ -193,7 +193,7 @@
             </div>
             <div
               *ngIf="
-                form.get('dateReserve')?.errors &&
+                form.get('dateReserve')?.hasError('futureDate') &&
                 form.get('dateReserve')?.touched
               "
               class="alert alert-danger size"
@@ -202,7 +202,10 @@
               Please enter a future date
             </div>
             <div
-              *ngIf="form.get('dateReserve')?.errors?.[ this.NotAboveYear2200() ] && form.get('dateReserve')?.touched"
+              *ngIf="
+                form.get('dateReserve')?.hasError('NotAboveYear2200') &&
+                form.get('dateReserve')?.touched
+              "
               class="alert alert-danger size"
               role="alert"
             >
@@ -241,7 +244,15 @@
           >
             Close
           </button>
-          <button data-bs-dismiss="modal" type="button" (click)="insertReservation()" class="btn btn-primary">Book Reservation</button>
+          <button
+            data-bs-dismiss="modal"
+            type="button"
+            (click)="insertReservation()"
+            class="btn btn-primary"
+            [disabled]="form.invalid"
+          >
+            Book Reservation
+          </button>
         </div>
       </form>
     </div>

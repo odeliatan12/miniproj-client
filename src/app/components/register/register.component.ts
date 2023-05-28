@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit{
   createForm(): FormGroup{
     return this.fb.group({
       username: this.fb.control<string>('', [ Validators.required, Validators.min(5) ]),
-      password: this.fb.control<string>('', [ Validators.required ]),
+      password: this.fb.control<string>('', [ Validators.required, this.utilsService.patternValidator() ]),
       email: this.fb.control<string>('', [ Validators.email ]),
       contact: this.fb.control<string>(''),
       roleId: this.fb.control('')
@@ -71,7 +71,6 @@ export class RegisterComponent implements OnInit{
               this.utilsService.sweetAlert("Thank you for registering", 1000, "success")
               this.route.navigate(["/user/home"])
             }
-
           }
         )
       }

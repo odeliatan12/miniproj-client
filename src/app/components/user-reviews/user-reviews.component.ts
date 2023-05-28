@@ -69,7 +69,7 @@ export class UserReviewsComponent implements OnInit {
   createForm(): FormGroup{
     return this.fb.group({
       pax: this.fb.control<number>(0, [ Validators.required, Validators.min(1)]),
-      timeReserve: this.fb.control<string>('', Validators.pattern(/^([01]\d|2[0-3]):([0-5]\d)$/)),
+      timeReserve: this.fb.control<string>(''),
       dateReserve: this.fb.control<string>('', [ Validators.required, this.futureDateValidator(), this.NotAboveYear2200() ])
     })
   }
