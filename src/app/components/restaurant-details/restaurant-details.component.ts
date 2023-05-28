@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Restaurant, RestaurantDetails, RestaurantPost, cuisine } from 'src/app/models/model';
@@ -50,9 +50,6 @@ export class RestaurantDetailsComponent implements OnInit {
   }
 
   handleAddressChange(address: Address) {
-    console.log(address.formatted_address)
-    console.log(address.geometry.location.lat())
-    console.log(address.geometry.location.lng())
     this.selectedAddress = address.formatted_address;
     this.latitude = address.geometry.location.lat()
     this.longitude = address.geometry.location.lng()
@@ -95,9 +92,7 @@ export class RestaurantDetailsComponent implements OnInit {
         console.log(result)
       ).catch( error => {
         console.log(error)
-
         this.utilsService.basicSweetAlert("Restaurant details is now uploaded", 3000, "success", this.route.navigate(["/admin/restaurantList"]))
-        
       })
   }
 

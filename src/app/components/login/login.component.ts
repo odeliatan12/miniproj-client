@@ -46,8 +46,6 @@ export class LoginComponent implements OnInit {
     this.userSvc.login(value)
       .then((response: any) => {
 
-        console.log(response.role)
-
         // set username
         this.userAuthService.setUserId(response.id)
 

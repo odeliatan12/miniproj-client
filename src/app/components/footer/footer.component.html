@@ -5,7 +5,7 @@
         <a [routerLink]="['user/home']" class="nav-link px-2 text-body-secondary">Home</a>
       </li>
       <li class="nav-item">
-        <a [routerLink]="['user/allDeals']" class="nav-link px-2 text-body-secondary">Deals</a>
+        <a *ngIf="isLoggedIn() && userService.roleMatch('ADMIN')" [routerLink]="['user/allDeals']" class="nav-link px-2 text-body-secondary">Deals</a>
       </li>
     </ul>
     <p class="text-center text-body-secondary">© 2023 Company, Inc</p>

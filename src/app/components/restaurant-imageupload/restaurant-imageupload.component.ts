@@ -42,8 +42,7 @@ export class RestaurantImageuploadComponent implements OnInit {
       )
       .catch(
         (error) => { 
-          console.warn(error)  
-          
+          console.warn(error)
         }
       );
   }

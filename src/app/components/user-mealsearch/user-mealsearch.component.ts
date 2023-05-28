@@ -1,5 +1,5 @@
 // import { AgmInfoWindow, AgmMap, AgmMarker, MapsAPILoader } from '@agm/core';
-import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription, debounceTime, map, startWith } from 'rxjs';
@@ -15,7 +15,7 @@ import { DecimalPipe } from '@angular/common';
   templateUrl: './user-mealsearch.component.html',
   styleUrls: ['./user-mealsearch.component.css']
 })
-export class UserMealsearchComponent implements OnInit {
+export class UserMealsearchComponent implements OnInit, OnDestroy {
 
   form!: FormGroup
   meals: mealNames[] = [];
@@ -29,6 +29,7 @@ export class UserMealsearchComponent implements OnInit {
   markerOptions!: google.maps.MarkerOptions;
   infoWindow!: google.maps.InfoWindow;
   markerSelect!: location
+  private queryParam$!: Subscription
   
   @ViewChild('mapElement', { static: true }) 
   mapElement!: ElementRef;
@@ -61,6 +62,13 @@ export class UserMealsearchComponent implements OnInit {
     this.form = this.createForm()
   }
 
+  ngOnDestroy(): void {
+    if(this.queryParam$){
+      this.queryParam$.unsubscribe()
+    }
+      
+  }
+
   getMealNames(){
     return this.adminService.getMeals()
       .subscribe(data => {
@@ -90,7 +98,7 @@ export class UserMealsearchComponent implements OnInit {
   }
 
   getInformation(request: string, d: number, price: number){
-    this.userService.getMealRestInfo(request)
+    this.queryParam$ = this.userService.getMealRestInfo(request)
       .subscribe(data => {
         this.showMap = true;
         console.log(data)
@@ -113,7 +121,7 @@ export class UserMealsearchComponent implements OnInit {
               restaurantName: m.restaurant_name,
               distance: Math.round(distance)
             }
-            
+
             this.markers.push(marker);
             this.mealamount.push(mealAmount);
             const infoWindow = new google.maps.InfoWindow();
@@ -219,61 +227,5 @@ export class UserMealsearchComponent implements OnInit {
   }
 
 }
-
-  
-
-
-  // get(){
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       if (position) {
-  //       this.lat = position.coords.latitude;
-  //       this.lng = position.coords.longitude;
-  //       this.getAddress=(this.lat,this.lng)
-  //       console.log(position)
-  
-  //       this.apiLoader.load().then(() => {
-  //         let geocoder = new google.maps.Geocoder;
-  //         let latlng = {lat: this.lat, lng: this.lng};
-         
-  //         geocoder.geocode({'location': latlng}, (results) => {
-  //             if (results[0]) {
-  //               this.currentLocation = results[0].formatted_address;
-               
-  //             console.log(this.assgin);
-  //             } else {
-  //               console.log('Not found');
-  //             }
-  //           });
-  //         });
-  //       }
-  //     })
-  //   }
-  
-  // }
-  // assgin(assgin: any) {
-  //   throw new Error('Method not implemented.');
-  // }
-
-  // mapClicked($event: google.maps.MapMouseEvent) {
-
-  //   this.latitude= $event.latLng.lat(),
-  //   this.longitude= $event.latLng.lng()
-  
-    
-  //   this.apiLoader.load().then(() => {
-  //     let geocoder = new google.maps.Geocoder;
-  //     let latlng = {lat: this.latitude, lng: this.longitude};
-    
-  //     geocoder.geocode({'location': latlng}, (results) => {
-  //         if (results[0]) {
-  //           this.currentLocation = results[0].formatted_address;
-  //         console.log(this.currentLocation);
-  //         } else {
-  //           console.log('Not found');
-  //         }
-  //     });
-  //   });
-  // }
 
   

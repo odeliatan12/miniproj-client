@@ -4,6 +4,14 @@ import Swal from "sweetalert2";
 @Injectable()
 export class UtilsService{
 
+    sweetAlert(message: string, timing: number, icon: any){ 
+      Swal.fire({
+        title: message,
+        icon: icon,
+        timer: timing
+      })
+    }
+
     basicSweetAlert(message: string, timing: number, icon: any, reload: any){
         Swal.fire({
             title: message,

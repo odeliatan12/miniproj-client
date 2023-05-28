@@ -17,7 +17,6 @@ export class AuthGuard implements CanActivate {
 
       // have to fix this
       const role = this.authService.getRoles()
-      console.log(role);
 
       if (role) {
         const match = this.userService.roleMatch(role);
