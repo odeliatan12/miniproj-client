@@ -85,6 +85,7 @@
         <li class="nav-item searchInput">
           <form class="d-flex" role="search" [formGroup]="form">
             <input
+              *ngIf="isLoggedIn() && userService.roleMatch('USER')"
               class="form-control me-2"
               type="search"
               placeholder="Search"
