@@ -89,7 +89,16 @@
               type="search"
               placeholder="Search"
               aria-label="Search"
+              list="restaurants"
+              name="browser"
+
             />
+            <datalist id="restaurants">
+              <option *ngFor="let r of restaurant" value="{{ r.name }}">
+                {{ r.name }}
+              </option>
+            </datalist>
+
             <a
             *ngIf="isLoggedIn() && userService.roleMatch('USER')"
             class="nav-link nav-link-grow-up searchIcon"

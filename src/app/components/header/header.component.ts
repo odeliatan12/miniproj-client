@@ -29,12 +29,10 @@ export class HeaderComponent implements OnInit {
   }
   
   ngOnInit(): void {
+
+    this.getMealInfo()
     
   }
-
-  // ngAfterViewInit(): void {
-  //   this.navbarCollapse.nativeElement.classList.remove('show');
-  // }
   
   public isLoggedIn(){
     return this.userAuthService.isLoggedIn();
@@ -49,6 +47,9 @@ export class HeaderComponent implements OnInit {
     window.location.reload()
     return this.router.navigate([link]);
   }
+
+  
+
 
   openSweetModal(){
     Swal.fire({
