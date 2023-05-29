@@ -31,7 +31,6 @@ export class UserReviewsReservationComponent implements OnInit {
       .then(result => {
         console.log(result)
       }).catch(result => {
-        console.log(result)
         this.route.navigate(["/user/userReview", this.activatedRoute.snapshot.params["restaurantId"]])
       })
   }

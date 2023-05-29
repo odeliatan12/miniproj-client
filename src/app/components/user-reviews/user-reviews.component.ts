@@ -100,7 +100,7 @@ export class UserReviewsComponent implements OnInit {
       .then(result => {
         // this.route.navigate(["/user/insertReview", restaurantId])
       }).catch(result => {
-        this.utilService.basicSweetAlert("Restaurant details is now updated", 3000, "success", this.route.navigate(["/user/profile"]))
+        this.utilService.basicSweetAlert("Reservation is added!", 3000, "success", this.route.navigate(["/user/profile"]))
         window.location.reload
       })
   }
