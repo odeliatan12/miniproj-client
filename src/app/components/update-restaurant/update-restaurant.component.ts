@@ -80,7 +80,6 @@ export class UpdateRestaurantComponent implements OnInit {
           sundayClosing: (this.restDetails.sundayClosing).slice(0,5),
         })
       }).catch ( error => {
-        console.log(error)
       })
 
     this.form = this.createForm()
@@ -96,9 +95,7 @@ export class UpdateRestaurantComponent implements OnInit {
     const value = this.form.value
     this.adminSvc.updateRestaurant(value, restaurantId)
       .then(result => {
-        console.log(result)
       }).catch(error => {
-        console.log(error)
 
         this.utilService.basicSweetAlert("Restaurant details is now updated", 3000, "success", this.route.navigate(["/admin/restaurantList"]))
         
@@ -106,9 +103,6 @@ export class UpdateRestaurantComponent implements OnInit {
   }
 
   handleAddressChange(address: Address) {
-    console.log(address.formatted_address)
-    console.log(address.geometry.location.lat())
-    console.log(address.geometry.location.lng())
     this.selectedAddress = address.formatted_address;
     this.latitude = address.geometry.location.lat()
     this.longitude = address.geometry.location.lng()

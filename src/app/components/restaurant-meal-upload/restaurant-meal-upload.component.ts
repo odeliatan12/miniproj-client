@@ -26,7 +26,6 @@ export class RestaurantMealUploadComponent implements OnInit {
 
     this.adminService.getAllMeals()
       .then(result => {
-        console.log(result)
         this.mealNames = result
       })
     this.adminService.getAllCategories()
@@ -51,10 +50,8 @@ export class RestaurantMealUploadComponent implements OnInit {
   }
 
   saveForm(){
-    console.log(this.meals)
     this.adminService.postListofDishes(this.meals)
       .then(result => {
-        console.log(result)
       }).catch(error => {
         this.utilService.basicSweetAlert("Meals has been uploaded", 3000, "success", this.route.navigate(["/admin/restaurantList"]))
       })

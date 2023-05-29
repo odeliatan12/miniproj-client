@@ -129,7 +129,6 @@ export class UserService{
         return firstValueFrom(
             this.http.get<image>(`${this.RAILWAY_URL}/image/` + id)
         ).then(result => {
-            console.log(result.picture)
             const image = new Image()
             image.src = 'data:' + result.image_fileType + ';base64,' + result.picture
             return image.src 

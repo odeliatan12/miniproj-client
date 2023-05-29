@@ -89,7 +89,6 @@ export class RestaurantDetailsComponent implements OnInit {
 
     this.adminSvc.saveRestaurant(value)
       .catch( error => {
-        console.log(error)
         this.utilsService.basicSweetAlert("Restaurant details is now uploaded", 3000, "success", this.route.navigate(["/admin/restaurantList"]))
       })
   }

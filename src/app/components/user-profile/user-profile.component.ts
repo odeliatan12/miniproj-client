@@ -62,12 +62,7 @@ export class UserProfileComponent implements OnInit {
         )
       }
     })
-    // this.userService.updateUser(value, id)
-    // .then(result => {
-    //   console.log(result)
-    // }).catch(result => {
-    //   this.utilService.basicSweetAlert("User profile has been updated", 3000, "success", this.route.navigate(['user/profile'])) 
-    // })
+
   }
 
   

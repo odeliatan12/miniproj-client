@@ -41,7 +41,7 @@ export class RestaurantCapacityComponent implements OnInit {
   saveForm(){
     this.adminService.postCapacity(this.capacities)
       .then(result => {
-        console.log(result)
+        
       }).catch(result => {
         this.utilsService.basicSweetAlert("Details are now updated", 3000, "success", this.route.navigate(["/admin/restaurantList"]))
       })

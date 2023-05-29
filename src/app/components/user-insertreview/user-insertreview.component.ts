@@ -43,7 +43,6 @@ export class UserInsertreviewComponent implements OnInit {
     const restaurantId = this.activatedRoute.snapshot.params["restaurantId"]
     this.userSvc.postReview(value, restaurantId)
     .then(result => {
-      console.log(result)
     }).catch(result => {
       this.utilService.basicSweetAlert("Review is now added", 3000, "success", this.route.navigate(['user/userReview/', restaurantId]))
     })

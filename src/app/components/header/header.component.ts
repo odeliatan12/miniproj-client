@@ -59,7 +59,6 @@ export class HeaderComponent implements OnInit {
 
   navigateToRestaurant(){
     const value = this.form.value
-    console.log(value.restaurant)
     this.route.navigate(['/user/userReview', value.restaurant])
   }
 

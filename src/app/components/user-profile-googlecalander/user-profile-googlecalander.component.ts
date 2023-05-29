@@ -41,7 +41,6 @@ export class UserProfileGooglecalanderComponent implements OnInit, AfterViewInit
 
   ngOnInit(): void {
 
-    console.log(this.idx)
     // this.reservationService.getReservation(this.idx)
     //   .then(result => {
     //     this.reservation = result
@@ -59,7 +58,6 @@ export class UserProfileGooglecalanderComponent implements OnInit, AfterViewInit
 
   createGoogleEvent(){
     const value = this.form.value
-    console.log(value.description)
     const event = new GoogleCalendar(this.idx, value.summary, this.location, value.description, this.date, this.startTiming, this.endTiming);
     this.reservationService.googleEvent(event)
   }

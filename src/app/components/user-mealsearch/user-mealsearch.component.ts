@@ -91,9 +91,6 @@ export class UserMealsearchComponent implements OnInit, OnDestroy {
 
   findMeal(){
     const value = this.form.value
-    console.log(value.meal)
-    console.log(value.distance)
-    console.log(value.price)
     this.getInformation(value.meal, value.distance, value.price)
   }
 

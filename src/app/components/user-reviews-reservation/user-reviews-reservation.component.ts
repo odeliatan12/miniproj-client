@@ -37,10 +37,8 @@ export class UserReviewsReservationComponent implements OnInit {
 
   getAvailableTimings(){
     const value = this.form.value
-    console.log(value.dateReserve)
     return this.reservationService.getAvailableTimings(value.dateReserve, this.activatedRoute.snapshot.params["restaurantId"])
       .then(result => {
-        console.log(result)
         this.timing = result
       })
   }
