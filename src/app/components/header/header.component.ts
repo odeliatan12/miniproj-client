@@ -8,6 +8,7 @@ import { UserAuthService } from 'src/app/services/user-auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -21,15 +22,17 @@ export class HeaderComponent implements OnInit {
   restaurant: RestaurantDetails[] = []
   @ViewChild('navbarCollapse') 
   navbarCollapse!: ElementRef;
+  form!: FormGroup
 
 
   constructor( private userAuthService: UserAuthService,
-    private router: Router, public userService: UserService, private adminService: AdminService){
+    private router: Router, public userService: UserService, private adminService: AdminService, private fb: FormBuilder, private route: Router){
     
   }
   
   ngOnInit(): void {
 
+    this.form = this.createForm()
     this.getMealInfo()
     
   }
@@ -48,7 +51,17 @@ export class HeaderComponent implements OnInit {
     return this.router.navigate([link]);
   }
 
-  
+  createForm(){
+    return this.fb.group({
+      restaurant: this.fb.control<number>(0)
+    })
+  }
+
+  navigateToRestaurant(){
+    const value = this.form.value
+    console.log(value.restaurant)
+    this.route.navigate(['/user/userReview', value.restaurant])
+  }
 
 
   openSweetModal(){
