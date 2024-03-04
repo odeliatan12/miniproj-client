@@ -1,6 +1,6 @@
-# Client
+# Welcome!
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.2.
+In this project, I am using angular as the main framework for the client side. A beginner project to angular, this is a food review app, which is the client side to the Java springboot application.
 
 ## Development server
 
